@@ -1,12 +1,15 @@
 # website (fullstack application)
 
-Цель проекта - создание приложения. Предметная область - ......
+The purpose of the project is to create an application. Subject area - ......<br>
 
-Проект состоит из следующих этапов, каждый из которых выполняется последовательно и представляет собой небольшую лабораторную работу:
+The project consists of the following steps, each of which is done sequentially and represents a small lab activity:<br>
 
-> 1. БД - придумать схему согласно теме проекта, минимум 7 таблиц, обязательное наличие связи многие ко многим. Желательно использовать PostgreSQL. Схему и скрипт добавить в гит.<br>
-> 2. JDBC - создание консольного приложения (CRUD-операции) с использованием JDBC.<br>
-> 3. JSP - клиентская часть с использованием JSP<br>
-> 4. Backend на SpringBoot + Hibernate<br>
+> 1. DB - come up with a scheme according to the theme of the project, a minimum of 7 tables, the mandatory presence of many to many relationship. It is desirable to use PostgreSQL. Add the schema and script to the git.<br>
+> 2. JDBC - creating a console application (CRUD operations) using JDBC.<br>
+> 3. JSP - client side using JSP<br>
+> 4. Backend on SpringBoot + Hibernate<br>
 > 5. Angular - Frontend<br>
 > 6. React - Frontend<br>
+
+
+
