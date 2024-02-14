@@ -1,0 +1,88 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+# Compiled class file
+*.class
+
+# Log files
+log/
+*.log
+
+# IntelliJ IDEA files
+.idea/
+
+# Eclipse files
+.classpath
+.project
+.settings/
+
+# Spring Boot devtools
+.springBeans
+
+# Gradle files
+.gradle/
+build/
+
+# Maven
+target/
+*/target/
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Ignore Maven wrapper jar
+!/.mvn/wrapper/maven-wrapper.jar
+
+# Ignore Gradle wrapper jar
+!/.gradle/wrapper/dists/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Exclude Spring Boot's application properties file
+application.properties
+
+# Exclude Spring Boot's yml configuration file
+application.yml
+
+# Exclude H2 database files
+db.*
+
+# Exclude generated Thymeleaf cache
+spring-template/
+
+# Exclude Gradle files
+gradle-wrapper.jar
