@@ -2,6 +2,11 @@
 
 The purpose of the project is to create a web application. Subject area - **[Letterboxd](https://letterboxd.com)** integration.<br>
 
+> ### варианты функционала:
+> + возможность просмотра трейлера фильма (YouTube API)<br>
+> + просмотр кадров из фильма (например, чтобы понять, смотрел ты этот фильм или нет)<br>
+> + поиск и добавление саундтрека из фильма в плейлист (Spotify API)<br>
+
 The project consists of the following steps, each of which is done sequentially and represents a small lab activity:<br>
 
 1. DB - come up with a scheme according to the theme of the project, a minimum of 7 tables, the mandatory presence of many to many relationship. It is desirable to use PostgreSQL.<br>
@@ -22,6 +27,13 @@ The project consists of the following steps, each of which is done sequentially 
 
 ## Task 2. JDBC console application
 ### expected time -- 2h,  actual time -- 
+
+### Results
+
+---
+
+## Task 3. client side using JSP
+### expected time -- ,  actual time -- 
 
 ### Results
 
