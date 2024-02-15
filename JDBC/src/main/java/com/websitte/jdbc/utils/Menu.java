@@ -1,7 +1,7 @@
-package com.websitte.JDBC.utils;
+package com.websitte.jdbc.utils;
 
-import com.websitte.JDBC.dao.UsersDAO;
-import com.websitte.JDBC.model.User;
+import com.websitte.jdbc.dao.UsersDAO;
+import com.websitte.jdbc.model.User;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,24 +27,23 @@ public class Menu {
             option = br.readLine();
 
             switch (option) {
-                case "1" -> {
+                case "1" ->
                     createUser();
-                }
-                case "2" -> {
-                    System.out.println("\t\t\t5 - Exit");
-                }
-                case "3" -> {
+                case "2" ->
+                    System.out.println("\t\t\t2");
 
-                    System.out.println("\t\t\t5 - Exit");
-                }
-                case "4" -> {
+                case "3" ->
 
-                    System.out.println("\t\t\t5 - Exit");
-                }
-                case "5" -> {
+                    System.out.println("\t\t\t3");
 
-                    System.out.println("\t\t\t5 - Exit");
-                }
+                case "4" ->
+
+                    System.out.println("\t\t\t4");
+
+                case "5" ->
+
+                    System.out.println("\t\t\t5");
+
                 default -> {
                     System.out.println("Wrong option (!)");
                     menu();
@@ -55,17 +54,11 @@ public class Menu {
     }
 
     public static void createUser() throws IOException {
-        System.out.println("------------------------------------------------");
-        System.out.println("Enter login:");
-        System.out.println("------------------------------------------------");
+        System.out.print("Enter login --> ");
         String login = br.readLine();
-        System.out.println("------------------------------------------------");
-        System.out.println("Enter password:");
-        System.out.println("------------------------------------------------");
+        System.out.println("Enter password --> ");
         String password = br.readLine();
-        System.out.println("------------------------------------------------");
-        System.out.println("Enter email:");
-        System.out.println("------------------------------------------------");
+        System.out.println("Enter email --> ");
         String email = br.readLine();
 
         User user = new User(0L, login, password, email);

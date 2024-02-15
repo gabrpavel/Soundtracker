@@ -1,4 +1,4 @@
-package com.websitte.JDBC.utils;
+package com.websitte.jdbc.utils;
 
 import java.sql.*;
 
@@ -7,7 +7,6 @@ public class DBConnection {
     public static Connection getConnection() {
         Connection connection;
         try {
-            Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/website_db",
                     "postgres", "admin");
         } catch (Exception e) {
