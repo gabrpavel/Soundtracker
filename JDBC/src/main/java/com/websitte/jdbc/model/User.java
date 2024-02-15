@@ -7,7 +7,6 @@ public class User {
     String password;
     String email;
 
-    public User(){}
     public User(Long id, String login, String password, String email) {
         this.id = id;
         this.login = login;

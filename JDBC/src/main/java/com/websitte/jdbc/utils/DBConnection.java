@@ -8,7 +8,7 @@ public class DBConnection {
         Connection connection;
         try {
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/website_db",
-                    "postgres", "admin");
+                    "postgres", System.getenv("admin"));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
