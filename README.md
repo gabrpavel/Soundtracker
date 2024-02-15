@@ -19,14 +19,14 @@ The project consists of the following steps, each of which is done sequentially 
 ---
 
 ## Task 1. Вatabase architecture design
-### expected time -- 4h,  actual time -- 
+### expected time -- 6h,  actual time -- 
 
 ### Results
 
 ---
 
 ## Task 2. JDBC console application
-### expected time -- 2h,  actual time -- 
+### expected time -- 4h,  actual time -- 
 
 ### Results
 
