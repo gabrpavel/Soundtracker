@@ -1,7 +1,8 @@
 # website (fullstack application)
 
-The purpose of the project is to create a web application. Subject area - **[Letterboxd](https://letterboxd.com)** integration.<br>
-
+The purpose of the project is to create a web application. Subject area -  music and films.<br>
+**[Spotify API](https://developer.spotify.com/)**<br>
+**[Kinopoisk API](https://kinopoisk.dev/)**<br>
 > ### варианты функционала:
 > + возможность просмотра трейлера фильма (YouTube API)<br>
 > + просмотр кадров из фильма (например, чтобы понять, смотрел ты этот фильм или нет)<br>
