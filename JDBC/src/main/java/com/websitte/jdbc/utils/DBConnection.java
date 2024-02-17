@@ -4,21 +4,24 @@ import java.sql.*;
 
 public class DBConnection {
 
-    public static Connection getConnection() {
-        Connection connection;
-        try {
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/website_db",
-                    "postgres", System.getenv("admin"));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return connection;
+    private static final String DB_URL = "jdbc:postgresql://localhost:5432/website_db";
+    private static final String DB_USER = System.getenv("DB_USER");
+    private static final String DB_PASSWORD = System.getenv("DB_PASSWORD");
+
+    private DBConnection() {
+        throw new IllegalStateException("Utility class");
+    }
+
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(DB_URL,
+                DB_USER, DB_PASSWORD);
     }
     public static void closeConnection(Connection connection) {
         try {
             connection.close();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new IllegalStateException(e);
         }
     }
 }
