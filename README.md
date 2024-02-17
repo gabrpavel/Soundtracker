@@ -30,6 +30,7 @@ The project consists of the following steps, each of which is done sequentially 
 ### expected time -- 7h,  actual time -- 7h
 
 ### Results [CODE](JDBC)
+![](https://github.com/gabrpavel/website/blob/def71f9ba20d7f46a0288fbffbfcd0a0c14f0a81/SonarCloude%20Summary/JDBC.png)
 
 ---
 
