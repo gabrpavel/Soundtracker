@@ -27,7 +27,7 @@ The project consists of the following steps, each of which is done sequentially 
 ---
 
 ## Task 2. JDBC console application
-### expected time -- 4h,  actual time -- 
+### expected time -- 7h,  actual time -- 7h
 
 ### Results
 
