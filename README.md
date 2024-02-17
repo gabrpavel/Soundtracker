@@ -20,7 +20,7 @@ The project consists of the following steps, each of which is done sequentially 
 ---
 
 ## Task 1. Database architecture design
-### expected time -- 6h,  actual time -- 
+### expected time -- 7h,  actual time -- 
 
 ### Results
 
