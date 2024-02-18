@@ -23,7 +23,7 @@ The project consists of the following steps, each of which is done sequentially 
 ### expected time -- 6h,  actual time -- 6h
 
 ### Results
-![](https://github.com/gabrpavel/website/blob/3dae7484c9981744b9cd1f4888e57e460bad1649/images/website_db.png)
+![](https://github.com/gabrpavel/website/blob/68e65c1e08238287bb5e656a4fe51bf2ee960687/Database/website_db.png)
 
 ---
 
