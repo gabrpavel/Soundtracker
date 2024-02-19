@@ -35,8 +35,8 @@ The project consists of the following steps, each of which is done sequentially 
 
 ---
 
-## Task 3. client side using JSP
-### expected time -- ,  actual time -- 
+## Task 3. Java EE. Client side using JSP (Java Server Pages)
+### expected time -- 15h,  actual time -- 
 
 ### Results
 
