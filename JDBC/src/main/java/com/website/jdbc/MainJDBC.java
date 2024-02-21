@@ -1,6 +1,6 @@
-package com.websitte.jdbc;
+package com.website.jdbc;
 
-import com.websitte.jdbc.utils.Menu;
+import com.website.jdbc.utils.Menu;
 
 import java.io.IOException;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-package com.websitte.jdbc.model;
+package com.website.jdbc.model;
 
 public class User {
 

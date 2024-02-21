@@ -1,4 +1,4 @@
-package com.websitte.jdbc.utils;
+package com.website.jdbc.utils;
 
 import java.sql.*;
 

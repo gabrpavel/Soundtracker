@@ -1,7 +1,7 @@
-package com.websitte.jdbc.dao;
+package com.website.jdbc.dao;
 
-import com.websitte.jdbc.model.User;
-import com.websitte.jdbc.utils.DBConnection;
+import com.website.jdbc.model.User;
+import com.website.jdbc.utils.DBConnection;
 
 import java.sql.*;
 import java.util.*;

@@ -1,7 +1,7 @@
-package com.websitte.jdbc.utils;
+package com.website.jdbc.utils;
 
-import com.websitte.jdbc.dao.UsersDAO;
-import com.websitte.jdbc.model.User;
+import com.website.jdbc.dao.UsersDAO;
+import com.website.jdbc.model.User;
 
 import java.io.BufferedReader;
 import java.io.IOException;
