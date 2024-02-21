@@ -20,21 +20,23 @@ The project consists of the following steps, each of which is done sequentially 
 ---
 
 ## Task 1. Database architecture design
-### expected time -- 7h,  actual time -- 
+### expected time -- 6h,  actual time -- 6h
 
 ### Results
+![](https://github.com/gabrpavel/website/blob/68e65c1e08238287bb5e656a4fe51bf2ee960687/Database/website_db.png)
 
 ---
 
 ## Task 2. JDBC console application
 ### expected time -- 7h,  actual time -- 7h
 
-### Results
+### Results [CODE](JDBC)
+![](https://github.com/gabrpavel/website/blob/def71f9ba20d7f46a0288fbffbfcd0a0c14f0a81/SonarCloude%20Summary/JDBC.png)
 
 ---
 
-## Task 3. client side using JSP
-### expected time -- ,  actual time -- 
+## Task 3. Java EE. Client side using JSP (Java Server Pages)
+### expected time -- 15h,  actual time -- 
 
 ### Results
 
