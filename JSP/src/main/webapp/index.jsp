@@ -2,11 +2,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>website</title>
+  <title>Soundtracker</title>
+  <link rel="icon" type="image/x-icon" href="MAIN/img/logo.webp">
 </head>
 <body>
-<h1><%= "Hello World!" %></h1>
-<br/>
-<a href="${pageContext.request.contextPath}/hello-servlet">Hello Servlet</a>
+<h1>
+  <jsp:text>Hello! Welcome to Soundtracker.</jsp:text>
+  <input type="image" src="MAIN/img/logo.webp" alt="LOGO" width="89" height="91" />
+</h1>
+<a href="${pageContext.request.contextPath}/hello-servlet">Show users</a>
 </body>
 </html>
