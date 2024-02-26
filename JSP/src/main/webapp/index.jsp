@@ -2,11 +2,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>JSP - Hello World</title>
+  <title>website</title>
 </head>
 <body>
 <h1><%= "Hello World!" %></h1>
 <br/>
-<a href="http://localhost:8080/jsp_war_exploded/hello-servlet">Hello Servlet</a>
+<a href="${pageContext.request.contextPath}/hello-servlet">Hello Servlet</a>
 </body>
 </html>
