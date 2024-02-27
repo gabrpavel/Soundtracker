@@ -1,26 +1,23 @@
-# website (fullstack application)
+# Soundtracker (fullstack application)
 
 The purpose of the project is to create a web application. Subject area -  music and films.<br>
 **[Spotify API](https://developer.spotify.com/)**<br>
 **[Kinopoisk API](https://kinopoisk.dev/)**<br>
-> ### варианты функционала:
-> + возможность просмотра трейлера фильма (YouTube API)<br>
-> + просмотр кадров из фильма (например, чтобы понять, смотрел ты этот фильм или нет)<br>
-> + поиск и добавление саундтрека из фильма в плейлист (Spotify API)<br>
 
-The project consists of the following steps, each of which is done sequentially and represents a small lab activity:<br>
+> search for and add a movie soundtrack to a playlist<br>
 
-1. DB - come up with a scheme according to the theme of the project, a minimum of 7 tables, the mandatory presence of many to many relationship. It is desirable to use PostgreSQL.<br>
-2. JDBC - creating a console application (CRUD operations) using JDBC.<br>
-3. JSP - client side using JSP<br>
-4. Backend on SpringBoot + Hibernate<br>
-5. Angular - Frontend<br>
-6. React - Frontend<br>
+| Stage                                | Description                                                                                                        | Expected (hours) | Actual (hours) |
+|--------------------------------------|--------------------------------------------------------------------------------------------------------------------|------------------|----------------|
+| Database                             | Design a database schema according to the project theme. Minimum 7 tables, many to many relationship is mandatory. | 6                | 6              |
+| JDBC                                 | Create a console application to perform CRUD operations using JDBC.                                                | 7                | 7              |
+| JSP                                  | Developing the client side using JSP.                                                                              | 20               | Y              |
+| Backend using SpringBoot + Hibernate | Creating an application backend using SpringBoot and Hibernate.                                                    | X                | Y              |
+| Angular - Frontend                   | Frontend development using Angular.                                                                                | X                | Y              |
+| React - Frontend                     | Frontend development using React.                                                                                  | X                | Y              |
 
 ---
 
 ## Task 1. Database architecture design
-### expected time -- 6h,  actual time -- 6h
 
 ### Results
 ![](https://github.com/gabrpavel/website/blob/68e65c1e08238287bb5e656a4fe51bf2ee960687/Database/website_db.png)
@@ -28,7 +25,6 @@ The project consists of the following steps, each of which is done sequentially 
 ---
 
 ## Task 2. JDBC console application
-### expected time -- 7h,  actual time -- 7h
 
 ### Results [CODE](JDBC)
 ![](https://github.com/gabrpavel/website/blob/def71f9ba20d7f46a0288fbffbfcd0a0c14f0a81/SonarCloude%20Summary/JDBC.png)
@@ -36,7 +32,6 @@ The project consists of the following steps, each of which is done sequentially 
 ---
 
 ## Task 3. Java EE. Client side using JSP (Java Server Pages)
-### expected time -- 15h,  actual time -- 
 
 ### Results
 
