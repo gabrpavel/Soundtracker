@@ -4,12 +4,15 @@
 <head>
   <title>Soundtracker</title>
   <link rel="icon" type="image/x-icon" href="MAIN/img/logo.webp">
+    <link rel="stylesheet" href="css/index.css">
+
 </head>
 <body>
 <h1>
   <jsp:text>Hello! Welcome to Soundtracker.</jsp:text>
-  <input type="image" src="MAIN/img/logo.webp" alt="LOGO" width="89" height="91" />
 </h1>
 <a href="${pageContext.request.contextPath}/hello-servlet">Show users</a>
+<a href="${pageContext.request.contextPath}/profile">My profile</a>
+<a href="${pageContext.request.contextPath}/movies">Show movies</a>
 </body>
 </html>
