@@ -11,8 +11,6 @@
 <h1>
   <jsp:text>Hello! Welcome to Soundtracker.</jsp:text>
 </h1>
-<a href="${pageContext.request.contextPath}/hello-servlet">Show users</a>
-<a href="${pageContext.request.contextPath}/profile">My profile</a>
-<a href="${pageContext.request.contextPath}/movies">Show movies</a>
+<a href="${pageContext.request.contextPath}/movies.jsp">Show movies</a>
 </body>
 </html>

@@ -1,17 +1,28 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: gabr
-  Date: 27.02.2024
-  Time: 15:53
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.website.jdbc.dao.MoviesDAO" %>
+<%@ page import="com.website.jdbc.model.Movie" %>
+<%@ page import="java.util.List" %>
+
 <!DOCTYPE html>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="en">
 <head>
-    <title>Title</title>
+    <title>Movies</title>
+    <link rel="stylesheet" type="text/css" href="css/movies.css">
 </head>
 <body>
-
+<div class="container">
+    <%
+        MoviesDAO moviesDAO = new MoviesDAO();
+        List<Movie> movies = moviesDAO.getAllMovies();
+        for (Movie movie: movies) { %>
+    <div class="movie-card">
+        <a href="movie.jsp?id=<%= movie.getId() %>">
+            <img src="<%= movie.getPoster()%>" alt="Poster" class="movie-poster">
+            <p class="movie-title">Название: <%= movie.getRuTitle()%></p>
+            <p class="movie-release-year">Год выпуска: <%= movie.getReleaseYear()%></p>
+        </a>
+    </div>
+    <% } %>
+</div>
 </body>
 </html>
