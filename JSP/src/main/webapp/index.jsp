@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>
-  <jsp:text>Hello! Welcome to Soundtracker.</jsp:text>
+  Welcome to Soundtracker.
 </h1>
 <a href="${pageContext.request.contextPath}/movies.jsp">Show movies</a>
 </body>

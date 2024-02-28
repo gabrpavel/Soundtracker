@@ -18,8 +18,8 @@
     <div class="movie-card">
         <a href="movie.jsp?id=<%= movie.getId() %>">
             <img src="<%= movie.getPoster()%>" alt="Poster" class="movie-poster">
-            <p class="movie-title">Название: <%= movie.getRuTitle()%></p>
-            <p class="movie-release-year">Год выпуска: <%= movie.getReleaseYear()%></p>
+            <p class="movie-title"><%= movie.getRuTitle()%></p>
+            <p class="movie-release-year"><%= movie.getReleaseYear()%></p>
         </a>
     </div>
     <% } %>
