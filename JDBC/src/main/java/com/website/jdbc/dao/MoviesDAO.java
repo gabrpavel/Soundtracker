@@ -59,5 +59,33 @@ public class MoviesDAO {
         return genres;
     }
 
+    public Movie getMovieById(Long id) {
 
+        Movie movie = null;
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement("SELECT ru_title," +
+                     " en_title, release_year, description, length, poster" +
+                     " FROM movies" +
+                     " WHERE id = ?"
+                    )) {
+
+            ps.setLong(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    movie = new Movie(id,
+                            rs.getString("ru_title"),
+                            rs.getString("en_title"),
+                            rs.getInt("release_year"),
+                            rs.getString("description"),
+                            rs.getInt("length"),
+                            rs.getString("poster"));
+                    movie.setGenres(getGenres(id));
+                }
+            }
+        }  catch (SQLException e) {
+            throw new IllegalStateException("Error while adding movie data with movie ID: " + id, e);
+        }
+        return movie;
+    }
 }

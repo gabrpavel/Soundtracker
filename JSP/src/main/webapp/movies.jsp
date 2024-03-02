@@ -18,9 +18,11 @@
     <div class="movie-card">
         <a href="movie.jsp?id=<%= movie.getId() %>">
             <img src="<%= movie.getPoster()%>" alt="Poster" class="movie-poster">
+        </a>
+        <div class="movie-info">
             <p class="movie-title"><%= movie.getRuTitle()%></p>
             <p class="movie-release-year"><%= movie.getReleaseYear()%></p>
-        </a>
+        </div>
     </div>
     <% } %>
 </div>
