@@ -20,6 +20,7 @@
     <modules>
         <module>JDBC</module>
         <module>JSP</module>
+        <module>backend</module>
     </modules>
 
 </project>
