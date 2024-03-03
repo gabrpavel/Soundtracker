@@ -1,0 +1,132 @@
+create table actors
+(
+    id         serial
+        primary key,
+    first_name varchar(50),
+    last_name  varchar(50)
+);
+
+alter table actors
+    owner to postgres;
+
+create table directors
+(
+    id         serial
+        primary key,
+    first_name varchar(50),
+    last_name  varchar(50)
+);
+
+alter table directors
+    owner to postgres;
+
+create table genres
+(
+    id   serial
+        primary key,
+    name varchar(100)
+);
+
+alter table genres
+    owner to postgres;
+
+create table movie_actors
+(
+    movie_id integer not null
+        references movies,
+    actor_id integer not null
+        references actors,
+    primary key (movie_id, actor_id)
+);
+
+alter table movie_actors
+    owner to postgres;
+
+create table movie_directors
+(
+    movie_id    integer not null
+        references movies,
+    director_id integer not null
+        references directors,
+    primary key (movie_id, director_id)
+);
+
+alter table movie_directors
+    owner to postgres;
+
+create table movie_genres
+(
+    movie_id integer not null
+        references movies,
+    genre_id integer not null
+        references genres,
+    primary key (movie_id, genre_id)
+);
+
+alter table movie_genres
+    owner to postgres;
+
+create table movie_types
+(
+    id   integer default nextval('types_id_seq'::regclass) not null
+        constraint types_pkey
+            primary key,
+    type varchar(20)
+);
+
+alter table movie_types
+    owner to postgres;
+
+create table movies
+(
+    id           serial
+        primary key,
+    ru_title     varchar(255),
+    en_title     varchar(255),
+    type_id      integer
+        references movie_types,
+    release_year integer,
+    description  varchar(800),
+    length       integer,
+    poster       varchar(255)
+);
+
+alter table movies
+    owner to postgres;
+
+create table roles
+(
+    role_id   serial
+        primary key,
+    role_name varchar(255) not null
+        unique
+);
+
+alter table roles
+    owner to postgres;
+
+create table user_roles
+(
+    user_id integer not null
+        references users,
+    role_id integer not null
+        references roles,
+    primary key (user_id, role_id)
+);
+
+alter table user_roles
+    owner to postgres;
+
+create table users
+(
+    user_id  serial
+        primary key,
+    email    varchar(255) not null
+        unique,
+    password varchar(255) not null,
+    login    varchar(255) not null
+        unique
+);
+
+alter table users
+    owner to postgres;
