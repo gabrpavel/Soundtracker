@@ -26,7 +26,6 @@
         <p class="movie-description"><%= movie.getDescription() %></p>
     </div>
 </div>
-<!-- Переносим кнопку за пределы контейнера с фильмом -->
 <div class="back-button">
     <a href="movies.jsp">Back to Movies</a>
 </div>
