@@ -15,3 +15,25 @@ a {
     padding: 50px;
 }
 
+.show-movies-button {
+    margin-top: 20px; /* Отступ сверху */
+    margin-left: 50px; /* Сдвигаем кнопку вправо */
+    border: 2px solid #007bff; /* Добавляем рамку */
+    border-radius: 8px; /* Закругляем углы рамки */
+    display: inline-block; /* Чтобы рамка обтекала кнопку */
+}
+
+.show-movies-button a {
+    display: inline-block;
+    padding: 15px 30px; /* Увеличиваем размер кнопки */
+    background-color: transparent; /* Прозрачный фон кнопки */
+    color: #007bff; /* Цвет текста кнопки */
+    text-decoration: none;
+    border-radius: 5px; /* Более круглые углы кнопки */
+    transition: background-color 0.3s;
+}
+
+.show-movies-button a:hover {
+    background-color: #007bff; /* Изменяем фон кнопки при наведении мыши */
+    color: #fff; /* Изменяем цвет текста кнопки при наведении мыши */
+}

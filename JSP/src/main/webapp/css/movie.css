@@ -28,7 +28,7 @@ body {
 }
 
 .movie-poster img {
-    width: 70%;
+    width: 55%;
     border-radius: 10px;
 }
 
@@ -56,9 +56,11 @@ body {
     margin-top: 20px;
 }
 
+
 .back-button {
-    margin-top: 20px;
-    text-align: center;
+    position: fixed; /* Фиксируем позицию кнопки */
+    top: 20px; /* Отступ от верхнего края */
+    left: 20px; /* Отступ от левого края */
 }
 
 .back-button a {

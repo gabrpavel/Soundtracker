@@ -11,6 +11,9 @@
 </head>
 <body>
 <div class="container">
+    <div class="home-button">
+        <a href="index.jsp">Home</a>
+    </div>
     <%
         MoviesDAO moviesDAO = new MoviesDAO();
         List<Movie> movies = moviesDAO.getAllMovies();

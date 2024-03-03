@@ -12,8 +12,7 @@
     <div class="movie-header">
         <h1>Movie Details</h1>
     </div>
-    <%
-        MoviesDAO moviesDAO = new MoviesDAO();
+    <% MoviesDAO moviesDAO = new MoviesDAO();
         Long id = Long.valueOf(request.getParameter("id"));
         Movie movie = moviesDAO.getMovieById(id);
     %>
@@ -25,10 +24,12 @@
         <p class="movie-info">Year: <%= movie.getReleaseYear() %></p>
         <p class="movie-info">Length: <%= movie.getLength() %> minutes</p>
         <p class="movie-description"><%= movie.getDescription() %></p>
-        <div class="back-button">
-            <a href="movies.jsp">Back to Movies</a>
-        </div>
     </div>
+</div>
+<!-- Переносим кнопку за пределы контейнера с фильмом -->
+<div class="back-button">
+    <a href="movies.jsp">Back to Movies</a>
 </div>
 </body>
 </html>
+
