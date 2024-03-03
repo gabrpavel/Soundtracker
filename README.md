@@ -10,8 +10,8 @@ The purpose of the project is to create a web application. Subject area -  music
 |--------------------------------------|--------------------------------------------------------------------------------------------------------------------|------------------|----------------|
 | Database                             | Design a database schema according to the project theme. Minimum 7 tables, many to many relationship is mandatory. | 6                | 6              |
 | JDBC                                 | Create a console application to perform CRUD operations using JDBC.                                                | 7                | 7              |
-| JSP                                  | Developing the client side using JSP.                                                                              | 20               | Y              |
-| Backend using SpringBoot + Hibernate | Creating an application backend using SpringBoot and Hibernate.                                                    | X                | Y              |
+| JSP                                  | Developing the client side using JSP.                                                                              | 20               | 30             |
+| Backend using SpringBoot + Hibernate | Creating an application backend using SpringBoot and Hibernate.                                                    | 40               | Y              |
 | Angular - Frontend                   | Frontend development using Angular.                                                                                | X                | Y              |
 | React - Frontend                     | Frontend development using React.                                                                                  | X                | Y              |
 
@@ -33,6 +33,24 @@ The purpose of the project is to create a web application. Subject area -  music
 
 ## Task 3. Java EE. Client side using JSP (Java Server Pages)
 
-### Results
+### Results [CODE](JSP)
+
+### `localhost:8080/api/`
+
+![](https://github.com/gabrpavel/website/blob/3b470a5c45cbcbe560714cad2441cfebace1e388/images/jsp/api.png)
+
+### `localhost:8080/api/movies.jsp`
+
+![](https://github.com/gabrpavel/website/blob/3b470a5c45cbcbe560714cad2441cfebace1e388/images/jsp/movies.png)
+
+### `http://localhost:8080/api/movie.jsp?id=725190`
+
+![](https://github.com/gabrpavel/website/blob/3b470a5c45cbcbe560714cad2441cfebace1e388/images/jsp/movie.png)
+
+---
+
+## Task 4. Backend using SpringBoot + Hibernate
+
+### Results [CODE]()
 
 ---
