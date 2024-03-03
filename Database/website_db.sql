@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS public.roles
     CONSTRAINT roles_role_name_key UNIQUE (role_name)
 );
 
-DROP TABLE IF EXISTS public.types;
+DROP TABLE IF EXISTS public.movie_types;
 
 CREATE TABLE IF NOT EXISTS public.types
 (
@@ -178,7 +178,7 @@ ALTER TABLE IF EXISTS public.movie_genres
 
 ALTER TABLE IF EXISTS public.movies
     ADD CONSTRAINT movies_type_id_fkey FOREIGN KEY (type_id)
-    REFERENCES public.types (id) MATCH SIMPLE
+    REFERENCES public.movie_types (id) MATCH SIMPLE
     ON UPDATE NO ACTION
     ON DELETE NO ACTION;
 

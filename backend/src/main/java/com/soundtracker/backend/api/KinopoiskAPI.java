@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @SuppressWarnings("SpellCheckingInspection")
 @Component
-public class Kinopoisk {
+public class KinopoiskAPI {
 
     @Value(value = "${kinopoisk.apiKey}")
     String apiKeyl;
