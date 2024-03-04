@@ -19,21 +19,21 @@ The purpose of the project is to create a web application. Subject area -  music
 
 ## Task 1. Database architecture design
 
-### Results
+### Results: [DDL](Database/version_03_03_2024.txt)
 ![](https://github.com/gabrpavel/website/blob/68e65c1e08238287bb5e656a4fe51bf2ee960687/Database/website_db.png)
 
 ---
 
 ## Task 2. JDBC console application
 
-### Results [CODE](JDBC)
+### Results: [CODE](JDBC)
 ![](https://github.com/gabrpavel/website/blob/def71f9ba20d7f46a0288fbffbfcd0a0c14f0a81/SonarCloude%20Summary/JDBC.png)
 
 ---
 
 ## Task 3. Java EE. Client side using JSP (Java Server Pages)
 
-### Results [CODE](JSP)
+### Results: [CODE](JSP)
 
 ### `localhost:8080/api/`
 
@@ -51,6 +51,6 @@ The purpose of the project is to create a web application. Subject area -  music
 
 ## Task 4. Backend using SpringBoot + Hibernate
 
-### Results [CODE]()
+### Results [CODE](backend)
 
 ---
