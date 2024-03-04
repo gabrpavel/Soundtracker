@@ -19,7 +19,7 @@ The purpose of the project is to create a web application. Subject area -  music
 
 ## Task 1. Database architecture design
 
-### Results: [DDL](Database/version_03_03_2024.txt), [script](Database/website_db.sql)
+### Results: [DDL](Database/version_03_03_2024.txt)
 ![](https://github.com/gabrpavel/website/blob/68e65c1e08238287bb5e656a4fe51bf2ee960687/Database/website_db.png)
 
 ---
