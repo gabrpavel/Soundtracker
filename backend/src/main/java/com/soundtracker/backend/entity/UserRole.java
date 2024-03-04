@@ -1,5 +1,6 @@
 package com.soundtracker.backend.entity;
 
+import com.soundtracker.backend.entity.user.User;
 import jakarta.persistence.*;
 import lombok.Data;
 

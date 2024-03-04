@@ -21,7 +21,7 @@ public class UsersDAO {
             toolsDB.setSt(toolsDB.getConn().createStatement());
             toolsDB.setRs(toolsDB.getSt().executeQuery("SELECT * FROM users"));
             while (toolsDB.getRs().next()) {
-                User user = new User(toolsDB.getRs().getLong("user_id"),
+                User user = new User(toolsDB.getRs().getLong("id"),
                         toolsDB.getRs().getString("email"),
                         toolsDB.getRs().getString("password"),
                         toolsDB.getRs().getString("login"));
@@ -47,7 +47,7 @@ public class UsersDAO {
             toolsDB.setRs(toolsDB.getPs().executeQuery());
 
             while(toolsDB.getRs().next()) {
-                user = new User(toolsDB.getRs().getLong("user_id"),
+                user = new User(toolsDB.getRs().getLong("id"),
                         toolsDB.getRs().getString("email"),
                         toolsDB.getRs().getString("password"),
                         toolsDB.getRs().getString("login"));

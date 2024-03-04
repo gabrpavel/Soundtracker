@@ -110,7 +110,7 @@ alter table user_roles
 
 create table users
 (
-    user_id  serial
+    id  serial
         primary key,
     email    varchar(255) not null
         unique,

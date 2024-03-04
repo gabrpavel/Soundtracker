@@ -9,6 +9,4 @@ public class KinopoiskAPI {
 
     @Value(value = "${kinopoisk.apiKey}")
     String apiKeyl;
-
-
 }
