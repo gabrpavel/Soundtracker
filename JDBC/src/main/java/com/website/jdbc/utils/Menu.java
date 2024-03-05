@@ -57,7 +57,7 @@ public class Menu {
     }
 
     public static void createUser() throws IOException, SQLException {
-        logger.info("Enter login --> ");
+        logger.info("Enter username --> ");
         String login = br.readLine();
         logger.info("Enter password --> ");
         String password = br.readLine();

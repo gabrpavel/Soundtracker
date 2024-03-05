@@ -94,20 +94,6 @@ create table movies
 alter table movies
     owner to postgres;
 
-create table roles
-(
-    id   serial
-        primary key,
-    name varchar(255) not null
-        unique
-);
-
-alter table roles
-    owner to postgres;
-
-alter table user_roles
-    owner to postgres;
-
 create table users
 (
     id  serial
@@ -115,11 +101,9 @@ create table users
     email    varchar(255) not null
         unique,
     password varchar(255) not null,
-    login    varchar(255) not null
+    username    varchar(255) not null
         unique,
-    role_id  integer
-        constraint users_roles__fk
-            references roles
+    role  integer
 );
 
 alter table users
