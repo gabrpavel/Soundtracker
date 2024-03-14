@@ -1,6 +1,6 @@
 package com.soundtracker.backend.repository;
 
-import com.soundtracker.backend.entity.MovieType;
+import com.soundtracker.backend.model.MovieType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.soundtracker.backend.entity.user;
+package com.soundtracker.backend.model.user;
 
 public enum Role {
     ROLE_USER,

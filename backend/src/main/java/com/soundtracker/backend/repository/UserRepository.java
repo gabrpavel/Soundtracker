@@ -1,6 +1,6 @@
 package com.soundtracker.backend.repository;
 
-import com.soundtracker.backend.entity.user.User;
+import com.soundtracker.backend.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

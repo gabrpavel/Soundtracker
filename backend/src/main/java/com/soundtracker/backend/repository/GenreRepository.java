@@ -1,9 +1,12 @@
 package com.soundtracker.backend.repository;
 
-import com.soundtracker.backend.entity.Genre;
+import com.soundtracker.backend.model.Genre;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface GenreRepository extends JpaRepository<Genre, Long> {
+    List<Genre> findGenresByMoviesId(Long movieId);
 }

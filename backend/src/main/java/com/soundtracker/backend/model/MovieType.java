@@ -1,4 +1,4 @@
-package com.soundtracker.backend.entity;
+package com.soundtracker.backend.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -15,7 +15,4 @@ public class MovieType {
 
     @Column(name = "type")
     private String type;
-
-    @OneToMany(mappedBy = "type")
-    private List<Movie> movies;
 }

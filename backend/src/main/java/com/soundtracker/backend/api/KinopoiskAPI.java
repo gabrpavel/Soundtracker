@@ -1,6 +1,7 @@
 package com.soundtracker.backend.api;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.soundtracker.backend.dto.response.movie.MovieDto;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.Objects;
 
 @Component
 public class KinopoiskAPI {
@@ -19,23 +19,29 @@ public class KinopoiskAPI {
 
     private static final String API_URL = "https://api.kinopoisk.dev/v1.4/";
     private final OkHttpClient okHttpClient;
-    private final Gson gson;
+    private final ObjectMapper objectMapper;
 
-    public KinopoiskAPI() {
+    public KinopoiskAPI(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
         this.okHttpClient = new OkHttpClient();
-        gson = new Gson();
     }
 
-    public MovieDto searchMovie(String query) throws IOException {
+    public MovieDto searchMovie(Long id) throws IOException {
         Request request = new Request.Builder()
-                .url(API_URL + "movie/" + query)
+                .url(API_URL + "movie/" + id)
                 .get()
                 .addHeader("accept", "application/json")
                 .addHeader("X-API-KEY", apiKey)
                 .build();
 
         Response response = okHttpClient.newCall(request).execute();
-        String responseData = response.body().string();
-        return gson.fromJson(responseData, MovieDto.class);
+        String responseBody = response.body() != null ? response.body().string() : null;
+        JsonNode jsonNode = objectMapper.readTree(responseBody);
+
+        return new MovieDto(jsonNode.get("id").asLong(), jsonNode.get("name").asText(),
+                jsonNode.get("alternativeName").asText(), jsonNode.get("enName").asText(),
+                jsonNode.get("type").asText(), jsonNode.get("typeNumber").asInt(),
+                jsonNode.get("year").asInt(), jsonNode.get("description").asText(),
+                jsonNode.get("movieLength").asInt());
     }
 }

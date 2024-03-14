@@ -1,6 +1,6 @@
 package com.soundtracker.backend.service.jwt;
 
-import com.soundtracker.backend.entity.user.User;
+import com.soundtracker.backend.model.user.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

@@ -13,7 +13,7 @@ public class KinopoiskService {
 
     private final KinopoiskAPI kinopoiskAPI;
 
-    public MovieDto getMovieDetails(String id) throws IOException {
+    public MovieDto getMovieDetails(Long id) throws IOException {
         return kinopoiskAPI.searchMovie(id);
     }
 }

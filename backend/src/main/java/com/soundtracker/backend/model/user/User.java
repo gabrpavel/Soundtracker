@@ -1,4 +1,4 @@
-package com.soundtracker.backend.entity.user;
+package com.soundtracker.backend.model.user;
 
 import jakarta.persistence.*;
 import lombok.*;

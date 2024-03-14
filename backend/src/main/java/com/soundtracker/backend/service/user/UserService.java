@@ -1,7 +1,7 @@
 package com.soundtracker.backend.service.user;
 
-import com.soundtracker.backend.entity.user.Role;
-import com.soundtracker.backend.entity.user.User;
+import com.soundtracker.backend.model.user.Role;
+import com.soundtracker.backend.model.user.User;
 import com.soundtracker.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
