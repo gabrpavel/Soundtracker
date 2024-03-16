@@ -1,12 +1,10 @@
 package com.soundtracker.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -18,6 +16,7 @@ import java.util.Set;
 public class Genre {
 
     @Id
+    @JsonIgnore
     private Long id;
 
     @Column(name = "name")

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Objects;
 
 @Component
 public class SpotifyAPI {
@@ -19,13 +20,11 @@ public class SpotifyAPI {
     private static final String TOKEN_URL = "https://accounts.spotify.com/api/token";
     private static final String API_URL = "https://api.spotify.com/v1";
     private final OkHttpClient okHttpClient;
-    private final Gson gson;
     private String accessToken;
 
 
     public SpotifyAPI() {
         okHttpClient = new OkHttpClient();
-        gson = new Gson();
     }
 
     private void fetchAccessToken() throws IOException {
@@ -40,7 +39,7 @@ public class SpotifyAPI {
                 .build();
 
         Response response = okHttpClient.newCall(request).execute();
-        String responseData = response.body().string();
+        String responseData = Objects.requireNonNull(response.body()).string();
         this.accessToken = responseData.substring(responseData.indexOf(":\"") + 2, responseData.indexOf("\","));
     }
 

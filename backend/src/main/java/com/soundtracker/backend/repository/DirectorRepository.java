@@ -1,7 +1,6 @@
 package com.soundtracker.backend.repository;
 
 import com.soundtracker.backend.model.Director;
-import com.soundtracker.backend.model.Genre;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

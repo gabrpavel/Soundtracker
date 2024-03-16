@@ -9,6 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Schema(description = "Ответ на поиск movie по id")
 public class MovieDto {
 
@@ -25,17 +26,4 @@ public class MovieDto {
     int year;
     String description;
     int movieLength;
-
-    public MovieDto(Long id, String name, String alternativeName, String enName, String type,
-                    int typeNumber, int year, String description, int movieLength) {
-        this.id = id;
-        this.name = name;
-        this.alternativeName = alternativeName;
-        this.enName = enName;
-        this.type = type;
-        this.typeNumber = typeNumber;
-        this.year = year;
-        this.description = description;
-        this.movieLength = movieLength;
-    }
 }

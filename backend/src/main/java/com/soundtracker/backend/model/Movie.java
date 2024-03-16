@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -57,6 +56,17 @@ public class Movie {
             inverseJoinColumns = @JoinColumn(name = "director_id")
     )
     private Set<Director> directors = new HashSet<>();
+
+
+    public Movie(Long id, String ruTitle, String enTitle, int releaseYear, String description, int length, String poster) {
+        this.id = id;
+        this.ruTitle = ruTitle;
+        this.enTitle = enTitle;
+        this.releaseYear = releaseYear;
+        this.description = description;
+        this.length = length;
+        this.poster = poster;
+    }
 
     public void addGenre(Genre genre) {
         this.genres.add(genre);

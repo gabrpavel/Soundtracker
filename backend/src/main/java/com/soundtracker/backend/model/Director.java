@@ -1,12 +1,10 @@
 package com.soundtracker.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -29,4 +27,10 @@ public class Director {
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "directors")
     private Set<Movie> movies = new HashSet<>();
+
+    public Director(Long id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }

@@ -1,15 +1,12 @@
 package com.soundtracker.backend.api;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.soundtracker.backend.dto.response.movie.MovieDto;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Objects;
 
 @Component
 public class KinopoiskAPI {
@@ -19,29 +16,31 @@ public class KinopoiskAPI {
 
     private static final String API_URL = "https://api.kinopoisk.dev/v1.4/";
     private final OkHttpClient okHttpClient;
-    private final ObjectMapper objectMapper;
 
-    public KinopoiskAPI(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
+    public KinopoiskAPI() {
         this.okHttpClient = new OkHttpClient();
     }
 
-    public MovieDto searchMovie(Long id) throws IOException {
+    private String makeRequest(String url) throws IOException {
         Request request = new Request.Builder()
-                .url(API_URL + "movie/" + id)
+                .url(url)
                 .get()
                 .addHeader("accept", "application/json")
                 .addHeader("X-API-KEY", apiKey)
                 .build();
 
-        Response response = okHttpClient.newCall(request).execute();
-        String responseBody = response.body() != null ? response.body().string() : null;
-        JsonNode jsonNode = objectMapper.readTree(responseBody);
+        return Objects.requireNonNull(okHttpClient.newCall(request).execute().body()).string();
+    }
 
-        return new MovieDto(jsonNode.get("id").asLong(), jsonNode.get("name").asText(),
-                jsonNode.get("alternativeName").asText(), jsonNode.get("enName").asText(),
-                jsonNode.get("type").asText(), jsonNode.get("typeNumber").asInt(),
-                jsonNode.get("year").asInt(), jsonNode.get("description").asText(),
-                jsonNode.get("movieLength").asInt());
+    public String searchMovieById(Long id) throws IOException {
+
+        String url = API_URL + "movie/" + id;
+        return makeRequest(url);
+    }
+
+    public String searchMovieByTitle(String title) throws IOException {
+
+        String url = API_URL + "movie/search?page=1&limit=1&query=" + title;
+        return makeRequest(url);
     }
 }

@@ -1,6 +1,5 @@
 package com.soundtracker.backend.controller.movie;
 
-import com.soundtracker.backend.dto.response.movie.MovieDto;
 import com.soundtracker.backend.model.Actor;
 import com.soundtracker.backend.model.Director;
 import com.soundtracker.backend.model.Genre;
@@ -10,14 +9,13 @@ import com.soundtracker.backend.repository.DirectorRepository;
 import com.soundtracker.backend.repository.GenreRepository;
 import com.soundtracker.backend.repository.MovieRepository;
 import com.soundtracker.backend.service.movie.KinopoiskService;
+import com.soundtracker.backend.service.movie.MovieService;
 import org.springdoc.api.OpenApiResourceNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -26,13 +24,15 @@ import java.util.List;
 @RequestMapping("/api-soudtracker")
 public class MovieController {
 
-    private final KinopoiskService kinopoiskService;
+    private final MovieService movieService;
+    private  final KinopoiskService kinopoiskService;
     private final MovieRepository movieRepository;
     private final GenreRepository genreRepository;
     private final ActorRepository actorRepository;
     private final DirectorRepository directorRepository;
 
-    public MovieController(KinopoiskService kinopoiskService, MovieRepository movieRepository, GenreRepository genreRepository, ActorRepository actorRepository, DirectorRepository directorRepository) {
+    public MovieController(MovieService movieService, KinopoiskService kinopoiskService, MovieRepository movieRepository, GenreRepository genreRepository, ActorRepository actorRepository, DirectorRepository directorRepository) {
+        this.movieService = movieService;
         this.kinopoiskService = kinopoiskService;
         this.movieRepository = movieRepository;
         this.genreRepository = genreRepository;
@@ -41,8 +41,12 @@ public class MovieController {
     }
 
     @GetMapping("/movie/details")
-    public MovieDto getMovieInfo(@RequestParam("id") Long id) throws IOException {
+    public Movie getMovieInfo(@RequestParam("id") Long id) throws IOException {
         return kinopoiskService.getMovieDetails(id);
+    }
+    @GetMapping("/movie/info")
+    public Movie getMovie(@RequestParam("title") String title) throws IOException {
+        return kinopoiskService.getMovieInfo(title);
     }
 
     @GetMapping("/movies")

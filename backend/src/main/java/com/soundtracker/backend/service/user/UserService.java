@@ -83,7 +83,6 @@ public class UserService {
      * <p>
      * Нужен для демонстрации
      */
-    @Deprecated
     public void getAdmin() {
         var user = getCurrentUser();
         user.setRole(Role.ROLE_ADMIN);
