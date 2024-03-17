@@ -11,9 +11,9 @@ The purpose of the project is to create a web application. Subject area -  music
 | Database                             | Design a database schema according to the project theme. Minimum 7 tables, many to many relationship is mandatory. | 6                | 6              |
 | JDBC                                 | Create a console application to perform CRUD operations using JDBC.                                                | 7                | 7              |
 | JSP                                  | Developing the client side using JSP.                                                                              | 20               | 25             |
-| Backend using SpringBoot + Hibernate | Creating an application backend using SpringBoot and Hibernate.                                                    | 30               | Y              |
-| Angular - Frontend                   | Frontend development using Angular.                                                                                | X                | Y              |
-| React - Frontend                     | Frontend development using React.                                                                                  | X                | Y              |
+| Backend using SpringBoot + Hibernate | Creating an application backend using SpringBoot and Hibernate.                                                    | 35               | Y              |
+| Angular - Frontend                   | Frontend development using Angular.                                                                                | 25                | Y              |
+| React - Frontend                     | Frontend development using React.                                                                                  | 25                | Y              |
 
 ---
 
