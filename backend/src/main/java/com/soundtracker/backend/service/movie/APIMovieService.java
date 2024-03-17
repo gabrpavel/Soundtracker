@@ -4,20 +4,27 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.soundtracker.backend.api.KinopoiskAPI;
 import com.soundtracker.backend.model.*;
+import com.soundtracker.backend.repository.GenreRepository;
+import com.soundtracker.backend.repository.MovieTypeRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class KinopoiskService {
+public class APIMovieService {
 
     private final KinopoiskAPI kinopoiskAPI;
+    private final GenreRepository genreRepository;
+    private final MovieTypeRepository movieTypeRepository;
     private final ObjectMapper objectMapper;
 
-    public KinopoiskService(KinopoiskAPI kinopoiskAPI, ObjectMapper objectMapper) {
+    public APIMovieService(KinopoiskAPI kinopoiskAPI, GenreRepository genreRepository, MovieTypeRepository movieTypeRepository, ObjectMapper objectMapper) {
         this.kinopoiskAPI = kinopoiskAPI;
+        this.genreRepository = genreRepository;
+        this.movieTypeRepository = movieTypeRepository;
         this.objectMapper = objectMapper;
     }
 
@@ -34,7 +41,7 @@ public class KinopoiskService {
         return movie;
     }
 
-    public Movie getMovieDetails(Long id) throws IOException {
+    public String getMovieDetails(Long id) throws IOException {
 
         String responseBody = kinopoiskAPI.searchMovieById(id);
         JsonNode jsonNode = objectMapper.readTree(responseBody);
@@ -45,7 +52,7 @@ public class KinopoiskService {
         movie.setDirectors(getDirectorsFromJson(jsonNode));
         movie.setType(getMovieTypeFromJson(jsonNode));
 
-        return movie;
+        return objectMapper.writeValueAsString(movie);
     }
     public Movie getMovieDetailsFromJson(JsonNode jsonNode) {
         return new Movie(jsonNode.get("id").asLong(), jsonNode.get("name").asText(),
@@ -55,16 +62,27 @@ public class KinopoiskService {
     }
 
     public Set<Genre> getGenresFromJson(JsonNode jsonNode) {
-        JsonNode genresNode = jsonNode.get("genres");
         Set<Genre> genres = new HashSet<>();
-        for (JsonNode genreNode : genresNode) {
-            String genreName = genreNode.get("name").asText();
-            Genre genre = new Genre();
-            genre.setName(genreName);
-            genres.add(genre);
+        JsonNode genresNode = jsonNode.get("genres");
+        if (genresNode != null) {
+            for (JsonNode genreNode : genresNode) {
+                String genreName = genreNode.get("name").asText();
+                Optional<Genre> existingGenre = genreRepository.findByName(genreName);
+                if (existingGenre.isPresent()) {
+                    genres.add(existingGenre.get());
+                } else {
+                    Genre newGenre = new Genre();
+                    newGenre.setName(genreName);
+                    genres.add(genreRepository.save(newGenre));
+                }
+            }
         }
         return genres;
     }
+
+
+
+
 
     public Set<Actor> getActorsFromJson(JsonNode jsonNode) {
         JsonNode actorsNode = jsonNode.get("persons");
@@ -97,6 +115,14 @@ public class KinopoiskService {
     }
 
     public MovieType getMovieTypeFromJson(JsonNode jsonNode) {
-        return new MovieType(jsonNode.get("typeNumber").asLong(), jsonNode.get("type").asText());
+        String typeName = jsonNode.get("type").asText();
+        Optional<MovieType> existingType = movieTypeRepository.findByName(typeName);
+        if (existingType.isPresent()) {
+            return existingType.get();
+        } else {
+            MovieType newMovieType = new MovieType();
+            newMovieType.setName(typeName);
+            return movieTypeRepository.save(newMovieType);
+        }
     }
 }

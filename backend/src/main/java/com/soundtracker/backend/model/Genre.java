@@ -16,13 +16,16 @@ import java.util.Set;
 public class Genre {
 
     @Id
-    @JsonIgnore
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name")
     private String name;
 
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "genres")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "genres",
+            cascade = {
+                    CascadeType.MERGE, CascadeType.PERSIST
+            })
     private Set<Movie> movies = new HashSet<>();
 }

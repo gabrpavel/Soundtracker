@@ -2,8 +2,8 @@ create table actors
 (
     id         serial
         primary key,
-    first_name varchar(50),
-    last_name  varchar(50)
+    ru_name varchar(50),
+    en_name  varchar(50)
 );
 
 alter table actors
@@ -13,8 +13,8 @@ create table directors
 (
     id         serial
         primary key,
-    first_name varchar(50),
-    last_name  varchar(50)
+    ru_name varchar(50),
+    en_name  varchar(50)
 );
 
 alter table directors

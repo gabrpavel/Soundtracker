@@ -18,19 +18,22 @@ public class Director {
     @Id
     private Long id;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "ru_name")
+    private String ruName;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "en_name")
+    private String enName;
 
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "directors")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "directors",
+            cascade = {
+                    CascadeType.MERGE, CascadeType.PERSIST
+            })
     private Set<Movie> movies = new HashSet<>();
 
-    public Director(Long id, String firstName, String lastName) {
+    public Director(Long id, String ruName, String enName) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.ruName = ruName;
+        this.enName = enName;
     }
 }

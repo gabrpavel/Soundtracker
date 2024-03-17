@@ -1,82 +1,66 @@
 package com.soundtracker.backend.controller.movie;
 
-import com.soundtracker.backend.model.Actor;
-import com.soundtracker.backend.model.Director;
-import com.soundtracker.backend.model.Genre;
-import com.soundtracker.backend.model.Movie;
-import com.soundtracker.backend.repository.ActorRepository;
-import com.soundtracker.backend.repository.DirectorRepository;
-import com.soundtracker.backend.repository.GenreRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.soundtracker.backend.repository.MovieRepository;
-import com.soundtracker.backend.service.movie.KinopoiskService;
 import com.soundtracker.backend.service.movie.MovieService;
-import org.springdoc.api.OpenApiResourceNotFoundException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("/api-soudtracker")
+@RequestMapping("/api-soudtracker/movie")
 public class MovieController {
 
     private final MovieService movieService;
-    private  final KinopoiskService kinopoiskService;
-    private final MovieRepository movieRepository;
-    private final GenreRepository genreRepository;
-    private final ActorRepository actorRepository;
-    private final DirectorRepository directorRepository;
 
-    public MovieController(MovieService movieService, KinopoiskService kinopoiskService, MovieRepository movieRepository, GenreRepository genreRepository, ActorRepository actorRepository, DirectorRepository directorRepository) {
+    public MovieController(MovieService movieService) {
         this.movieService = movieService;
-        this.kinopoiskService = kinopoiskService;
-        this.movieRepository = movieRepository;
-        this.genreRepository = genreRepository;
-        this.actorRepository = actorRepository;
-        this.directorRepository = directorRepository;
     }
 
-    @GetMapping("/movie/details")
-    public Movie getMovieInfo(@RequestParam("id") Long id) throws IOException {
-        return kinopoiskService.getMovieDetails(id);
-    }
-    @GetMapping("/movie/info")
-    public Movie getMovie(@RequestParam("title") String title) throws IOException {
-        return kinopoiskService.getMovieInfo(title);
-    }
+    @GetMapping("/info")
+    public ResponseEntity<String> getMovieInfo(@RequestParam("id") Long id) {
+        ResponseEntity<String> responseFromDatabase = movieService.getMovieInfoFromDatabase("/movie?id=" + id);
 
-    @GetMapping("/movies")
-    public ResponseEntity<List<Movie>> getAllMovies() {
-
-        List<Movie> movies = movieRepository.findAll();
-
-        movies.forEach(movie -> {
-
-            List<Genre> genres = genreRepository.findGenresByMoviesId(movie.getId());
-            List<Actor> actors = actorRepository.findActorsByMoviesId(movie.getId());
-            List<Director> directors = directorRepository.findDirectorByMoviesId(movie.getId());
-
-            movie.setGenres(new HashSet<>(genres));
-            movie.setActors(new HashSet<>(actors));
-            movie.setDirectors(new HashSet<>(directors));
-        });
-
-        if (movies.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        if (responseFromDatabase.getStatusCode().is2xxSuccessful()) {
+            if (responseFromDatabase.getBody() != null) {
+                return ResponseEntity
+                        .status(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(responseFromDatabase.getBody());
+            } else {
+                // Если тело ответа пустое, отправляем запрос к внешнему API
+                ResponseEntity<String> responseFromApi = movieService.getMovieInfoFromApi(id);
+                if (responseFromApi.getStatusCode().is2xxSuccessful() && responseFromApi.getBody() != null) {
+                    ResponseEntity<String> response = movieService.processApiResponse(responseFromApi.getBody());
+                    return ResponseEntity
+                            .status(HttpStatus.OK)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .body(response.getBody());
+                } else {
+                    return ResponseEntity
+                            .status(responseFromApi.getStatusCode())
+                            .body("Error getting movie info from API");
+                }
+            }
+        } else {
+            // Если информация не найдена в базе данных, делаем запрос к внешнему API
+            ResponseEntity<String> responseFromApi = movieService.getMovieInfoFromApi(id);
+            if (responseFromApi.getStatusCode().is2xxSuccessful() && responseFromApi.getBody() != null) {
+                ResponseEntity<String> response = movieService.processApiResponse(responseFromApi.getBody());
+                return ResponseEntity
+                        .status(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(response.getBody());
+            } else {
+                return ResponseEntity
+                        .status(responseFromApi.getStatusCode())
+                        .body("Error getting movie info from database and API");
+            }
         }
-        return new ResponseEntity<>(movies, HttpStatus.OK);
     }
 
 
-    @GetMapping("movie/{id}")
-    public ResponseEntity<Movie> getMovieById(@PathVariable(value = "id") Long id) {
-        Movie movie = movieRepository.findById(id)
-                .orElseThrow(() -> new OpenApiResourceNotFoundException("Not found movie with id = " + id));
-
-        return new ResponseEntity<>(movie, HttpStatus.OK);
-    }
 }

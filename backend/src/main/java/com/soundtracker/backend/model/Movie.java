@@ -30,18 +30,26 @@ public class Movie {
     @Column(name = "poster")
     private String poster;
 
-    @ManyToOne
+    @ManyToOne(cascade = {
+            CascadeType.MERGE, CascadeType.PERSIST
+    })
     @JoinColumn(name = "type_id")
     private MovieType type;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.MERGE, CascadeType.PERSIST
+            })
     @JoinTable(
             name = "movie_genres",
             joinColumns = { @JoinColumn(name = "movie_id") },
             inverseJoinColumns = { @JoinColumn(name = "genre_id") } )
     private Set<Genre> genres = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.MERGE, CascadeType.PERSIST
+            })
     @JoinTable(
             name = "movie_actors",
             joinColumns = @JoinColumn(name = "movie_id"),
@@ -49,7 +57,10 @@ public class Movie {
     )
     private Set<Actor> actors = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.MERGE, CascadeType.PERSIST
+            })
     @JoinTable(
             name = "movie_directors",
             joinColumns = @JoinColumn(name = "movie_id"),
@@ -58,7 +69,8 @@ public class Movie {
     private Set<Director> directors = new HashSet<>();
 
 
-    public Movie(Long id, String ruTitle, String enTitle, int releaseYear, String description, int length, String poster) {
+    public Movie(Long id, String ruTitle, String enTitle, int releaseYear,
+                 String description, int length, String poster) {
         this.id = id;
         this.ruTitle = ruTitle;
         this.enTitle = enTitle;
@@ -74,7 +86,8 @@ public class Movie {
     }
 
     public void removeGenre(Long genreId) {
-        Genre genre = this.genres.stream().filter(g -> g.getId().equals(genreId)).findFirst().orElse(null);
+        Genre genre = this.genres.stream().filter(g -> g.getId().equals(genreId))
+                .findFirst().orElse(null);
         if(genre != null) {
             this.genres.remove(genre);
             genre.getMovies().remove(this);
@@ -87,7 +100,8 @@ public class Movie {
     }
 
     public void removeActor(Long actorId) {
-        Actor actor = this.actors.stream().filter(g -> g.getId().equals(actorId)).findFirst().orElse(null);
+        Actor actor = this.actors.stream().filter(g -> g.getId().equals(actorId))
+                .findFirst().orElse(null);
         if(actor != null) {
             this.actors.remove(actor);
             actor.getMovies().remove(this);
@@ -100,7 +114,8 @@ public class Movie {
     }
 
     public void removeDirectors(Long directorId) {
-        Director director = this.directors.stream().filter(g -> g.getId().equals(directorId)).findFirst().orElse(null);
+        Director director = this.directors.stream().filter(g -> g.getId().equals(directorId))
+                .findFirst().orElse(null);
         if(director != null) {
             this.directors.remove(director);
             director.getMovies().remove(this);

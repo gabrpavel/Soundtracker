@@ -16,12 +16,36 @@ public class MovieService {
         this.client = new OkHttpClient();
     }
 
-    public ResponseEntity<?> getMovieInfoFromDatabase(String requestPath) {
-        String databaseApiUrl = "http://localhost:8080/" + requestPath;
+    public ResponseEntity<String> getMovieInfoFromDatabase(String requestPath) {
+
+        String databaseApiUrl = "http://localhost:8080/api-soudtracker/db-movie" + requestPath;
         return sendGetRequest(databaseApiUrl);
     }
 
-    private ResponseEntity<?> sendGetRequest(String url) {
+    public ResponseEntity<String> getMovieInfoFromApi(Long id) {
+
+        String apiServiceApiUrl = "http://localhost:8080/api-soudtracker/api-movie/details?id=" + id;
+        return sendGetRequest(apiServiceApiUrl);
+    }
+
+    public ResponseEntity<String> processApiResponse(String movie) {
+
+        ResponseEntity<String> savedMovieResponse = saveMovie(movie);
+        if (savedMovieResponse.getStatusCode().is2xxSuccessful()) {
+            return ResponseEntity.ok(savedMovieResponse.getBody());
+        } else {
+            return ResponseEntity.status(savedMovieResponse.getStatusCode()).body("Error saving movie to database");
+        }
+    }
+
+    public ResponseEntity<String> saveMovie(String movie) {
+
+        String databaseApiUrl = "http://localhost:8080/api-soudtracker/db-movie/save";
+        return sendPostRequest(databaseApiUrl, movie);
+    }
+
+    private ResponseEntity<String> sendGetRequest(String url) {
+
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -29,9 +53,9 @@ public class MovieService {
         return executeRequest(request);
     }
 
-    private ResponseEntity<?> sendPostRequest(String url, String requestBody) {
-        RequestBody body = RequestBody.create(requestBody, MediaType.parse("application/json"));
+    private ResponseEntity<String> sendPostRequest(String url, String requestBody) {
 
+        RequestBody body = RequestBody.create(requestBody, MediaType.parse("application/json"));
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
@@ -40,10 +64,11 @@ public class MovieService {
         return executeRequest(request);
     }
 
-    private ResponseEntity<?> executeRequest(Request request) {
+    private ResponseEntity<String> executeRequest(Request request) {
+
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful() && response.body() != null) {
-                return new ResponseEntity<>(response.body(), HttpStatus.OK);
+                return new ResponseEntity<>(response.body().string(), HttpStatus.OK);
             } else {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }

@@ -1,6 +1,7 @@
 package com.soundtracker.backend.repository;
 
 import com.soundtracker.backend.model.Movie;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,8 +10,10 @@ import java.util.Optional;
 
 @Repository
 public interface MovieRepository extends JpaRepository<Movie, Long> {
-    Movie save(Movie movie);
-    Optional<Movie> findById(Long id);
+    @NotNull
+    Optional<Movie> findById(@NotNull Long id);
 
     List<Movie> findMoviesByGenresId(Long genreId);
+
+    boolean existsMovieById(Movie movie);
 }
