@@ -1,6 +1,6 @@
-package com.soundtracker.backend.repository;
+package com.soundtracker.backend.repository.movie;
 
-import com.soundtracker.backend.model.Movie;
+import com.soundtracker.backend.model.movie.Movie;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

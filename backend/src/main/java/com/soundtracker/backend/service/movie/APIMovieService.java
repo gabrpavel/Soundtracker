@@ -3,9 +3,9 @@ package com.soundtracker.backend.service.movie;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.soundtracker.backend.api.KinopoiskAPI;
-import com.soundtracker.backend.model.*;
-import com.soundtracker.backend.repository.GenreRepository;
-import com.soundtracker.backend.repository.MovieTypeRepository;
+import com.soundtracker.backend.model.movie.*;
+import com.soundtracker.backend.repository.movie.GenreRepository;
+import com.soundtracker.backend.repository.movie.MovieTypeRepository;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -13,6 +13,9 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+/**
+ * Сервис для работы с кино из внешнего API (Kinopoisk API)
+ */
 @Service
 public class APIMovieService {
 
@@ -28,8 +31,14 @@ public class APIMovieService {
         this.objectMapper = objectMapper;
     }
 
-    public Movie getMovieInfo(String title) throws IOException {
-
+    /**
+     * Получение данных о кино по его названию из внешнего API (Kinopoisk API)
+     *
+     * @param title название кино
+     * @return объект Movie, содержащий данные о кино
+     * @throws IOException если возникают проблемы при чтении ответа от внешнего API
+     */
+    public Movie getMovieByTitle(String title) throws IOException {
         String responseBody = kinopoiskAPI.searchMovieByTitle(title);
         JsonNode jsonNode = objectMapper.readTree(responseBody);
         jsonNode = jsonNode.get("docs").get(0);
@@ -41,8 +50,14 @@ public class APIMovieService {
         return movie;
     }
 
+    /**
+     * Получение подробных данных о кино по его идентификатору из внешнего API (Kinopoisk API)
+     *
+     * @param id идентификатор фильма
+     * @return строковое представление JSON сохраненного фильма
+     * @throws IOException если возникают проблемы при чтении ответа от внешнего API
+     */
     public String getMovieDetails(Long id) throws IOException {
-
         String responseBody = kinopoiskAPI.searchMovieById(id);
         JsonNode jsonNode = objectMapper.readTree(responseBody);
 
@@ -54,6 +69,13 @@ public class APIMovieService {
 
         return objectMapper.writeValueAsString(movie);
     }
+
+    /**
+     * Создание объекта Movie из JSON-узла с данными о кино
+     *
+     * @param jsonNode JSON-узел с данными о кино
+     * @return объект Movie с данными о кино
+     */
     public Movie getMovieDetailsFromJson(JsonNode jsonNode) {
         return new Movie(jsonNode.get("id").asLong(), jsonNode.get("name").asText(),
                 jsonNode.get("alternativeName").asText(), jsonNode.get("year").asInt(),
@@ -61,6 +83,12 @@ public class APIMovieService {
                 jsonNode.get("poster").get("url").asText());
     }
 
+    /**
+     * Получение списка жанров из JSON-узла с данными о кино
+     *
+     * @param jsonNode JSON-узел с данными о кино
+     * @return список жанров
+     */
     public Set<Genre> getGenresFromJson(JsonNode jsonNode) {
         Set<Genre> genres = new HashSet<>();
         JsonNode genresNode = jsonNode.get("genres");
@@ -80,10 +108,12 @@ public class APIMovieService {
         return genres;
     }
 
-
-
-
-
+    /**
+     * Получение списка актеров из JSON-узла с данными о кино
+     *
+     * @param jsonNode JSON-узел с данными о кино
+     * @return список актеров
+     */
     public Set<Actor> getActorsFromJson(JsonNode jsonNode) {
         JsonNode actorsNode = jsonNode.get("persons");
         Set<Actor> actors = new HashSet<>();
@@ -99,6 +129,12 @@ public class APIMovieService {
         return actors;
     }
 
+    /**
+     * Получение списка режиссеров из JSON-узла с данными о кино
+     *
+     * @param jsonNode JSON-узел с данными о кино
+     * @return список режиссеров
+     */
     public Set<Director> getDirectorsFromJson(JsonNode jsonNode) {
         JsonNode directorsNode = jsonNode.get("persons");
         Set<Director> directors = new HashSet<>();
@@ -114,6 +150,12 @@ public class APIMovieService {
         return directors;
     }
 
+    /**
+     * Получение типа кино из JSON-узла с данными о кино
+     *
+     * @param jsonNode JSON-узел с данными о кино
+     * @return объект MovieType с данными о типе кино
+     */
     public MovieType getMovieTypeFromJson(JsonNode jsonNode) {
         String typeName = jsonNode.get("type").asText();
         Optional<MovieType> existingType = movieTypeRepository.findByName(typeName);

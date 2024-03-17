@@ -1,4 +1,4 @@
-package com.soundtracker.backend.controller;
+package com.soundtracker.backend.controller.music;
 
 import com.soundtracker.backend.service.music.SpotifyService;
 import org.springframework.http.ResponseEntity;

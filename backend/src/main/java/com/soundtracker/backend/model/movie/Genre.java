@@ -1,6 +1,8 @@
-package com.soundtracker.backend.model;
+package com.soundtracker.backend.model.movie;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.soundtracker.backend.model.movie.Movie;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,13 +15,16 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "genres")
+@Schema(description = "Жанр")
 public class Genre {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "ID жанра", example = "7")
     private Long id;
 
     @Column(name = "name")
+    @Schema(description = "Название жанра", example = "драма")
     private String name;
 
     @JsonIgnore

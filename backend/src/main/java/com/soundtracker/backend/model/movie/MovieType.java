@@ -1,6 +1,8 @@
-package com.soundtracker.backend.model;
+package com.soundtracker.backend.model.movie;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.soundtracker.backend.model.movie.Movie;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,9 +18,11 @@ public class MovieType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "ID типа кино", example = "4")
     private Long id;
 
     @Column(name = "type")
+    @Schema(description = "Название типа кино", example = "anime")
     private String name;
 
     @JsonIgnore

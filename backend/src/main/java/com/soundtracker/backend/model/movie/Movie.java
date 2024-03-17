@@ -1,5 +1,6 @@
-package com.soundtracker.backend.model;
+package com.soundtracker.backend.model.movie;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,30 +13,46 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "movies")
+@Schema(description = "Кино")
 public class Movie {
 
     @Id
+    @Schema(description = "ID кино", example = "4996")
     private Long id;
 
+    @Schema(description = "Название на русском языке", example = "Общество мертвых поэтов")
     @Column(name = "ru_title")
     private String ruTitle;
+
+    @Schema(description = "Альтернативное название", example = "Dead Poets Society")
     @Column(name = "en_title")
     private String enTitle;
+
+    @Schema(description = "Год производства", example = "1989")
     @Column(name = "release_year")
     private int releaseYear;
+
+    @Schema(description = "Описание",
+            example = "Джон Китинг — новый преподаватель английской словесности в консервативном американском колледже...")
     @Column(name = "description")
     private String description;
+
+    @Schema(description = "Продолжительность", example = "128")
     @Column(name = "length")
     private int length;
+
+    @Schema(description = "Постер", example = "https://image.openmoviedb.com/kinopoisk-images/1599028/66058481-9b77-4b51-9d4b-65db5cd796d2/orig")
     @Column(name = "poster")
     private String poster;
 
+    @Schema(description = "Тип кино (movie | tv-series | cartoon | anime | animated-series | tv-show)", example = "movie")
     @ManyToOne(cascade = {
             CascadeType.MERGE, CascadeType.PERSIST
     })
     @JoinColumn(name = "type_id")
     private MovieType type;
 
+    @Schema(description = "Жанр", example = "драма")
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.MERGE, CascadeType.PERSIST
@@ -46,6 +63,7 @@ public class Movie {
             inverseJoinColumns = { @JoinColumn(name = "genre_id") } )
     private Set<Genre> genres = new HashSet<>();
 
+    @Schema(description = "Актерский состав")
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.MERGE, CascadeType.PERSIST
@@ -57,6 +75,7 @@ public class Movie {
     )
     private Set<Actor> actors = new HashSet<>();
 
+    @Schema(description = "Режиссер(-ы)")
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.MERGE, CascadeType.PERSIST
