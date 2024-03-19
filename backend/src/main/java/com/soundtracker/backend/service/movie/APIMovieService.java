@@ -66,7 +66,7 @@ public class APIMovieService {
         movie.setActors(getActorsFromJson(jsonNode));
         movie.setDirectors(getDirectorsFromJson(jsonNode));
         movie.setType(getMovieTypeFromJson(jsonNode));
-        movie.setImages(getMovieScreenshots(id));
+        movie.setMovieScreenshots(getMovieScreenshots(id));
 
         return objectMapper.writeValueAsString(movie);
     }
@@ -169,8 +169,15 @@ public class APIMovieService {
         }
     }
 
-    public Set<Image> getMovieScreenshots(Long id) throws IOException {
-        Set<Image> images = new HashSet<>();
+    /**
+     * Получение скриншотов кино по его идентификатору из внешнего API (Kinopoisk API)
+     *
+     * @param id идентификатор кино
+     * @return список объектов Image с данными о скриншотах кино
+     * @throws IOException если возникают проблемы при чтении ответа от внешнего API
+     */
+    public Set<MovieScreenshot> getMovieScreenshots(Long id) throws IOException {
+        Set<MovieScreenshot> movieScreenshots = new HashSet<>();
         String responseBody = kinopoiskAPI.searchScreenshotsByMovieId(id);
         JsonNode jsonNode = objectMapper.readTree(responseBody);
         JsonNode imagesNode = jsonNode.get("docs");
@@ -178,21 +185,19 @@ public class APIMovieService {
             for (JsonNode imageNode : imagesNode) {
                 JsonNode urlNode = imageNode.get("url");
                 JsonNode heightNode = imageNode.get("height");
-                JsonNode typeNode = imageNode.get("type");
                 JsonNode widthNode = imageNode.get("width");
                 JsonNode idNode = imageNode.get("id");
 
-                if (urlNode != null && heightNode != null && typeNode != null && widthNode != null && idNode != null) {
+                if (urlNode != null && heightNode != null && widthNode != null && idNode != null) {
                     String url = urlNode.asText();
                     int height = heightNode.asInt();
-                    String type = typeNode.asText();
                     int width = widthNode.asInt();
                     String imageId = idNode.asText();
-                    Image image = new Image(imageId, url, type, height, width);
-                    images.add(image);
+                    MovieScreenshot movieScreenshot = new MovieScreenshot(imageId, url, height, width);
+                    movieScreenshots.add(movieScreenshot);
                 }
             }
         }
-        return images;
+        return movieScreenshots;
     }
 }

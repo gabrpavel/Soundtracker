@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.soundtracker.backend.model.movie.Movie;
 import com.soundtracker.backend.repository.movie.MovieRepository;
+import com.soundtracker.backend.repository.movie.MovieScreenshotRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,11 +17,13 @@ import java.util.Optional;
 public class DBMovieService {
 
     private final MovieRepository movieRepository;
+    private final MovieScreenshotRepository movieScreenshotRepository;
     private final ObjectMapper objectMapper;
 
-    public DBMovieService(MovieRepository movieRepository, ObjectMapper objectMapper) {
+    public DBMovieService(MovieRepository movieRepository, MovieScreenshotRepository movieScreenshotRepository, ObjectMapper objectMapper) {
 
         this.movieRepository = movieRepository;
+        this.movieScreenshotRepository = movieScreenshotRepository;
         this.objectMapper = objectMapper;
     }
 
@@ -36,13 +39,14 @@ public class DBMovieService {
     }
 
     /**
-     * Сохранение фильма в базу данных
+     * Сохранение кино в базе данных
      *
-     * @param movie фильм для сохранения
-     * @return строковое представление JSON сохраненного фильма
+     * @param movie кино для сохранения
+     * @return строковое представление JSON сохраненного кино
      * @throws JsonProcessingException если возникают проблемы при преобразовании в JSON
      */
     public String saveMovie(Movie movie) throws JsonProcessingException {
+        movie.getMovieScreenshots().forEach(movieScreenshot -> movieScreenshot.setMovie(movie));
         movieRepository.save(movie);
         return objectMapper.writeValueAsString(movie);
     }
@@ -84,6 +88,7 @@ public class DBMovieService {
      * @throws JsonProcessingException если возникают проблемы при преобразовании в JSON
      */
     public String updateMovie(Movie movie) throws JsonProcessingException {
+        movie.getMovieScreenshots().forEach(movieScreenshot -> movieScreenshot.setMovie(movie));
         movieRepository.save(movie);
         return objectMapper.writeValueAsString(movie);
     }

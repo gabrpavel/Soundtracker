@@ -11,26 +11,23 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "images")
-public class Image {
+@Table(name = "movie_screenshots")
+public class MovieScreenshot {
 
     @Id
     String id;
     String url;
-    String type;
-
     int height;
     int width;
 
     @JsonIgnore
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "movie_id")
     private Movie movie;
 
-    public Image(String id, String url, String type, int height, int width) {
+    public MovieScreenshot(String id, String url, int height, int width) {
         this.id = id;
         this.url = url;
-        this.type = type;
         this.height = height;
         this.width = width;
     }

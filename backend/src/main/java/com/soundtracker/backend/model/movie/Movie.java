@@ -1,6 +1,5 @@
 package com.soundtracker.backend.model.movie;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
@@ -90,9 +89,8 @@ public class Movie {
 
     @Schema(description = "Изображения")
     @OneToMany(mappedBy = "movie",
-            cascade = {
-                    CascadeType.MERGE, CascadeType.PERSIST})
-    private Set<Image> images;
+            cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    private Set<MovieScreenshot> movieScreenshots = new HashSet<>();
 
     public Movie(Long id, String ruTitle, String enTitle, int releaseYear,
                  String description, int length, String poster) {
@@ -103,6 +101,10 @@ public class Movie {
         this.description = description;
         this.length = length;
         this.poster = poster;
+    }
+
+    public Movie(Long id) {
+        this.id = id;
     }
 
     public void addGenre(Genre genre) {
@@ -144,6 +146,20 @@ public class Movie {
         if(director != null) {
             this.directors.remove(director);
             director.getMovies().remove(this);
+        }
+    }
+
+    public void addMovieScreenshot(MovieScreenshot movieScreenshot) {
+        this.movieScreenshots.add(movieScreenshot);
+        movieScreenshot.setMovie(this);
+    }
+
+    public void removeMovieScreenshot(String movieScreenshotId) {
+        MovieScreenshot movieScreenshot = this.movieScreenshots.stream().filter(g -> g.getId().equals(movieScreenshotId))
+                .findFirst().orElse(null);
+        if(movieScreenshot != null) {
+            this.movieScreenshots.remove(movieScreenshot);
+            movieScreenshot.setMovie(null);
         }
     }
 }
