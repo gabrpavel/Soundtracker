@@ -46,20 +46,16 @@ public class SpotifyAPI {
         if (accessToken == null) {
             fetchAccessToken();
         }
+        String url = API_URL + "/artists/" + artistId;
+        return makeRequest(url);
+    }
 
+    private String makeRequest(String url) throws IOException {
         Request request = new Request.Builder()
-                .url(API_URL + "/artists/" + artistId)
+                .url(url)
                 .get()
                 .addHeader("Authorization", "Bearer " + accessToken)
                 .build();
-
-        Response response = okHttpClient.newCall(request).execute();
-        String responseData = response.body().string();
-        //Artist artist = gson.fromJson(responseData, Artist.class);
-
-        // Сохраняем данные в базе данных
-        // artistRepository.save(artist);
-
-        return "artist";
+        return Objects.requireNonNull(okHttpClient.newCall(request).execute().body()).string();
     }
 }

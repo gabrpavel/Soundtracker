@@ -65,6 +65,40 @@ public class DBMovieController {
     }
 
     /**
+     * Удаление кино из базы данных по его идентификатору
+     *
+     * @param id идентификатор кино
+     * @return ответ с информацией о результате удаления
+     * @throws JsonProcessingException если возникают проблемы при преобразовании в JSON
+     */
+    @Operation(summary = "Удаление кино", description = "Удаляет кино из базы данных")
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteMovie(@RequestParam Long id) throws JsonProcessingException {
+        String response = dbMovieService.deleteMovieById(id);
+        if (response == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
+    }
+
+    /**
+     * Обновление информации о кино в базе данных
+     *
+     * @param movie кино для обновления
+     * @return ответ с обновленным кино в формате JSON
+     * @throws JsonProcessingException если возникают проблемы при преобразовании в JSON
+     */
+    @Operation(summary = "Обновление кино", description = "Обновляет информацию о кино в базе данных")
+    @PutMapping("/update")
+    public ResponseEntity<String> updateMovie(@RequestBody Movie movie) throws JsonProcessingException {
+        String response = dbMovieService.updateMovie(movie);
+        if (response == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
+    }
+
+    /**
      * Получение информации о кино из базы данных по его идентификатору
      *
      * @param id идентификатор кино

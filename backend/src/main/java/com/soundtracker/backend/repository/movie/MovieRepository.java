@@ -1,5 +1,6 @@
 package com.soundtracker.backend.repository.movie;
 
+import com.soundtracker.backend.model.movie.Image;
 import com.soundtracker.backend.model.movie.Movie;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,6 +15,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     Optional<Movie> findById(@NotNull Long id);
 
     List<Movie> findMoviesByGenresId(Long genreId);
+    List<Image> findMoviesByImagesId(String imageId);
 
     boolean existsMovieById(Movie movie);
 }

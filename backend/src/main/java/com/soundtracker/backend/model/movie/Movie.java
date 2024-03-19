@@ -1,5 +1,6 @@
 package com.soundtracker.backend.model.movie;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
@@ -87,6 +88,11 @@ public class Movie {
     )
     private Set<Director> directors = new HashSet<>();
 
+    @Schema(description = "Изображения")
+    @OneToMany(mappedBy = "movie",
+            cascade = {
+                    CascadeType.MERGE, CascadeType.PERSIST})
+    private Set<Image> images;
 
     public Movie(Long id, String ruTitle, String enTitle, int releaseYear,
                  String description, int length, String poster) {

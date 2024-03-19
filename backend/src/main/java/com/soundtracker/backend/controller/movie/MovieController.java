@@ -43,7 +43,7 @@ public class MovieController {
         // Если информация не найдена в базе данных, делаем запрос к внешнему API
         ResponseEntity<String> responseFromApi = movieService.getMovieInfoFromApi(id);
         if (responseFromApi.getStatusCode().is2xxSuccessful() && responseFromApi.getBody() != null) {
-            ResponseEntity<String> response = movieService.processApiResponse(responseFromApi.getBody());
+            ResponseEntity<String> response = movieService.savingMovieResponse(responseFromApi.getBody());
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .contentType(MediaType.APPLICATION_JSON)
@@ -52,6 +52,29 @@ public class MovieController {
             return ResponseEntity
                     .status(responseFromApi.getStatusCode())
                     .body("Error getting movie info from database and API");
+        }
+    }
+
+    /**
+     * Обновление информации о кино по его идентификатору.
+     *
+     * @param id идентификатор кино
+     * @return ответ с обновленной информацией о кино в формате JSON
+     */
+    @Operation(summary = "Обновление информации о кино", description = "Обновляет информацию о кино по его ID")
+    @PutMapping("/update")
+    public ResponseEntity<String> updateMovieInfo(@RequestParam("id") Long id) {
+        ResponseEntity<String> responseFromApi = movieService.getMovieInfoFromApi(id);
+        if (responseFromApi.getStatusCode().is2xxSuccessful() && responseFromApi.getBody() != null) {
+            ResponseEntity<String> response = movieService.updatingMovieResponse(responseFromApi.getBody());
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(response.getBody());
+        } else {
+            return ResponseEntity
+                    .status(responseFromApi.getStatusCode())
+                    .body("Error getting movie info from API");
         }
     }
 }

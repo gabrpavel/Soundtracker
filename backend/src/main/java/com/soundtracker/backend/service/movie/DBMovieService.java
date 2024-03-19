@@ -63,4 +63,28 @@ public class DBMovieService {
             return null;
         }
     }
+
+    /**
+     * Удаление кино по его идентификатору из базы данных
+     *
+     * @param id идентификатор кино
+     * @return строковое представление JSON сообщения об удалении кино
+     * @throws JsonProcessingException если возникают проблемы при преобразовании в JSON
+     */
+    public String deleteMovieById(Long id) throws JsonProcessingException {
+        movieRepository.deleteById(id);
+        return objectMapper.writeValueAsString("Movie with id " + id + " was deleted");
+    }
+
+    /**
+     * Обновление информации о кино в базе данных
+     *
+     * @param movie кино для обновления
+     * @return строковое представление JSON обновленного кино
+     * @throws JsonProcessingException если возникают проблемы при преобразовании в JSON
+     */
+    public String updateMovie(Movie movie) throws JsonProcessingException {
+        movieRepository.save(movie);
+        return objectMapper.writeValueAsString(movie);
+    }
 }

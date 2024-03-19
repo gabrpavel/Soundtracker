@@ -66,6 +66,7 @@ public class APIMovieService {
         movie.setActors(getActorsFromJson(jsonNode));
         movie.setDirectors(getDirectorsFromJson(jsonNode));
         movie.setType(getMovieTypeFromJson(jsonNode));
+        movie.setImages(getMovieScreenshots(id));
 
         return objectMapper.writeValueAsString(movie);
     }
@@ -166,5 +167,32 @@ public class APIMovieService {
             newMovieType.setName(typeName);
             return movieTypeRepository.save(newMovieType);
         }
+    }
+
+    public Set<Image> getMovieScreenshots(Long id) throws IOException {
+        Set<Image> images = new HashSet<>();
+        String responseBody = kinopoiskAPI.searchScreenshotsByMovieId(id);
+        JsonNode jsonNode = objectMapper.readTree(responseBody);
+        JsonNode imagesNode = jsonNode.get("docs");
+        if (imagesNode != null) {
+            for (JsonNode imageNode : imagesNode) {
+                JsonNode urlNode = imageNode.get("url");
+                JsonNode heightNode = imageNode.get("height");
+                JsonNode typeNode = imageNode.get("type");
+                JsonNode widthNode = imageNode.get("width");
+                JsonNode idNode = imageNode.get("id");
+
+                if (urlNode != null && heightNode != null && typeNode != null && widthNode != null && idNode != null) {
+                    String url = urlNode.asText();
+                    int height = heightNode.asInt();
+                    String type = typeNode.asText();
+                    int width = widthNode.asInt();
+                    String imageId = idNode.asText();
+                    Image image = new Image(imageId, url, type, height, width);
+                    images.add(image);
+                }
+            }
+        }
+        return images;
     }
 }

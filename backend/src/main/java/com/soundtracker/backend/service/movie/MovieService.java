@@ -50,12 +50,27 @@ public class MovieService {
      * @param movie информация о кино
      * @return ответ от сервера с информацией о кино
      */
-    public ResponseEntity<String> processApiResponse(String movie) {
+    public ResponseEntity<String> savingMovieResponse(String movie) {
         ResponseEntity<String> savedMovieResponse = saveMovie(movie);
         if (savedMovieResponse.getStatusCode().is2xxSuccessful()) {
             return ResponseEntity.ok(savedMovieResponse.getBody());
         } else {
             return ResponseEntity.status(savedMovieResponse.getStatusCode()).body("Error saving movie to database");
+        }
+    }
+
+    /**
+     * Обработка ответа от внешнего API с информацией о кино
+     *
+     * @param movie информация о кино
+     * @return ответ от сервера с информацией о кино
+     */
+    public ResponseEntity<String> updatingMovieResponse(String movie) {
+        ResponseEntity<String> updatedMovieResponse = updateMovie(movie);
+        if (updatedMovieResponse.getStatusCode().is2xxSuccessful()) {
+            return ResponseEntity.ok(updatedMovieResponse.getBody());
+        } else {
+            return ResponseEntity.status(updatedMovieResponse.getStatusCode()).body("Error updating movie in database");
         }
     }
 
@@ -68,6 +83,17 @@ public class MovieService {
     public ResponseEntity<String> saveMovie(String movie) {
         String databaseUrl = "http://localhost:8080/api-soudtracker/db-movie/save";
         return sendPostRequest(databaseUrl, movie);
+    }
+
+    /**
+     * Обновление информации о кино в базе данных
+     *
+     * @param movie информация о кино
+     * @return ответ от сервера о результате обновления
+     */
+    public ResponseEntity<String> updateMovie(String movie) {
+        String databaseUrl = "http://localhost:8080/api-soudtracker/db-movie/update";
+        return sendPutRequest(databaseUrl, movie);
     }
 
     /**
@@ -95,6 +121,22 @@ public class MovieService {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
+                .build();
+        return executeRequest(request);
+    }
+
+    /**
+     * Отправка HTTP PUT запроса с переданным телом запроса к указанному URL
+     *
+     * @param url         URL для отправки PUT запроса
+     * @param requestBody тело запроса
+     * @return ответ от сервера
+     */
+    private ResponseEntity<String> sendPutRequest(String url, String requestBody) {
+        RequestBody body = RequestBody.create(requestBody, MediaType.parse("application/json"));
+        Request request = new Request.Builder()
+                .url(url)
+                .put(body)
                 .build();
         return executeRequest(request);
     }
