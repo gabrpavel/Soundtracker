@@ -1,11 +1,17 @@
 package com.soundtracker.backend.service.movie;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.soundtracker.backend.model.movie.Movie;
+import com.soundtracker.backend.model.music.Album;
+import com.soundtracker.backend.repository.movie.MovieRepository;
 import okhttp3.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Сервис для работы с кино
@@ -14,12 +20,17 @@ import java.io.IOException;
 public class MovieService {
 
     private final OkHttpClient client;
+    private final ObjectMapper objectMapper;
+    private final MovieRepository movieRepository;
 
     /**
      * Конструктор по умолчанию для инициализации клиента OkHttp
      */
-    public MovieService() {
+    public MovieService(ObjectMapper objectMapper,
+                        MovieRepository movieRepository) {
+        this.objectMapper = objectMapper;
         this.client = new OkHttpClient();
+        this.movieRepository = movieRepository;
     }
 
     /**
@@ -157,5 +168,29 @@ public class MovieService {
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    /**
+     * Установка альбома для кино
+     *
+     * @param id идентификатор кино
+     * @return ответ от сервера о результате установки альбома
+     */
+    public ResponseEntity<String> setAlbum(Long id) throws JsonProcessingException {
+        Optional<Movie> optionalMovie = movieRepository.findById(id);
+        if (optionalMovie.isPresent()) {
+            Movie movie = optionalMovie.get();
+            String url = "http://localhost:8080/api-soudtracker/music/info?name=" + movie.getEnTitle();
+            ResponseEntity<String> responseEntity = sendGetRequest(url);
+            if (responseEntity.getStatusCode().is2xxSuccessful()) {
+                String albumJson = responseEntity.getBody();
+                Album album = objectMapper.readValue(albumJson, Album.class);
+                movie.setAlbum(album);
+                movieRepository.save(movie);
+                return ResponseEntity.ok("Album set");
+            } else {
+                return ResponseEntity.status(responseEntity.getStatusCode()).body("Error getting album");
+            }
+        } else return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Movie not found");
     }
 }

@@ -1,5 +1,6 @@
 package com.soundtracker.backend.controller.movie;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.soundtracker.backend.service.movie.MovieService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -77,4 +78,26 @@ public class MovieController {
                     .body("Error getting movie info from API");
         }
     }
+
+    /**
+     * Установка альбома для кино по его идентификатору.
+     *
+     * @param id идентификатор кино
+     * @return ответ с установленным альбомом для кино в формате JSON
+     */
+    @PutMapping("/set-album")
+    public ResponseEntity<String> setAlbum(@RequestParam("id") Long id) throws JsonProcessingException {
+        ResponseEntity<String> response = movieService.setAlbum(id);
+        if (response.getStatusCode().is2xxSuccessful()) {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(response.getBody());
+        } else {
+            return ResponseEntity
+                    .status(response.getStatusCode())
+                    .body("Error setting album for movie");
+        }
+    }
+
 }

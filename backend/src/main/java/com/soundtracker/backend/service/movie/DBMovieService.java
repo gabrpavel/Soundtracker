@@ -17,13 +17,11 @@ import java.util.Optional;
 public class DBMovieService {
 
     private final MovieRepository movieRepository;
-    private final MovieScreenshotRepository movieScreenshotRepository;
     private final ObjectMapper objectMapper;
 
-    public DBMovieService(MovieRepository movieRepository, MovieScreenshotRepository movieScreenshotRepository, ObjectMapper objectMapper) {
+    public DBMovieService(MovieRepository movieRepository, ObjectMapper objectMapper) {
 
         this.movieRepository = movieRepository;
-        this.movieScreenshotRepository = movieScreenshotRepository;
         this.objectMapper = objectMapper;
     }
 

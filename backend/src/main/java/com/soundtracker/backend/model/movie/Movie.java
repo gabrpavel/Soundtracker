@@ -1,5 +1,6 @@
 package com.soundtracker.backend.model.movie;
 
+import com.soundtracker.backend.model.music.Album;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
@@ -92,6 +93,11 @@ public class Movie {
             cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private Set<MovieScreenshot> movieScreenshots = new HashSet<>();
 
+    @Schema(description = "Альбом", example = "Whiplash (Original Motion Picture Soundtrack)")
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "album_id", referencedColumnName = "id")
+    private Album album;
+
     public Movie(Long id, String ruTitle, String enTitle, int releaseYear,
                  String description, int length, String poster) {
         this.id = id;
@@ -160,6 +166,16 @@ public class Movie {
         if(movieScreenshot != null) {
             this.movieScreenshots.remove(movieScreenshot);
             movieScreenshot.setMovie(null);
+        }
+    }
+
+    public void setAlbum(Album album) {
+        if (this.album != null) {
+            this.album.setMovie(null);
+        }
+        this.album = album;
+        if (album!=null) {
+            album.setMovie(this);
         }
     }
 }

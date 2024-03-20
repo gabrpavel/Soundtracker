@@ -68,6 +68,13 @@ public class KinopoiskAPI {
         return makeRequest(url);
     }
 
+    /**
+     * Создает HTTP запрос к Kinopoisk API для получения информации о кино по его идентификатору
+     *
+     * @param id идентификатор кино
+     * @return ответ от сервера в формате JSON с данными о кино
+     * @throws IOException если возникают проблемы при выполнении запроса
+     */
     public String searchScreenshotsByMovieId(Long id) throws IOException {
         String url = API_URL + "image?page=1&limit=20&selectFields=movieId" +
                 "&selectFields=url&selectFields=height&selectFields=width" +
