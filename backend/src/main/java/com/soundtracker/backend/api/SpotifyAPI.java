@@ -76,7 +76,7 @@ public class SpotifyAPI {
         if (accessToken == null) {
             fetchAccessToken();
         }
-        String url = API_URL + "/albums/" + albumId + "/tracks?limit=50&offset=0";
+        String url = API_URL + "/albums/" + albumId + "/tracks?market=US&limit=40&offset=0";
         return makeRequest(url);
     }
 

@@ -123,7 +123,8 @@ public class APIMovieService {
                 Long actorId = actorNode.get("id").asLong();
                 String firstName = actorNode.get("name").asText();
                 String lastName = actorNode.get("enName").asText();
-                Actor actor = new Actor(actorId, firstName, lastName);
+                String photo = actorNode.get("photo").asText();
+                Actor actor = new Actor(actorId, firstName, lastName, photo);
                 actors.add(actor);
             }
         }
@@ -144,7 +145,8 @@ public class APIMovieService {
                 Long directorId = directorNode.get("id").asLong();
                 String firstName = directorNode.get("name").asText();
                 String lastName = directorNode.get("enName").asText();
-                Director director = new Director(directorId, firstName, lastName);
+                String photo = directorNode.get("photo").asText();
+                Director director = new Director(directorId, firstName, lastName, photo);
                 directors.add(director);
             }
         }

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api-soudtracker/db-music")
 @RequiredArgsConstructor
-@Tag(name = "DB Music Controller",
+@Tag(name = "Database Music Controller",
         description = "Контроллер для работы с информацией о музыке из базы данных")
 public class DBMusicController {
 

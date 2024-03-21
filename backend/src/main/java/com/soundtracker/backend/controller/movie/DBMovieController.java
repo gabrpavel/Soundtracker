@@ -37,10 +37,20 @@ public class DBMovieController {
      * @return список всех фильмов в формате JSON
      * @throws JsonProcessingException если возникают проблемы при преобразовании в JSON
      */
-    @Operation(summary = "Получение списка кино", description = "Возвращает информацию о всем кино из базы данных")
+    @Operation(summary = "Получение списка кино", description = "Возвращает всю информацию о кино из базы данных")
     @GetMapping("/all-movies")
     public ResponseEntity<String> allMovies() throws JsonProcessingException {
         String response = dbMovieService.getAllMovies();
+        if (response == null) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
+    }
+
+    @Operation(summary = "Получение списка кино", description = "Возвращает информацию о всем кино из базы данных в виде DTO")
+    @GetMapping("/all-movies-dto")
+    public ResponseEntity<String> getAllMovies() throws JsonProcessingException {
+        String response = dbMovieService.getAllMoviesDTO();
         if (response == null) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
@@ -71,6 +81,7 @@ public class DBMovieController {
      * @return ответ с информацией о результате удаления
      * @throws JsonProcessingException если возникают проблемы при преобразовании в JSON
      */
+
     @Operation(summary = "Удаление кино", description = "Удаляет кино из базы данных")
     @DeleteMapping("/delete")
     public ResponseEntity<String> deleteMovie(@RequestParam Long id) throws JsonProcessingException {

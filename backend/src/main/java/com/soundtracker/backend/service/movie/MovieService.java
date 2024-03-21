@@ -180,7 +180,7 @@ public class MovieService {
         Optional<Movie> optionalMovie = movieRepository.findById(id);
         if (optionalMovie.isPresent()) {
             Movie movie = optionalMovie.get();
-            String url = "http://localhost:8080/api-soudtracker/music/info?name=" + movie.getEnTitle();
+            String url = "http://localhost:8080/api-soudtracker/music/info?name=" + movie.getEnTitle() + " soundtrack";
             ResponseEntity<String> responseEntity = sendGetRequest(url);
             if (responseEntity.getStatusCode().is2xxSuccessful()) {
                 String albumJson = responseEntity.getBody();

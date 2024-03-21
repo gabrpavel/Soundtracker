@@ -48,8 +48,11 @@ public class SecurityConfiguration {
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/swagger-ui/**", "/swagger-resources/*", "/v3/api-docs/**").permitAll()
                         .requestMatchers("/endpoint", "/admin/**").hasRole("ADMIN")
+//                        .requestMatchers("/api-soudtracker/db-movie/delete", "/api-soudtracker/db-movie/update",
+//                                "/api-soudtracker/db-movie/save", "/api-soudtracker/db-music/save",
+//                                "/api-soudtracker/db-music/delete", "/api-soudtracker/db-music/update").hasRole("ADMIN")
                         .requestMatchers("/api-soudtracker/**").permitAll()
-                        .anyRequest().permitAll())
+                        .anyRequest().denyAll())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

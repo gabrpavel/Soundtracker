@@ -2,6 +2,8 @@ package com.soundtracker.backend.service.movie;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.soundtracker.backend.dto.response.movie.MovieDto;
+import com.soundtracker.backend.model.movie.Genre;
 import com.soundtracker.backend.model.movie.Movie;
 import com.soundtracker.backend.repository.movie.MovieRepository;
 import com.soundtracker.backend.repository.movie.MovieScreenshotRepository;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Сервис для работы с кино из базы данных
@@ -89,5 +92,30 @@ public class DBMovieService {
         movie.getMovieScreenshots().forEach(movieScreenshot -> movieScreenshot.setMovie(movie));
         movieRepository.save(movie);
         return objectMapper.writeValueAsString(movie);
+    }
+
+    /**
+     * Получение всего списка кино из базы данных в виде DTO
+     *
+     * @return строковое представление JSON-массива всех фильмов в виде DTO
+     * @throws JsonProcessingException если возникают проблемы при преобразовании в JSON
+     */
+    public String getAllMoviesDTO() throws JsonProcessingException {
+        List<Movie> movies = movieRepository.findAll();
+        return objectMapper.writeValueAsString(movies.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList()));
+    }
+
+    private MovieDto convertToDto(Movie movie) {
+        return MovieDto.builder().id(movie.getId())
+                .ruTitle(movie.getRuTitle())
+                .enTitle(movie.getEnTitle())
+                .releaseYear(movie.getReleaseYear())
+                .length(movie.getLength())
+                .type(movie.getType().getName())
+                .poster(movie.getPoster())
+                .genres(movie.getGenres().stream().map(Genre::getName).collect(Collectors.toSet()))
+                .build();
     }
 }

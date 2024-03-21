@@ -30,6 +30,10 @@ public class Director {
     @Schema(description = "Имя режиссера на английском языке", example = "Akira Kurosawa")
     private String enName;
 
+    @Schema(description = "Фото режиссера", example = "https://www.kinopoisk.ru/name/85365/")
+    @Column(name = "photo")
+    private String photo;
+
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "directors",
             cascade = {
@@ -37,9 +41,10 @@ public class Director {
             })
     private Set<Movie> movies = new HashSet<>();
 
-    public Director(Long id, String ruName, String enName) {
+    public Director(Long id, String ruName, String enName, String photo) {
         this.id = id;
         this.ruName = ruName;
         this.enName = enName;
+        this.photo = photo;
     }
 }
