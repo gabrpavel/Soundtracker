@@ -1,0 +1,21 @@
+<div class="movie-details-container">
+  <div class="movie-card" *ngIf="movie">
+    <div class="movie-poster">
+      <img [src]="movie.poster" alt="Movie poster">
+    </div>
+    <div class="movie-info">
+      <h2 class="movie-title">{{movie.ruTitle}}</h2>
+      <p class="movie-description">{{movie.description}}</p>
+      <p class="movie-year">{{movie.releaseYear}}</p>
+      <p class="movie-length">{{movie.length}} минут</p>
+      <p class="movie-genres">Жанры: {{movie.genres?.join(', ')}}</p>
+<!--      <p class="movie-actors">Актеры: {{movie.actors?.map(actor => actor.ruName).join(', ')}}</p>-->
+<!--      <p class="movie-directors">Режиссеры: {{movie.directors?.map(director => director.ruName).join(', ')}}</p>-->
+    </div>
+  </div>
+  <div class="movie-screenshots">
+    <div *ngFor="let screenshot of movie?.movieScreenshots">
+      <img [src]="screenshot.url" class="screenshot-img" alt="Movie screenshot">
+    </div>
+  </div>
+</div>

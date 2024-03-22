@@ -1,0 +1,57 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background-color: #c8d8c4; /* Светло-зеленый цвет фона карточки */
+  color: #3b3b3b; /* Темно-серый цвет текста на карточке */
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+.card-body {
+  padding: 1rem;
+  flex: 1;
+}
+
+.card-title {
+  color: #1a1a1a; /* Черный цвет заголовка на карточке */
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.card-text {
+  color: #4f4f4f; /* Темно-серый цвет текста на карточке */
+  font-size: 0.9rem;
+}
+
+.text-muted {
+  color: #4f4f4f; /* Темно-серый цвет текста на карточке */
+  font-size: 0.8rem;
+}
+
+.card a:hover {
+  color: #1a1a1a; /* Черный цвет текста ссылки при наведении */
+  text-decoration: none;
+}
+
+.card:hover {
+  background-color: #b2c2b0; /* Светло-зеленый цвет подсветки при наведении */
+  transition: background-color 0.3s ease; /* Плавный переход цвета */
+}

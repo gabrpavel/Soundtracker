@@ -1,0 +1,41 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: #c8d8c4; /* Светло-зеленый цвет фона карточки */
+  color: #3b3b3b; /* Темно-серый цвет текста на карточке */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-title {
+  color: #1a1a1a; /* Черный цвет заголовка на карточке */
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.card-text {
+  color: #4f4f4f; /* Темно-серый цвет текста на карточке */
+  font-size: 1rem;
+}
+
+.text-muted {
+  color: #4f4f4f; /* Темно-серый цвет текста на карточке */
+  font-size: 0.9rem;
+}
+
+.row img {
+  margin-bottom: 1rem;
+}

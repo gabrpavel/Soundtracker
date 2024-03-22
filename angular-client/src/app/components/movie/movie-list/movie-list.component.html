@@ -1,0 +1,15 @@
+<div class="container mt-3">
+  <div class="grid">
+    <div class="card" *ngFor="let movie of movies">
+      <a [routerLink]="['/movies', movie.id]">
+        <img class="card-img" [src]="movie.poster" alt="Movie poster">
+        <div class="card-body">
+          <h5 class="card-title">{{movie.ruTitle}}</h5>
+          <p class="card-text"><small class="text-muted">{{movie.releaseYear}}</small></p>
+          <p class="card-text">{{movie.length}} минут</p>
+          <p class="card-text">Жанры: {{movie.genres.join(', ')}}</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
