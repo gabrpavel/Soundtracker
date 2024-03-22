@@ -1,0 +1,505 @@
+{
+  "id": 342,
+  "ruTitle": "Криминальное чтиво",
+  "enTitle": "Pulp Fiction",
+  "releaseYear": 1994,
+  "description": "Двое бандитов Винсент Вега и Джулс Винфилд ведут философские беседы в перерывах между разборками и решением проблем с должниками криминального босса Марселласа Уоллеса.\nВ первой истории Винсент проводит незабываемый вечер с женой Марселласа Мией. Во второй рассказывается о боксёре Бутче Кулидже, купленном Уоллесом, чтобы сдать бой. В третьей истории Винсент и Джулс по нелепой случайности попадают в неприятности.",
+  "length": 154,
+  "poster": "https://image.openmoviedb.com/kinopoisk-images/1900788/87b5659d-a159-4224-9bff-d5a5d109a53b/orig",
+  "type": {
+    "id": 1,
+    "name": "movie"
+  },
+  "genres": [
+    {
+      "id": 13,
+      "name": "криминал"
+    },
+    {
+      "id": 7,
+      "name": "драма"
+    }
+  ],
+  "actors": [
+    {
+      "id": 110,
+      "ruName": "Брюс Уиллис",
+      "enName": "Bruce Willis",
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_110.jpg"
+    },
+    {
+      "id": 1600,
+      "ruName": "Харви Кейтель",
+      "enName": "Harvey Keitel",
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_1600.jpg"
+    },
+    {
+      "id": 7640,
+      "ruName": "Квентин Тарантино",
+      "enName": "Quentin Tarantino",
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_7640.jpg"
+    },
+    {
+      "id": 2145,
+      "ruName": "Тим Рот",
+      "enName": "Tim Roth",
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_2145.jpg"
+    },
+    {
+      "id": 7164,
+      "ruName": "Сэмюэл Л. Джексон",
+      "enName": "Samuel L. Jackson",
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_7164.jpg"
+    },
+    {
+      "id": 29519,
+      "ruName": "Аманда Пламмер",
+      "enName": "Amanda Plummer",
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_29519.jpg"
+    },
+    {
+      "id": 6479,
+      "ruName": "Джон Траволта",
+      "enName": "John Travolta",
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_6479.jpg"
+    },
+    {
+      "id": 24355,
+      "ruName": "Винг Реймз",
+      "enName": "Ving Rhames",
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_24355.jpg"
+    },
+    {
+      "id": 29595,
+      "ruName": "Ума Турман",
+      "enName": "Uma Thurman",
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_29595.jpg"
+    },
+    {
+      "id": 25640,
+      "ruName": "Питер Грин",
+      "enName": "Peter Greene",
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_25640.jpg"
+    }
+  ],
+  "directors": [
+    {
+      "id": 7640,
+      "ruName": "Квентин Тарантино",
+      "enName": "Quentin Tarantino",
+      "photo": "https://st.kp.yandex.net/images/actor_iphone/iphone360_7640.jpg"
+    }
+  ],
+  "movieScreenshots": [
+    {
+      "id": "632e5e22aff710671ba8ca9c",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1900788/118f9e07-d019-410f-8f30-e1c121810f46/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e0aaff710671ba8b4b2",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1900788/376d9b82-f4bb-4737-87cc-8dee2c213226/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e23aff710671ba8cc0a",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1777765/9cb5f485-d537-426e-9396-734f24bd5b61/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e2eaff710671ba8d5cd",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1773646/de45efe0-a12a-4f25-aed6-2ddb1204f1e9/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e37aff710671ba8df33",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1704946/17ab7b6f-fc89-490d-baa2-2d2f0920144c/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e2faff710671ba8d785",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1900788/801bc6b2-b117-4663-bcef-ad2d0a723b99/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e09aff710671ba8b3ad",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1777765/7233daa0-c43c-40f4-81a3-e9d6fe4835b5/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e16aff710671ba8bf2f",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1773646/f1842837-5aca-4a31-b06a-8965f58b3bbd/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e1aaff710671ba8c2b6",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1900788/f4eff2cb-7fa7-4bbf-b7a2-3ac6fe93d2e4/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e28aff710671ba8d030",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1900788/49ae0837-dfbf-4644-b9ff-6aa11593f92b/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e08aff710671ba8b2b0",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1773646/a3cf94c8-e734-4e32-870e-407129fef6ad/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e11aff710671ba8bab6",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1777765/8513f007-ca0a-46d3-8640-8a1b56f15ca0/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e2caff710671ba8d4a9",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1946459/963dd5ef-80a0-4b18-9e3c-473be5bb9ede/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e25aff710671ba8cd72",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1946459/358caed4-bc08-4513-a265-d6987b75cefd/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e12aff710671ba8bbdc",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1629390/99156037-a7af-4cdd-8c3e-9f199b078198/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e3eaff710671ba8e6ac",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1946459/d124029f-8ccc-4fdf-b595-9a75ed1b88e7/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e2baff710671ba8d316",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1946459/eedbfa26-909a-4beb-8c05-9b1687e83230/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e15aff710671ba8be2f",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1946459/e4e46c5b-1510-4dcf-823f-a24f4d39ebfe/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e17aff710671ba8c04e",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1773646/5c05206a-7b0a-4b2e-ac81-d3ed583e29e3/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e1baff710671ba8c3fd",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1900788/7ea4d9a3-a795-48d5-a94b-e40a3c5320ca/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e1caff710671ba8c516",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1777765/512de000-508b-4f9d-ae8e-f57de30b992a/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e0faff710671ba8b9ac",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1900788/ae0798df-1b70-462c-8949-9ec6360f6db2/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e31aff710671ba8d908",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1900788/a8b3139b-c79b-41d3-9e0a-8ec4e0e4f907/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e33aff710671ba8da7f",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1777765/05c0c14a-6475-4d35-9e5b-7167f510fdbd/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e0eaff710671ba8b873",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1777765/75313a3e-6b31-4d7f-ad1c-513567589a77/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e3baff710671ba8e2d4",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1777765/0dbd3dc1-b2e0-4eab-a2da-122b2ccffc44/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e40aff710671ba8e884",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1946459/f66b67c3-da00-43f1-9488-d61c670520b1/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e18aff710671ba8c182",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1777765/5b9ef8c8-8e43-46bd-bfe0-91c9598cbd1f/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e13aff710671ba8bd2b",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1946459/dadf330c-00e2-4935-8746-f29b3bf18524/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e36aff710671ba8dd6b",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1946459/c50fe8cc-5ff8-45c1-af17-81a6eaf4caca/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e1faff710671ba8c816",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1773646/7d59397d-37fa-4345-813e-4e43e985f9ca/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e26aff710671ba8ced8",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1777765/335cb061-5976-4afc-a150-a00aecdfaa1a/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e1eaff710671ba8c6bf",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1946459/d93c354d-37a3-4f27-be71-8805f805aca3/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e0caff710671ba8b5d9",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1946459/c7c85565-fa92-4fa1-927b-ef2b54017b95/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e29aff710671ba8d1af",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1946459/e289753a-f7f9-40b2-875c-6c953086bab3/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e34aff710671ba8dbe8",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1773646/2339e802-9c88-4d7f-ba61-696ca5618f91/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e3caff710671ba8e4d2",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1946459/1fdfe67b-5be6-4a7d-a1de-c6ae8428ea14/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e20aff710671ba8c953",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1777765/113a7b77-70a5-420a-bcae-a8232213e292/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e0daff710671ba8b6f2",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1773646/d91d2b2b-ef7f-4cf5-a401-285279729fcc/orig",
+      "height": 510,
+      "width": 1200
+    },
+    {
+      "id": "632e5e39aff710671ba8e0c8",
+      "url": "https://image.openmoviedb.com/kinopoisk-images/1773646/7123593d-5312-4ea9-bd5d-69051bf6717a/orig",
+      "height": 510,
+      "width": 1200
+    }
+  ],
+  "album": {
+    "id": "2Rosrqy5gnHaKLrh2ctnVq",
+    "artistName": "Various Artists",
+    "spotifyUrl": "https://open.spotify.com/album/2Rosrqy5gnHaKLrh2ctnVq",
+    "cover": "https://i.scdn.co/image/ab67616d0000b273e49c89a7fc51a391fdbda374",
+    "name": "Pulp Fiction (Music From The Motion Picture)",
+    "totalTracks": 20,
+    "tracks": [
+      {
+        "id": "5Hn7uZqDarw5VTNX1XluV3",
+        "artistName": "The Centurians",
+        "spotifyUrl": "https://open.spotify.com/track/5Hn7uZqDarw5VTNX1XluV3",
+        "name": "Bullwinkle, Pt. II",
+        "previewUrl": "https://p.scdn.co/mp3-preview/8f6387344ce4add298fb4fde94a3fa1a16260519?cid=a9dd92e9bff24736a8e0e29dd99aead6",
+        "trackNumber": 1
+      },
+      {
+        "id": "5roylzN2vdoWNNOSCc8HsI",
+        "artistName": "Ricky Nelson",
+        "spotifyUrl": "https://open.spotify.com/track/5roylzN2vdoWNNOSCc8HsI",
+        "name": "Lonesome Town",
+        "previewUrl": "null",
+        "trackNumber": 7
+      },
+      {
+        "id": "76axcSyMLGlkYxihRDTwG4",
+        "artistName": "John Travolta",
+        "spotifyUrl": "https://open.spotify.com/track/76axcSyMLGlkYxihRDTwG4",
+        "name": "Personality Goes A Long Way",
+        "previewUrl": "null",
+        "trackNumber": 18
+      },
+      {
+        "id": "30LYhE1gG3wAdW3EL92VPn",
+        "artistName": "Maria De Medeiros",
+        "spotifyUrl": "https://open.spotify.com/track/30LYhE1gG3wAdW3EL92VPn",
+        "name": "Zed's Dead Baby",
+        "previewUrl": "null",
+        "trackNumber": 9
+      },
+      {
+        "id": "1mSzuXVjjKC0bPh6iG6xjy",
+        "artistName": "Urge Overkill",
+        "spotifyUrl": "https://open.spotify.com/track/1mSzuXVjjKC0bPh6iG6xjy",
+        "name": "Girl, You'll Be a Woman Soon",
+        "previewUrl": "https://p.scdn.co/mp3-preview/d67cd8762126d56edad0f75d156057c2a2ca412e?cid=a9dd92e9bff24736a8e0e29dd99aead6",
+        "trackNumber": 1
+      },
+      {
+        "id": "0i1DZd8BYhdOPebWdF2QLz",
+        "artistName": "Dick Dale & His Del-Tones",
+        "spotifyUrl": "https://open.spotify.com/track/0i1DZd8BYhdOPebWdF2QLz",
+        "name": "Misirlou (Alternative Take)",
+        "previewUrl": "https://p.scdn.co/mp3-preview/47865f37a24c8b787266aa70d15f4f49e68d158c?cid=a9dd92e9bff24736a8e0e29dd99aead6",
+        "trackNumber": 19
+      },
+      {
+        "id": "0bfXYqxq15NdwkgPkV1Xbb",
+        "artistName": "The Revels",
+        "spotifyUrl": "https://open.spotify.com/track/0bfXYqxq15NdwkgPkV1Xbb",
+        "name": "Comanche",
+        "previewUrl": "https://p.scdn.co/mp3-preview/4adcb8407a4d6365a037dd6b4c008fc244e8c96a?cid=a9dd92e9bff24736a8e0e29dd99aead6",
+        "trackNumber": 1
+      },
+      {
+        "id": "6FPcMtq0VnUvMg4XiAyOCu",
+        "artistName": "The Statler Brothers",
+        "spotifyUrl": "https://open.spotify.com/track/6FPcMtq0VnUvMg4XiAyOCu",
+        "name": "Flowers On The Wall",
+        "previewUrl": "null",
+        "trackNumber": 17
+      },
+      {
+        "id": "5jGb3oqxlj1HXNAiet4HTK",
+        "artistName": "Peter Greene",
+        "spotifyUrl": "https://open.spotify.com/track/5jGb3oqxlj1HXNAiet4HTK",
+        "name": "Bring Out The Gimp",
+        "previewUrl": "null",
+        "trackNumber": 15
+      },
+      {
+        "id": "7tzgX2LHRfWmRlsbSN4pQR",
+        "artistName": "John Travolta",
+        "spotifyUrl": "https://open.spotify.com/track/7tzgX2LHRfWmRlsbSN4pQR",
+        "name": "Royale With Cheese",
+        "previewUrl": "null",
+        "trackNumber": 3
+      },
+      {
+        "id": "63xdwScd1Ai1GigAwQxE8y",
+        "artistName": "Al Green",
+        "spotifyUrl": "https://open.spotify.com/track/63xdwScd1Ai1GigAwQxE8y",
+        "name": "Let's Stay Together",
+        "previewUrl": "https://p.scdn.co/mp3-preview/027817c11eaff28a45d96046a1c5da43d8a1e155?cid=a9dd92e9bff24736a8e0e29dd99aead6",
+        "trackNumber": 1
+      },
+      {
+        "id": "25lQDEclLoUa0dZD25VRXV",
+        "artistName": "Kool & The Gang",
+        "spotifyUrl": "https://open.spotify.com/track/25lQDEclLoUa0dZD25VRXV",
+        "name": "Jungle Boogie",
+        "previewUrl": "null",
+        "trackNumber": 4
+      },
+      {
+        "id": "1FaU01TqZoXyaaUtB04Ms1",
+        "artistName": "Jerome Patrick Hoban",
+        "spotifyUrl": "https://open.spotify.com/track/1FaU01TqZoXyaaUtB04Ms1",
+        "name": "Jack Rabbit Slims Twist Contest",
+        "previewUrl": "null",
+        "trackNumber": 11
+      },
+      {
+        "id": "5b7H6zxDzyVyIt77HfcKs8",
+        "artistName": "Maria McKee",
+        "spotifyUrl": "https://open.spotify.com/track/5b7H6zxDzyVyIt77HfcKs8",
+        "name": "If Love Is A Red Dress (Hang Me In Rags) - Acoustic Demo Version",
+        "previewUrl": "null",
+        "trackNumber": 14
+      },
+      {
+        "id": "4T7xJH89A7HbsU7aTKR5fk",
+        "artistName": "Samuel L. Jackson",
+        "spotifyUrl": "https://open.spotify.com/track/4T7xJH89A7HbsU7aTKR5fk",
+        "name": "Ezekiel 25:17",
+        "previewUrl": "null",
+        "trackNumber": 20
+      },
+      {
+        "id": "7odHgoLFi3GQ90E9PeraI3",
+        "artistName": "Dusty Springfield",
+        "spotifyUrl": "https://open.spotify.com/track/7odHgoLFi3GQ90E9PeraI3",
+        "name": "Son of a Preacher Man",
+        "previewUrl": "https://p.scdn.co/mp3-preview/af4ae13baf6ac3c08703b0651b774ac017f8baeb?cid=a9dd92e9bff24736a8e0e29dd99aead6",
+        "trackNumber": 3
+      },
+      {
+        "id": "3O5FoANdopm0mOKSeII2xm",
+        "artistName": "Tim Roth",
+        "spotifyUrl": "https://open.spotify.com/track/3O5FoANdopm0mOKSeII2xm",
+        "name": "Pumpkin And Honey Bunny",
+        "previewUrl": "null",
+        "trackNumber": 1
+      },
+      {
+        "id": "7p6ZGUXjUe0ctAu5RNnghu",
+        "artistName": "Chuck Berry",
+        "spotifyUrl": "https://open.spotify.com/track/7p6ZGUXjUe0ctAu5RNnghu",
+        "name": "You Never Can Tell",
+        "previewUrl": "null",
+        "trackNumber": 12
+      },
+      {
+        "id": "7sOBuRK26Ov7CR5fRSR7Om",
+        "artistName": "The Lively Ones",
+        "spotifyUrl": "https://open.spotify.com/track/7sOBuRK26Ov7CR5fRSR7Om",
+        "name": "Surf Rider",
+        "previewUrl": "https://p.scdn.co/mp3-preview/5abab56c4bcb199bb43425b7620baea2b418e7a2?cid=a9dd92e9bff24736a8e0e29dd99aead6",
+        "trackNumber": 9
+      },
+      {
+        "id": "7aKWcQNEIh2vkwOuVKmGNC",
+        "artistName": "The Tornadoes",
+        "spotifyUrl": "https://open.spotify.com/track/7aKWcQNEIh2vkwOuVKmGNC",
+        "name": "Bustin' Surfboards (Alternate Take)",
+        "previewUrl": "https://p.scdn.co/mp3-preview/4183dc01462be63933b9ba9df23b13ca14d51356?cid=a9dd92e9bff24736a8e0e29dd99aead6",
+        "trackNumber": 14
+      }
+    ]
+  }
+}

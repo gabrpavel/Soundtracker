@@ -60,8 +60,8 @@ public class Movie {
             })
     @JoinTable(
             name = "movie_genres",
-            joinColumns = { @JoinColumn(name = "movie_id") },
-            inverseJoinColumns = { @JoinColumn(name = "genre_id") } )
+            joinColumns = {@JoinColumn(name = "movie_id")},
+            inverseJoinColumns = {@JoinColumn(name = "genre_id")})
     private Set<Genre> genres = new HashSet<>();
 
     @Schema(description = "Актерский состав")
@@ -121,7 +121,7 @@ public class Movie {
     public void removeGenre(Long genreId) {
         Genre genre = this.genres.stream().filter(g -> g.getId().equals(genreId))
                 .findFirst().orElse(null);
-        if(genre != null) {
+        if (genre != null) {
             this.genres.remove(genre);
             genre.getMovies().remove(this);
         }
@@ -135,7 +135,7 @@ public class Movie {
     public void removeActor(Long actorId) {
         Actor actor = this.actors.stream().filter(g -> g.getId().equals(actorId))
                 .findFirst().orElse(null);
-        if(actor != null) {
+        if (actor != null) {
             this.actors.remove(actor);
             actor.getMovies().remove(this);
         }
@@ -149,7 +149,7 @@ public class Movie {
     public void removeDirectors(Long directorId) {
         Director director = this.directors.stream().filter(g -> g.getId().equals(directorId))
                 .findFirst().orElse(null);
-        if(director != null) {
+        if (director != null) {
             this.directors.remove(director);
             director.getMovies().remove(this);
         }
@@ -163,7 +163,7 @@ public class Movie {
     public void removeMovieScreenshot(String movieScreenshotId) {
         MovieScreenshot movieScreenshot = this.movieScreenshots.stream().filter(g -> g.getId().equals(movieScreenshotId))
                 .findFirst().orElse(null);
-        if(movieScreenshot != null) {
+        if (movieScreenshot != null) {
             this.movieScreenshots.remove(movieScreenshot);
             movieScreenshot.setMovie(null);
         }
@@ -174,7 +174,7 @@ public class Movie {
             this.album.setMovie(null);
         }
         this.album = album;
-        if (album!=null) {
+        if (album != null) {
             album.setMovie(this);
         }
     }

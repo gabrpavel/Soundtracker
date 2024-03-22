@@ -1,0 +1,209 @@
+[
+  {
+    "id": 539,
+    "ruTitle": "Умница Уилл Хантинг",
+    "enTitle": "Good Will Hunting",
+    "type": "movie",
+    "releaseYear": 1997,
+    "length": 126,
+    "poster": "https://image.openmoviedb.com/kinopoisk-images/1629390/0e2ecf70-4309-4e53-839b-ff3c9d8b0129/orig",
+    "genres": [
+      "мелодрама",
+      "драма"
+    ]
+  },
+  {
+    "id": 4996,
+    "ruTitle": "Общество мертвых поэтов",
+    "enTitle": "Dead Poets Society",
+    "type": "movie",
+    "releaseYear": 1989,
+    "length": 128,
+    "poster": "https://image.openmoviedb.com/kinopoisk-images/1599028/66058481-9b77-4b51-9d4b-65db5cd796d2/orig",
+    "genres": [
+      "драма"
+    ]
+  },
+  {
+    "id": 332,
+    "ruTitle": "Семь самураев",
+    "enTitle": "Shichinin no samurai",
+    "type": "movie",
+    "releaseYear": 1954,
+    "length": 207,
+    "poster": "https://image.openmoviedb.com/kinopoisk-images/1704946/9ff2e712-2dd0-46ee-8c44-ca9ffbb7171d/orig",
+    "genres": [
+      "драма",
+      "боевик"
+    ]
+  },
+  {
+    "id": 8237,
+    "ruTitle": "Истинная грусть",
+    "enTitle": "Perfect Blue",
+    "type": "anime",
+    "releaseYear": 1998,
+    "length": 81,
+    "poster": "https://image.openmoviedb.com/kinopoisk-images/1946459/18f77b9b-86b0-4cff-9573-ff64aa5a04b9/orig",
+    "genres": [
+      "драма",
+      "мультфильм",
+      "аниме",
+      "триллер"
+    ]
+  },
+  {
+    "id": 5492,
+    "ruTitle": "Вечное сияние чистого разума",
+    "enTitle": "Eternal Sunshine of the Spotless Mind",
+    "type": "movie",
+    "releaseYear": 2004,
+    "length": 108,
+    "poster": "https://image.openmoviedb.com/kinopoisk-images/4303601/6cd71c8d-c906-4430-83a2-60f31c345954/orig",
+    "genres": [
+      "мелодрама",
+      "драма",
+      "фантастика"
+    ]
+  },
+  {
+    "id": 1047883,
+    "ruTitle": "Однажды в… Голливуде",
+    "enTitle": "Once Upon a Time in...  Hollywood",
+    "type": "movie",
+    "releaseYear": 2019,
+    "length": 161,
+    "poster": "https://image.openmoviedb.com/kinopoisk-images/1599028/70580cf5-3287-42d6-8a76-2c715e2f6172/orig",
+    "genres": [
+      "драма",
+      "комедия"
+    ]
+  },
+  {
+    "id": 424,
+    "ruTitle": "Новый кинотеатр «Парадизо»",
+    "enTitle": "Nuovo Cinema Paradiso",
+    "type": "movie",
+    "releaseYear": 1988,
+    "length": 124,
+    "poster": "https://image.openmoviedb.com/kinopoisk-images/1898899/c6c61323-479f-48dc-8ac6-74b67242c6a9/orig",
+    "genres": [
+      "мелодрама",
+      "драма"
+    ]
+  },
+  {
+    "id": 441,
+    "ruTitle": "Принцесса Мононоке",
+    "enTitle": "Mononoke-hime",
+    "type": "anime",
+    "releaseYear": 1997,
+    "length": 134,
+    "poster": "https://image.openmoviedb.com/kinopoisk-images/10835644/a9b9e3a8-5124-4181-856b-f4ffcbfcc525/orig",
+    "genres": [
+      "драма",
+      "мультфильм",
+      "аниме",
+      "приключения",
+      "фэнтези",
+      "боевик"
+    ]
+  },
+  {
+    "id": 725190,
+    "ruTitle": "Одержимость",
+    "enTitle": "Whiplash",
+    "type": "movie",
+    "releaseYear": 2013,
+    "length": 106,
+    "poster": "https://image.openmoviedb.com/kinopoisk-images/6201401/16af46be-bcfe-461e-af54-ff17b905b82e/orig",
+    "genres": [
+      "драма",
+      "музыка"
+    ]
+  },
+  {
+    "id": 350,
+    "ruTitle": "Славные парни",
+    "enTitle": "Goodfellas",
+    "type": "movie",
+    "releaseYear": 1990,
+    "length": 140,
+    "poster": "https://image.openmoviedb.com/kinopoisk-images/4774061/7f119fc4-7fe0-4738-9fa4-bc541d468911/orig",
+    "genres": [
+      "биография",
+      "драма",
+      "криминал"
+    ]
+  },
+  {
+    "id": 394,
+    "ruTitle": "Бешеные псы",
+    "enTitle": "Reservoir Dogs",
+    "type": "movie",
+    "releaseYear": 1991,
+    "length": 100,
+    "poster": "https://image.openmoviedb.com/kinopoisk-images/1946459/b1add366-9e49-4ad8-905a-46ca23da8adc/orig",
+    "genres": [
+      "драма",
+      "триллер",
+      "криминал"
+    ]
+  },
+  {
+    "id": 841081,
+    "ruTitle": "Ла-Ла Ленд",
+    "enTitle": "La La Land",
+    "type": "movie",
+    "releaseYear": 2016,
+    "length": 128,
+    "poster": "https://image.openmoviedb.com/kinopoisk-images/10835644/7e786437-eada-4d23-baea-f3a5ebf57e06/orig",
+    "genres": [
+      "мелодрама",
+      "драма",
+      "комедия",
+      "мюзикл",
+      "музыка"
+    ]
+  },
+  {
+    "id": 263531,
+    "ruTitle": "Мстители",
+    "enTitle": "The Avengers",
+    "type": "movie",
+    "releaseYear": 2012,
+    "length": 137,
+    "poster": "https://image.openmoviedb.com/kinopoisk-images/1898899/972b7f43-9677-40ce-a9bc-02a88ad3919d/orig",
+    "genres": [
+      "приключения",
+      "фантастика",
+      "фэнтези",
+      "боевик"
+    ]
+  },
+  {
+    "id": 351,
+    "ruTitle": "Красота по-американски",
+    "enTitle": "American Beauty",
+    "type": "movie",
+    "releaseYear": 1999,
+    "length": 122,
+    "poster": "https://image.openmoviedb.com/kinopoisk-images/1599028/36f029a1-497d-45cd-b9fa-a152712a899c/orig",
+    "genres": [
+      "драма"
+    ]
+  },
+  {
+    "id": 342,
+    "ruTitle": "Криминальное чтиво",
+    "enTitle": "Pulp Fiction",
+    "type": "movie",
+    "releaseYear": 1994,
+    "length": 154,
+    "poster": "https://image.openmoviedb.com/kinopoisk-images/1900788/87b5659d-a159-4224-9bff-d5a5d109a53b/orig",
+    "genres": [
+      "драма",
+      "криминал"
+    ]
+  }
+]

@@ -100,11 +100,11 @@ public class DBMovieService {
      * @return строковое представление JSON-массива всех фильмов в виде DTO
      * @throws JsonProcessingException если возникают проблемы при преобразовании в JSON
      */
-    public String getAllMoviesDTO() throws JsonProcessingException {
+    public List<MovieDto> getAllMoviesDTO() {
         List<Movie> movies = movieRepository.findAll();
-        return objectMapper.writeValueAsString(movies.stream()
+        return movies.stream()
                 .map(this::convertToDto)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
     }
 
     private MovieDto convertToDto(Movie movie) {

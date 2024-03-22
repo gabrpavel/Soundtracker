@@ -1,19 +1,26 @@
 // movie.model.ts
 
+import {MovieType} from "./movie-type.model";
+import {Genre} from "./genre.model";
+import {Actor} from "./actor.model";
+import {Director} from "./director.model";
+import {MovieScreenshot} from "./movie-screenshot.model";
+import {Album} from "../music/album.model";
+
 export class Movie {
-  id: number;
-  ruTitle: string;
+  id?: number;
+  ruTitle?: string;
   enTitle?: string;
-  releaseYear: number;
-  description: string;
-  length: number;
-  poster: URL;
-  type: any; // Замените на соответствующий тип
-  genres: any[]; // Замените на соответствующий тип
-  actors: any[]; // Замените на соответствующий тип
-  directors: any[]; // Замените на соответствующий тип
-  movieScreenshots: any[]; // Замените на соответствующий тип
-  album: any; // Замените на соответствующий тип
+  releaseYear?: number;
+  description?: string;
+  length?: number;
+  poster?: string;
+  type?: MovieType;
+  genres?: Genre[];
+  actors?: Actor[];
+  directors?: Director[];
+  movieScreenshots?: MovieScreenshot[];
+  album?: Album;
 
   constructor(
     id: number,
@@ -23,12 +30,12 @@ export class Movie {
     description: string,
     length: number,
     poster: string,
-    type: any,
-    genres: any[],
-    actors: any[],
-    directors: any[],
-    movieScreenshots: any[],
-    album: any
+    type: MovieType,
+    genres: Genre[],
+    actors: Actor[],
+    directors: Director[],
+    movieScreenshots: MovieScreenshot[],
+    album: Album
   ) {
     this.id = id;
     this.ruTitle = ruTitle;
@@ -36,7 +43,7 @@ export class Movie {
     this.releaseYear = releaseYear;
     this.description = description;
     this.length = length;
-    this.poster = new URL(poster);
+    this.poster = poster;
     this.type = type;
     this.genres = genres;
     this.actors = actors;

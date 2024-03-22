@@ -1,6 +1,7 @@
 package com.soundtracker.backend.controller.movie;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.soundtracker.backend.dto.response.movie.MovieDto;
 import com.soundtracker.backend.model.movie.Movie;
 import com.soundtracker.backend.service.movie.DBMovieService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -9,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Контроллер для работы с кино из базы данных
@@ -47,14 +51,24 @@ public class DBMovieController {
         return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
     }
 
+    /**
+     * Получение списка кино из базы данных в виде DTO
+     *
+     * @return список всех фильмов в виде DTO
+     */
     @Operation(summary = "Получение списка кино", description = "Возвращает информацию о всем кино из базы данных в виде DTO")
     @GetMapping("/all-movies-dto")
-    public ResponseEntity<String> getAllMovies() throws JsonProcessingException {
-        String response = dbMovieService.getAllMoviesDTO();
-        if (response == null) {
+    public ResponseEntity<List<MovieDto>> getAllMovies() {
+        try {
+            List<MovieDto> movieDtos = new ArrayList<>();
+            dbMovieService.getAllMoviesDTO().forEach(movieDtos::add);
+            if (movieDtos.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            }
+            return new ResponseEntity<>(movieDtos, HttpStatus.OK);
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
     }
 
     /**
