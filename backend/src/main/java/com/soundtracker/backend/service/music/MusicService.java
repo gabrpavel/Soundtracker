@@ -1,11 +1,18 @@
 package com.soundtracker.backend.service.music;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.soundtracker.backend.model.movie.Movie;
+import com.soundtracker.backend.model.music.Album;
 import okhttp3.*;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Сервис для работы с музыкой
@@ -14,46 +21,53 @@ import java.io.IOException;
 public class MusicService {
 
     private final OkHttpClient client;
+    private final ObjectMapper objectMapper;
 
-    public MusicService() {
+    public MusicService(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
         this.client = new OkHttpClient();
     }
 
     /**
      * Получение информации об альбоме из базы данных.
      *
-     * @param requestPath путь запроса
-     * @return ответ с информацией об альбоме в формате JSON
+     * @param name название альбома
+     * @return информация об альбоме
      */
-    public ResponseEntity<String> getAlbumFromDatabase(String requestPath) {
-        String databaseUrl = "http://localhost:8080/api-soudtracker/db-music" + requestPath;
-        return sendGetRequest(databaseUrl);
+    public Optional<Album> getAlbumFromDatabase(String name) {
+        String databaseUrl = "http://localhost:8080/api-soudtracker/db-music/album-by-name?name=" + name;
+        return getAlbum(databaseUrl);
     }
 
     /**
      * Получение информации об альбоме из внешнего API.
      *
      * @param name название альбома
-     * @return ответ с информацией об альбоме в формате JSON
+     * @return информация об альбоме
      */
-    public ResponseEntity<String> getAlbumFromApi(String name) {
+    public Optional<Album> getAlbumFromApi(String name) {
         String apiUrl = "http://localhost:8080/api-soudtracker/api-music/album?name=" + name;
-        return sendGetRequest(apiUrl);
+        return getAlbum(apiUrl);
     }
 
     /**
-     * Сохранение информации об альбоме в базу данных.
+     * Получение информации об альбоме по URL.
      *
-     * @param album информация об альбоме
-     * @return ответ с информацией об альбоме в формате JSON
+     * @param url URL для получения информации об альбоме
+     * @return информация об альбоме
      */
-    public ResponseEntity<String> savingAlbumResponse(String album) {
-        ResponseEntity<String> savedAlbumResponse = saveAlbum(album);
-        if (savedAlbumResponse.getStatusCode().is2xxSuccessful()) {
-            return ResponseEntity.ok(savedAlbumResponse.getBody());
-        } else {
-            return ResponseEntity.status(savedAlbumResponse.getStatusCode()).body("Error saving album to database");
+    @NotNull
+    private Optional<Album> getAlbum(String url) {
+        ResponseEntity<String> responseEntity = sendGetRequest(url);
+        if (responseEntity.getStatusCode().is2xxSuccessful() && responseEntity.getBody() != null) {
+            try {
+                Album album = objectMapper.readValue(responseEntity.getBody(), Album.class);
+                return Optional.of(album);
+            } catch (JsonProcessingException e) {
+                return Optional.empty();
+            }
         }
+        return Optional.empty();
     }
 
     /**
@@ -62,12 +76,12 @@ public class MusicService {
      * @param album информация об альбоме
      * @return ответ с информацией об альбоме в формате JSON
      */
-    public ResponseEntity<String> updatingAlbumResponse(String album) {
-        ResponseEntity<String> updatedAlbumResponse = updateAlbum(album);
-        if (updatedAlbumResponse.getStatusCode().is2xxSuccessful()) {
-            return ResponseEntity.ok(updatedAlbumResponse.getBody());
-        } else {
-            return ResponseEntity.status(updatedAlbumResponse.getStatusCode()).body("Error updating album in database");
+    public ResponseEntity<String> updatingAlbumResponse(Album album) {
+        try {
+            String albumJson = objectMapper.writeValueAsString(album);
+            return updateAlbum(albumJson);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while updating album.");
         }
     }
 
@@ -85,12 +99,12 @@ public class MusicService {
     /**
      * Обновление информации об альбоме.
      *
-     * @param album информация об альбоме
-     * @return ответ с информацией об альбоме в формате JSON
+     * @param albumJson информация об альбоме в формате JSON
+     * @return ответ от сервера о результате обновления
      */
-    public ResponseEntity<String> updateAlbum(String album) {
+    public ResponseEntity<String> updateAlbum(String albumJson) {
         String databaseUrl = "http://localhost:8080/api-soudtracker/db-music/update";
-        return sendPutRequest(databaseUrl, album);
+        return sendPutRequest(databaseUrl, albumJson);
     }
 
     /**
@@ -145,11 +159,23 @@ public class MusicService {
      * @return ответ от сервера
      */
     private ResponseEntity<String> executeRequest(Request request) {
+        return getStringResponseEntity(request, client);
+    }
+
+    /**
+     * Получение ответа от сервера в виде строки
+     *
+     * @param request HTTP запрос
+     * @param client  клиент для отправки запроса
+     * @return ответ от сервера в виде строки
+     */
+    @NotNull
+    public static ResponseEntity<String> getStringResponseEntity(Request request, OkHttpClient client) {
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful() && response.body() != null) {
-                return new ResponseEntity<>(response.body().string(), HttpStatus.OK);
+                return new ResponseEntity<>(response.body().string(), HttpStatusCode.valueOf(response.code()));
             } else {
-                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>(HttpStatusCode.valueOf(response.code()));
             }
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

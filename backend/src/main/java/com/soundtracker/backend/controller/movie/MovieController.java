@@ -1,6 +1,7 @@
 package com.soundtracker.backend.controller.movie;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.soundtracker.backend.model.movie.Movie;
 import com.soundtracker.backend.service.movie.MovieService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -9,8 +10,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"})
 @RequestMapping("/api-soudtracker/movie")
 @Tag(name = "Movie Controller",
         description = "Контроллер для работы с информацией о кино")
@@ -28,55 +31,28 @@ public class MovieController {
      * @param id идентификатор кино
      * @return ответ с информацией о кино в формате JSON
      */
+    // MovieController.java
     @Operation(summary = "Поиск по ID", description = "Возвращает всю доступную информацию о кино")
     @GetMapping("/info")
-    public ResponseEntity<String> getMovieInfo(@RequestParam("id") Long id) {
-        ResponseEntity<String> responseFromDatabase = movieService
-                .getMovieInfoFromDatabase("/info?id=" + id);
-
-        if (responseFromDatabase.getStatusCode().is2xxSuccessful() && responseFromDatabase.getBody() != null) {
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(responseFromDatabase.getBody());
+    public ResponseEntity<Movie> getMovieInfo(@RequestParam("id") Long id) {
+        Optional<Movie> movieOptional = movieService.getMovieInfoFromDatabase("/info?id=" + id);
+        if (movieOptional.isEmpty()) {
+            movieOptional = movieService.getMovieInfoFromApi(id);
         }
-
-        // Если информация не найдена в базе данных, делаем запрос к внешнему API
-        ResponseEntity<String> responseFromApi = movieService.getMovieInfoFromApi(id);
-        if (responseFromApi.getStatusCode().is2xxSuccessful() && responseFromApi.getBody() != null) {
-            ResponseEntity<String> response = movieService.savingMovieResponse(responseFromApi.getBody());
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(response.getBody());
-        } else {
-            return ResponseEntity
-                    .status(responseFromApi.getStatusCode())
-                    .body("Error getting movie info from database and API");
-        }
+        return movieOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    /**
-     * Обновление информации о кино по его идентификатору.
-     *
-     * @param id идентификатор кино
-     * @return ответ с обновленной информацией о кино в формате JSON
-     */
+
     @Operation(summary = "Обновление информации о кино", description = "Обновляет информацию о кино по его ID")
-    @PutMapping("/update")
+    @GetMapping("/update")
     public ResponseEntity<String> updateMovieInfo(@RequestParam("id") Long id) {
-        ResponseEntity<String> responseFromApi = movieService.getMovieInfoFromApi(id);
-        if (responseFromApi.getStatusCode().is2xxSuccessful() && responseFromApi.getBody() != null) {
-            ResponseEntity<String> response = movieService.updatingMovieResponse(responseFromApi.getBody());
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(response.getBody());
-        } else {
-            return ResponseEntity
-                    .status(responseFromApi.getStatusCode())
-                    .body("Error getting movie info from API");
+        Optional<Movie> movieOptional = movieService.getMovieInfoFromApi(id);
+        if (movieOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+        Movie movie = movieOptional.get();
+        ResponseEntity<String> response = movieService.updatingMovieResponse(movie);
+        return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
     }
 
     /**
@@ -85,20 +61,15 @@ public class MovieController {
      * @param id идентификатор кино
      * @return ответ с установленным альбомом для кино в формате JSON
      */
-    @PutMapping("/set-album")
-    public ResponseEntity<String> setAlbum(@RequestParam("id") Long id) throws JsonProcessingException {
-        ResponseEntity<String> response = movieService.setAlbum(id);
-        if (response.getStatusCode().is2xxSuccessful()) {
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(response.getBody());
-        } else {
+    @GetMapping("/set-album")
+    public ResponseEntity<String> setAlbum(@RequestParam("id") Long id) {
+        try {
+            ResponseEntity<String> response = movieService.setAlbum(id);
             return ResponseEntity
                     .status(response.getStatusCode())
-                    .body("Error setting album for movie");
+                    .body(response.getBody());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
-
 }

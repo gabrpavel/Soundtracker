@@ -21,12 +21,24 @@ public class AuthController {
 
     private final AuthenticationService authenticationService;
 
+    /**
+     * Регистрация пользователя
+     *
+     * @param request объект запроса на регистрацию
+     * @return объект ответа с токеном
+     */
     @Operation(summary = "Регистрация пользователя")
     @PostMapping("/sign-up")
     public JwtAuthenticationResponse signUp(@RequestBody @Valid SignUpRequest request) {
         return authenticationService.signUp(request);
     }
 
+    /**
+     * Авторизация пользователя
+     *
+     * @param request объект запроса на авторизацию
+     * @return объект ответа с токеном
+     */
     @Operation(summary = "Авторизация пользователя")
     @PostMapping("/sign-in")
     public JwtAuthenticationResponse signIn(@RequestBody @Valid SignInRequest request) {

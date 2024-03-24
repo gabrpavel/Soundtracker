@@ -9,15 +9,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-
 /**
  * Контроллер для работы с кино из внешнего API
  */
 @RestController
 @Tag(name = "API Movie Controller",
         description = "Контроллер для работы с информацией о кино из внешнего API (Kinopoisk API)")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"})
 @RequestMapping("/api-soudtracker/api-movie")
 public class APIMovieController {
 
@@ -37,17 +35,19 @@ public class APIMovieController {
      *
      * @param id идентификатор кино
      * @return ответ от сервера с информацией о кино в формате JSON
-     * @throws IOException если возникают проблемы при обращении к внешнему API
      */
     @Operation(summary = "Поиск по ID", description = "Возвращает всю доступную информацию о кино")
     @GetMapping("/info")
-    public ResponseEntity<String> getMovieInfo(@RequestParam("id") Long id) throws IOException {
-
-        String response = apiMovieService.getMovieDetails(id);
-        if (response == null) {
+    public ResponseEntity<Movie> getMovieInfo(@RequestParam("id") Long id) {
+        try {
+            Movie movie = apiMovieService.getMovieDetails(id);
+            if (movie == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(movie);
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
     }
 
     /**
@@ -55,11 +55,17 @@ public class APIMovieController {
      *
      * @param title название кино
      * @return объект кино в случае успеха
-     * @throws IOException если возникают проблемы при обращении к внешнему API
      */
-    @Operation(summary = "Поиск по названию", description = "Возвращает информации о кино")
+    @Operation(summary = "Поиск по названию", description = "Возвращает информацию о кино")
     @GetMapping("/info-by-title")
-    public Movie getMovie(@RequestParam("title") String title) throws IOException {
-        return apiMovieService.getMovieByTitle(title);
+    public ResponseEntity<Movie> getMovie(@RequestParam("title") String title) {
+        try {
+            Movie movie = apiMovieService.searchMovieByTitle(title);
+            if (movie == null)
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.status(HttpStatus.OK).body(movie);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 }

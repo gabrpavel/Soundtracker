@@ -38,7 +38,7 @@ public class APIMovieService {
      * @return объект Movie, содержащий данные о кино
      * @throws IOException если возникают проблемы при чтении ответа от внешнего API
      */
-    public Movie getMovieByTitle(String title) throws IOException {
+    public Movie searchMovieByTitle(String title) throws IOException {
         String responseBody = kinopoiskAPI.searchMovieByTitle(title);
         JsonNode jsonNode = objectMapper.readTree(responseBody);
         jsonNode = jsonNode.get("docs").get(0);
@@ -57,7 +57,7 @@ public class APIMovieService {
      * @return строковое представление JSON сохраненного фильма
      * @throws IOException если возникают проблемы при чтении ответа от внешнего API
      */
-    public String getMovieDetails(Long id) throws IOException {
+    public Movie getMovieDetails(Long id) throws IOException {
         String responseBody = kinopoiskAPI.searchMovieById(id);
         JsonNode jsonNode = objectMapper.readTree(responseBody);
 
@@ -66,9 +66,9 @@ public class APIMovieService {
         movie.setActors(getActorsFromJson(jsonNode));
         movie.setDirectors(getDirectorsFromJson(jsonNode));
         movie.setType(getMovieTypeFromJson(jsonNode));
-        movie.setMovieScreenshots(getMovieScreenshots(id));
+        movie.setMovieScreenshots(getMovieScreenshotsFromJson(id));
 
-        return objectMapper.writeValueAsString(movie);
+        return movie;
     }
 
     /**
@@ -178,7 +178,7 @@ public class APIMovieService {
      * @return список объектов Image с данными о скриншотах кино
      * @throws IOException если возникают проблемы при чтении ответа от внешнего API
      */
-    public Set<MovieScreenshot> getMovieScreenshots(Long id) throws IOException {
+    public Set<MovieScreenshot> getMovieScreenshotsFromJson(Long id) throws IOException {
         Set<MovieScreenshot> movieScreenshots = new HashSet<>();
         String responseBody = kinopoiskAPI.searchScreenshotsByMovieId(id);
         JsonNode jsonNode = objectMapper.readTree(responseBody);

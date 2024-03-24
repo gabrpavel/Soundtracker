@@ -41,7 +41,6 @@ public class Track {
     int trackNumber;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "tracks",
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(mappedBy = "tracks", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     Set<Album> albums = new HashSet<>();
 }

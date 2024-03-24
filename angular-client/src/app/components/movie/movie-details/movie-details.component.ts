@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {MovieService} from "../../../services/movie/movie.service";
 import {Movie} from "../../../models/movie/movie.model";
-import {join} from "@angular/compiler-cli";
 
 @Component({
   selector: 'app-movie-details',
@@ -12,9 +11,13 @@ import {join} from "@angular/compiler-cli";
 export class MovieDetailsComponent implements OnInit {
   movie?: Movie;
   id: number;
+  hover: boolean[];
+  hoverDirectors: boolean[];
 
   constructor(private movieService: MovieService, private route: ActivatedRoute) {
     this.id = 0;
+    this.hover = [];
+    this.hoverDirectors = [];
   }
 
   ngOnInit(): void {

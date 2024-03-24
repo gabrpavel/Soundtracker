@@ -1,13 +1,11 @@
 package com.soundtracker.backend.service.movie;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.soundtracker.backend.dto.response.movie.MovieDto;
 import com.soundtracker.backend.model.movie.Genre;
 import com.soundtracker.backend.model.movie.Movie;
 import com.soundtracker.backend.repository.movie.MovieRepository;
-import com.soundtracker.backend.repository.movie.MovieScreenshotRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,93 +18,75 @@ import java.util.stream.Collectors;
 public class DBMovieService {
 
     private final MovieRepository movieRepository;
-    private final ObjectMapper objectMapper;
 
-    public DBMovieService(MovieRepository movieRepository, ObjectMapper objectMapper) {
-
+    public DBMovieService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
-        this.objectMapper = objectMapper;
     }
 
     /**
-     * Получение всего списка кино из базы данных
+     * Получение списка кино из базы данных
      *
-     * @return строковое представление JSON-массива всех фильмов
-     * @throws JsonProcessingException если возникают проблемы при преобразовании в JSON
+     * @return список всех фильмов
      */
-    public String getAllMovies() throws JsonProcessingException {
-        List<Movie> movies = movieRepository.findAll();
-        return objectMapper.writeValueAsString(movies);
-    }
-
-    /**
-     * Сохранение кино в базе данных
-     *
-     * @param movie кино для сохранения
-     * @return строковое представление JSON сохраненного кино
-     * @throws JsonProcessingException если возникают проблемы при преобразовании в JSON
-     */
-    public String saveMovie(Movie movie) throws JsonProcessingException {
-        movie.getMovieScreenshots().forEach(movieScreenshot -> movieScreenshot.setMovie(movie));
-        movieRepository.save(movie);
-        return objectMapper.writeValueAsString(movie);
-    }
-
-    /**
-     * Получение фильма по его идентификатору из базы данных
-     *
-     * @param id идентификатор фильма
-     * @return строковое представление JSON найденного фильма, если он существует; в противном случае null
-     * @throws JsonProcessingException если возникают проблемы при преобразовании в JSON
-     */
-    public String getMovieById(Long id) throws JsonProcessingException {
-        Optional<Movie> optionalMovie = movieRepository.findById(id);
-        if (optionalMovie.isPresent()) {
-            Movie movie = optionalMovie.get();
-            return objectMapper.writeValueAsString(movie);
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Удаление кино по его идентификатору из базы данных
-     *
-     * @param id идентификатор кино
-     * @return строковое представление JSON сообщения об удалении кино
-     * @throws JsonProcessingException если возникают проблемы при преобразовании в JSON
-     */
-    public String deleteMovieById(Long id) throws JsonProcessingException {
-        movieRepository.deleteById(id);
-        return objectMapper.writeValueAsString("Movie with id " + id + " was deleted");
-    }
-
-    /**
-     * Обновление информации о кино в базе данных
-     *
-     * @param movie кино для обновления
-     * @return строковое представление JSON обновленного кино
-     * @throws JsonProcessingException если возникают проблемы при преобразовании в JSON
-     */
-    public String updateMovie(Movie movie) throws JsonProcessingException {
-        movie.getMovieScreenshots().forEach(movieScreenshot -> movieScreenshot.setMovie(movie));
-        movieRepository.save(movie);
-        return objectMapper.writeValueAsString(movie);
+    public List<Movie> getAllMovies() {
+        return movieRepository.findAll();
     }
 
     /**
      * Получение всего списка кино из базы данных в виде DTO
      *
-     * @return строковое представление JSON-массива всех фильмов в виде DTO
-     * @throws JsonProcessingException если возникают проблемы при преобразовании в JSON
+     * @return список всех фильмов в виде DTO
      */
     public List<MovieDto> getAllMoviesDTO() {
         List<Movie> movies = movieRepository.findAll();
         return movies.stream()
                 .map(this::convertToDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
+    /**
+     * Получение кино из базы данных по его идентификатору
+     *
+     * @param id идентификатор кино
+     * @return кино
+     */
+    public Movie getMovieById(Long id) {
+        Optional<Movie> optionalMovie = movieRepository.findById(id);
+        return optionalMovie.orElse(null);
+    }
+
+    /**
+     * Сохранение кино в базу данных
+     *
+     * @param movie кино для сохранения
+     */
+    @Transactional
+    public void saveMovie(Movie movie) {
+        movie.getMovieScreenshots().forEach(movieScreenshot -> movieScreenshot.setMovie(movie));
+        movieRepository.save(movie);
+    }
+
+    /**
+     * Удаление кино из базы данных по его идентификатору
+     *
+     * @param id идентификатор кино
+     * @return строковое представление результата удаления
+     */
+    @Transactional
+    public String deleteMovieById(Long id) {
+        if (movieRepository.existsMovieById(id)) {
+            movieRepository.deleteById(id);
+            return "Movie with id " + id + " was deleted";
+        }
+        return null;
+    }
+
+    /**
+     * Преобразование кино в DTO
+     *
+     * @param movie кино для преобразования
+     * @return DTO кино
+     */
     private MovieDto convertToDto(Movie movie) {
         return MovieDto.builder().id(movie.getId())
                 .ruTitle(movie.getRuTitle())

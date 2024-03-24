@@ -8,14 +8,45 @@
       <p class="movie-description">{{movie.description}}</p>
       <p class="movie-year">{{movie.releaseYear}}</p>
       <p class="movie-length">{{movie.length}} минут</p>
-      <p class="movie-genres">Жанры: {{movie.genres?.join(', ')}}</p>
-<!--      <p class="movie-actors">Актеры: {{movie.actors?.map(actor => actor.ruName).join(', ')}}</p>-->
-<!--      <p class="movie-directors">Режиссеры: {{movie.directors?.map(director => director.ruName).join(', ')}}</p>-->
     </div>
   </div>
+
+  <div class="movie-genres">
+    <h3>Жанры:</h3>
+    <div *ngFor="let genre of movie?.genres">
+      <span class="genre">{{genre.name}}</span>
+    </div>
+  </div>
+
+  <div class="movie-directors">
+    <h3>Режиссеры:</h3>
+    <div *ngFor="let director of movie?.directors; let i = index" class="director" (mouseover)="hoverDirectors[i] = true" (mouseout)="hoverDirectors[i] = false">
+      {{director.ruName}}
+      <div class="director-card" *ngIf="hoverDirectors[i]">
+        <h4>{{ director.enName }}</h4>
+        <img [src]="director.photo" alt="Director photo">
+      </div>
+    </div>
+  </div>
+
+  <div class="movie-actors">
+    <h3>Актеры:</h3>
+    <div *ngFor="let actor of movie?.actors; let i = index" class="actor" (mouseover)="hover[i] = true" (mouseout)="hover[i] = false">
+      {{actor.ruName}}
+      <div class="actor-card" *ngIf="hover[i]">
+        <h4>{{ actor.enName }}</h4>
+        <img [src]="actor.photo" alt="Actor photo">
+      </div>
+    </div>
+  </div>
+
   <div class="movie-screenshots">
     <div *ngFor="let screenshot of movie?.movieScreenshots">
       <img [src]="screenshot.url" class="screenshot-img" alt="Movie screenshot">
     </div>
+  </div>
+
+  <div class="movie-album">
+
   </div>
 </div>

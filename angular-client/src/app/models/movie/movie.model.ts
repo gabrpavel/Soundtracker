@@ -8,18 +8,18 @@ import {MovieScreenshot} from "./movie-screenshot.model";
 import {Album} from "../music/album.model";
 
 export class Movie {
-  id?: number;
-  ruTitle?: string;
-  enTitle?: string;
-  releaseYear?: number;
-  description?: string;
-  length?: number;
-  poster?: string;
-  type?: MovieType;
-  genres?: Genre[];
-  actors?: Actor[];
-  directors?: Director[];
-  movieScreenshots?: MovieScreenshot[];
+  id: number;
+  ruTitle: string;
+  enTitle: string;
+  releaseYear: number;
+  description: string;
+  length: number;
+  poster: string;
+  type: MovieType;
+  genres: Genre[];
+  actors: Actor[];
+  directors: Director[];
+  movieScreenshots: MovieScreenshot[];
   album?: Album;
 
   constructor(

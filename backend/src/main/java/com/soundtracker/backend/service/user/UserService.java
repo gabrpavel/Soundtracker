@@ -4,10 +4,13 @@ import com.soundtracker.backend.model.user.Role;
 import com.soundtracker.backend.model.user.User;
 import com.soundtracker.backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import javax.security.auth.login.CredentialException;
 
 
 @Service
@@ -31,14 +34,14 @@ public class UserService {
      *
      * @return созданный пользователь
      */
+    @SneakyThrows
     public User create(User user) {
         if (repository.existsByUsername(user.getUsername())) {
-            // Заменить на свои исключения
-            throw new RuntimeException("Пользователь с таким именем уже существует");
+            throw new CredentialException("Пользователь с таким именем уже существует");
         }
 
         if (repository.existsByEmail(user.getEmail())) {
-            throw new RuntimeException("Пользователь с таким email уже существует");
+            throw new CredentialException("Пользователь с таким email уже существует");
         }
 
         return save(user);

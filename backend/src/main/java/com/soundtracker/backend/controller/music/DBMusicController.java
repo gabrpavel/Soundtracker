@@ -1,13 +1,11 @@
 package com.soundtracker.backend.controller.music;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.soundtracker.backend.model.music.Album;
 import com.soundtracker.backend.service.music.DBMusicService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api-soudtracker/db-music")
 @RequiredArgsConstructor
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"})
 @Tag(name = "Database Music Controller",
         description = "Контроллер для работы с информацией о музыке из базы данных")
 public class DBMusicController {
@@ -24,83 +23,96 @@ public class DBMusicController {
     private final DBMusicService dbMusicService;
 
     /**
-     * Сохранение информации об альбоме.
+     * Сохранение альбома
      *
      * @param album объект альбома
-     * @return ответ с информацией об альбоме в формате JSON
+     * @return ответ о результате сохранения альбома
      */
     @Operation(summary = "Сохранение альбома", description = "Сохраняет информацию об альбоме в базу данных")
     @PostMapping("/save")
-    public ResponseEntity<String> saveAlbum(@RequestBody Album album) throws JsonProcessingException {
-
-        String response = dbMusicService.saveAlbum(album);
-        if (response == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    public ResponseEntity<String> saveAlbum(@RequestBody Album album) {
+        try {
+            dbMusicService.saveAlbum(album);
+            return ResponseEntity.status(HttpStatus.OK).body("Album saved successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while saving album.");
         }
-        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
     }
 
     /**
-     * Удаление информации об альбоме.
+     * Удаление альбома
      *
      * @param id идентификатор альбома
-     * @return ответ с информацией об альбоме в формате JSON
+     * @return ответ о результате удаления альбома
      */
     @Operation(summary = "Удаление альбома", description = "Удаляет информацию об альбоме из базы данных")
     @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteAlbum(@RequestParam("id") String id) throws JsonProcessingException {
-        String response = dbMusicService.deleteAlbum(id);
-        if (response == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    public ResponseEntity<String> deleteAlbum(@RequestParam("id") String id) {
+        try {
+            String response = dbMusicService.deleteAlbum(id);
+            if (response == null) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Album with id: " + id + " doesn't exist.");
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while deleting album.");
         }
-        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
     }
 
     /**
-     * Обновление информации об альбоме.
+     * Обновление альбома
      *
      * @param album объект альбома
-     * @return ответ с информацией об альбоме в формате JSON
+     * @return ответ о результате обновления альбома
      */
     @Operation(summary = "Обновление альбома", description = "Обновляет информацию об альбоме в базе данных")
     @PutMapping("/update")
-    public ResponseEntity<String> updateAlbum(@RequestBody Album album) throws JsonProcessingException {
-        String response = dbMusicService.updateAlbum(album);
-        if (response == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    public ResponseEntity<String> updateAlbum(@RequestBody Album album) {
+        try {
+            dbMusicService.saveAlbum(album);
+            return ResponseEntity.status(HttpStatus.OK).body("Album updated successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while updating album.");
         }
-        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
     }
 
     /**
-     * Получение информации об альбоме по его идентификатору.
+     * Поиск по ID
      *
      * @param id идентификатор альбома
-     * @return ответ с информацией об альбоме в формате JSON
+     * @return информация об альбоме
      */
-    @Operation(summary = "Поиск по ID", description = "Возвращает всю доступную информацию об альбоме")
+    @Operation(summary = "Поиск по ID", description = "Возвращает информацию об альбоме")
     @GetMapping("/album-by-id")
-    public ResponseEntity<String> getAlbumById(@RequestParam("id") String id) throws JsonProcessingException {
-        String response = dbMusicService.getAlbumById(id);
-        if (response == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    public ResponseEntity<Album> getAlbumById(@RequestParam("id") String id) {
+        try {
+            Album response = dbMusicService.getAlbumById(id);
+            if (response == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
     }
 
     /**
-     * Получение информации об альбоме по его названию.
+     * Поиск по названию
      *
      * @param name название альбома
-     * @return ответ с информацией об альбоме в формате JSON
+     * @return информация об альбоме
      */
-    @Operation(summary = "Поиск по названию", description = "Возвращает всю доступную информацию об альбоме")
+    @Operation(summary = "Поиск по названию", description = "Возвращает информацию об альбоме")
     @GetMapping("/album-by-name")
-    public ResponseEntity<String> getAlbumByName(@RequestParam("name") String name) throws JsonProcessingException {
-        String response = dbMusicService.getAlbumByName(name);
-        if (response == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    public ResponseEntity<Album> getAlbumByName(@RequestParam("name") String name) {
+        try {
+            Album response = dbMusicService.getAlbumByName(name);
+            if (response == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
     }
 }

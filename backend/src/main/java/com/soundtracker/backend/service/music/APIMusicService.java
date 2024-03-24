@@ -34,14 +34,17 @@ public class APIMusicService {
     }
 
     /**
-     * Получение информации об альбоме по его названию
+     * Получение альбома по его названию
      *
      * @param albumName название альбома
-     * @return строковое представление JSON найденного альбома
+     * @return объект Album, содержащий информацию об альбоме
      * @throws IOException если возникают проблемы при чтении ответа от внешнего API
      */
-    public String getAlbumByName(String albumName) throws IOException {
+    public Album getAlbumByName(String albumName) throws IOException {
         String responseBody = searchAlbumByName(albumName);
+        if (responseBody.isEmpty()) {
+            return null;
+        }
         JsonNode jsonNode = objectMapper.readTree(responseBody);
         jsonNode = jsonNode.get("albums").get("items").get(0);
         Album album = new Album();
@@ -53,7 +56,7 @@ public class APIMusicService {
         album.setSpotifyUrl(jsonNode.get("external_urls").get("spotify").asText());
         album.setTracks(getAlbumTracks(album.getId()));
 
-        return objectMapper.writeValueAsString(album);
+        return album;
     }
 
     /**
