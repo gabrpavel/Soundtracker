@@ -4,8 +4,8 @@
 }
 
 .card {
-  background-color: #c8d8c4; /* Светло-зеленый цвет фона карточки */
-  color: #3b3b3b; /* Темно-серый цвет текста на карточке */
+  background-color: #c8d8c4;
+  color: #3b3b3b;
   border: 1px solid #ddd;
   border-radius: 10px;
 }
@@ -21,18 +21,18 @@
 }
 
 .card-title {
-  color: #1a1a1a; /* Черный цвет заголовка на карточке */
+  color: #1a1a1a;
   font-size: 1.5rem;
   font-weight: bold;
 }
 
 .card-text {
-  color: #4f4f4f; /* Темно-серый цвет текста на карточке */
+  color: #4f4f4f;
   font-size: 1rem;
 }
 
 .text-muted {
-  color: #4f4f4f; /* Темно-серый цвет текста на карточке */
+  color: #4f4f4f;
   font-size: 0.9rem;
 }
 
@@ -80,7 +80,7 @@
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 100; /* Увеличьте значение z-index */
+  z-index: 100;
   width: 100px;
   height: 100px;
   padding: 10px;
@@ -93,4 +93,33 @@
   width: 100%;
   height: auto;
   object-fit: cover;
+}
+
+.screenshot-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.screenshot-wrapper {
+  display: flex;
+  overflow-x: hidden;
+  width: calc(200px * 5);
+}
+
+.screenshot {
+  flex: 0 0 auto;
+  margin-right: 10px;
+}
+
+.screenshot-img {
+  width: 200px;
+  height: auto;
+}
+
+.scroll-button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
 }

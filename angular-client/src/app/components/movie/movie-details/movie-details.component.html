@@ -40,10 +40,14 @@
     </div>
   </div>
 
-  <div class="movie-screenshots">
-    <div *ngFor="let screenshot of movie?.movieScreenshots">
-      <img [src]="screenshot.url" class="screenshot-img" alt="Movie screenshot">
+  <div class="screenshot-container">
+    <button class="scroll-button" (click)="scrollLeft()">←</button>
+    <div class="screenshot-wrapper">
+      <div *ngFor="let screenshot of movie?.movieScreenshots" class="screenshot">
+        <img [src]="screenshot.url" class="screenshot-img" alt="Movie screenshot">
+      </div>
     </div>
+    <button class="scroll-button" (click)="scrollRight()">→</button>
   </div>
 
   <div class="movie-album">

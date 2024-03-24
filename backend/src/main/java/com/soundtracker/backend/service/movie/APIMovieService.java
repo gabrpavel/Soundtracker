@@ -1,5 +1,6 @@
 package com.soundtracker.backend.service.movie;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.soundtracker.backend.api.KinopoiskAPI;
@@ -172,15 +173,29 @@ public class APIMovieService {
     }
 
     /**
-     * Получение скриншотов кино по его идентификатору из внешнего API (Kinopoisk API)
+     * Получение списка скриншотов из JSON-узла с данными о кино
      *
      * @param id идентификатор кино
-     * @return список объектов Image с данными о скриншотах кино
-     * @throws IOException если возникают проблемы при чтении ответа от внешнего API
+     * @return список скриншотов
      */
     public Set<MovieScreenshot> getMovieScreenshotsFromJson(Long id) throws IOException {
-        Set<MovieScreenshot> movieScreenshots = new HashSet<>();
         String responseBody = kinopoiskAPI.searchScreenshotsByMovieId(id);
+        Set<MovieScreenshot> movieScreenshots = new HashSet<>(getScreenshotDetails(responseBody));
+        if (movieScreenshots.isEmpty() || movieScreenshots.size() < 10) {
+            responseBody = kinopoiskAPI.searchFrameByMovieId(id);
+            movieScreenshots = getScreenshotDetails(responseBody);
+        }
+        return movieScreenshots;
+    }
+
+    /**
+     * Получение списка скриншотов из JSON-узла с данными о кино
+     *
+     * @param responseBody JSON-строка с данными о скриншотах
+     * @return список скриншотов
+     */
+    private Set<MovieScreenshot> getScreenshotDetails(String responseBody) throws JsonProcessingException {
+        Set<MovieScreenshot> movieScreenshots = new HashSet<>();
         JsonNode jsonNode = objectMapper.readTree(responseBody);
         JsonNode imagesNode = jsonNode.get("docs");
         if (imagesNode != null) {
@@ -190,13 +205,14 @@ public class APIMovieService {
                 JsonNode widthNode = imageNode.get("width");
                 JsonNode idNode = imageNode.get("id");
 
-                if (urlNode != null && heightNode != null && widthNode != null && idNode != null) {
-                    String url = urlNode.asText();
-                    int height = heightNode.asInt();
-                    int width = widthNode.asInt();
-                    String imageId = idNode.asText();
-                    MovieScreenshot movieScreenshot = new MovieScreenshot(imageId, url, height, width);
-                    movieScreenshots.add(movieScreenshot);
+                if (urlNode != null && idNode != null) {
+                    MovieScreenshot movieScreenshot;
+                    if(heightNode != null && widthNode != null) {
+                        movieScreenshot = new MovieScreenshot(idNode.asText(), urlNode.asText(),
+                                widthNode.asInt(), heightNode.asInt());
+                    } else {
+                        movieScreenshot = new MovieScreenshot(idNode.asText(), urlNode.asText());
+                    } movieScreenshots.add(movieScreenshot);
                 }
             }
         }

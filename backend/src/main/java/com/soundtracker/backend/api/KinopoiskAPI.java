@@ -82,4 +82,12 @@ public class KinopoiskAPI {
                 "&notNullFields=height&notNullFields=width&movieId=" + id + "&type=screenshot";
         return makeRequest(url);
     }
+
+    public String searchFrameByMovieId(Long id) throws IOException {
+        String url = API_URL + "image?page=1&limit=40&selectFields=movieId" +
+                "&selectFields=url&selectFields=height&selectFields=width" +
+                "&notNullFields=movieId&notNullFields=url" +
+                "&movieId=" + id + "&type=frame";
+        return makeRequest(url);
+    }
 }

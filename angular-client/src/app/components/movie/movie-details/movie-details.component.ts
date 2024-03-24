@@ -27,4 +27,18 @@ export class MovieDetailsComponent implements OnInit {
       console.log(data)
     });
   }
+
+  scrollLeft(): void {
+    const container = document.querySelector('.screenshot-wrapper');
+    if (container) {
+      container.scrollLeft -= 200; // Adjust this value based on the width of your screenshots
+    }
+  }
+
+  scrollRight(): void {
+    const container = document.querySelector('.screenshot-wrapper');
+    if (container) {
+      container.scrollLeft += 200; // Adjust this value based on the width of your screenshots
+    }
+  }
 }

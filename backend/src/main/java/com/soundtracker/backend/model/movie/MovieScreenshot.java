@@ -32,4 +32,9 @@ public class MovieScreenshot {
         this.height = height;
         this.width = width;
     }
+
+    public MovieScreenshot(String id, String url) {
+        this.id = id;
+        this.url = url;
+    }
 }

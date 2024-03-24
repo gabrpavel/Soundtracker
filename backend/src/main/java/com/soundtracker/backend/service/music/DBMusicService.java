@@ -1,6 +1,5 @@
 package com.soundtracker.backend.service.music;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.soundtracker.backend.model.music.Album;
 import com.soundtracker.backend.model.music.Track;
 import com.soundtracker.backend.repository.music.AlbumRepository;
@@ -21,7 +20,6 @@ public class DBMusicService {
 
     private final TrackRepository trackRepository;
     private final AlbumRepository albumRepository;
-    private final ObjectMapper objectMapper;
 
     /**
      * Сохранение информации об альбоме.
