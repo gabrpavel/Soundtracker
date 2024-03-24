@@ -14,16 +14,10 @@ public class DBConnection {
 
 
     public static Connection getConnection() throws SQLException {
-
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new SQLException(e);
-        }
-
         return DriverManager.getConnection(DB_URL,
                 DB_USER, DB_PASSWORD);
     }
+
     public static void closeConnection(Connection connection) {
         try {
             connection.close();

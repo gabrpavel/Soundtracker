@@ -50,7 +50,7 @@ public class SpotifyAPI {
         this.accessToken = responseData.substring(responseData.indexOf(":\"") + 2, responseData.indexOf("\","));
     }
 
-     /**
+    /**
      * Получение информации об альбоме по его идентификатору
      *
      * @param albumId идентификатор альбома

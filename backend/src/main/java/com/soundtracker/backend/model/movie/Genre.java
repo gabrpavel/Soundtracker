@@ -1,7 +1,6 @@
 package com.soundtracker.backend.model.movie;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.soundtracker.backend.model.movie.Movie;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;

@@ -5,7 +5,6 @@ import com.soundtracker.backend.service.movie.APIMovieService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api-soudtracker/api-movie")
 public class APIMovieController {
 
-    private  final APIMovieService apiMovieService;
+    private final APIMovieService apiMovieService;
 
     /**
      * Конструктор контроллера для внедрения зависимости сервиса APIMovieService

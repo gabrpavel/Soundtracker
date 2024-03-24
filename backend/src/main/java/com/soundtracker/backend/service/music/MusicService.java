@@ -2,7 +2,6 @@ package com.soundtracker.backend.service.music;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.soundtracker.backend.model.movie.Movie;
 import com.soundtracker.backend.model.music.Album;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;

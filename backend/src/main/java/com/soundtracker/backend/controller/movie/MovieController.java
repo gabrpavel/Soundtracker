@@ -1,12 +1,10 @@
 package com.soundtracker.backend.controller.movie;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.soundtracker.backend.model.movie.Movie;
 import com.soundtracker.backend.service.movie.MovieService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

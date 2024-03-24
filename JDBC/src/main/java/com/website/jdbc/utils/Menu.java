@@ -15,6 +15,7 @@ public class Menu {
     private Menu() {
         throw new IllegalStateException("Utility class");
     }
+
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     static Logger logger = Logger.getLogger(Menu.class.getName());
     static UsersDAO usersDAO = new UsersDAO();
@@ -36,14 +37,10 @@ public class Menu {
             option = br.readLine();
 
             switch (option) {
-                case "1" ->
-                    createUser();
-                case "2" ->
-                    getAllUsers();
-                case "3" ->
-                    updateUser();
-                case "4" ->
-                    deleteUser();
+                case "1" -> createUser();
+                case "2" -> getAllUsers();
+                case "3" -> updateUser();
+                case "4" -> deleteUser();
                 case "5" -> {
                     return;
                 }
@@ -67,7 +64,7 @@ public class Menu {
         User user = new User(0L, login, password, email);
         int status = usersDAO.saveUser(user);
 
-        if(status == 1 )
+        if (status == 1)
             logger.info("User saved successfully");
         else
             logger.info("ERROR while saving user");
@@ -76,11 +73,12 @@ public class Menu {
 
     public static void getAllUsers() {
         List<User> users = usersDAO.getAllUsers();
-        for (User user: users) {
+        for (User user : users) {
             showUser(user);
         }
 
     }
+
     public static void showUser(User user) {
         String string = user.toString();
         logger.info(string);

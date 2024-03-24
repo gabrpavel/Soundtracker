@@ -1,9 +1,6 @@
 package com.soundtracker.backend.dto.response.movie;
 
-import com.soundtracker.backend.model.movie.Genre;
-import com.soundtracker.backend.model.movie.MovieType;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
 import lombok.*;
 
 import java.util.HashSet;

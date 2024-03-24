@@ -1,6 +1,7 @@
 package com.website.jdbc.model;
 
 import lombok.Data;
+
 import java.util.List;
 
 @Data

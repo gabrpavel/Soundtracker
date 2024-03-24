@@ -16,26 +16,26 @@ public class ToolsDB {
 
     public void closeDatabaseResources() {
         try {
-            if(conn != null) {
+            if (conn != null) {
 
                 conn.close();
             }
 
-            if(st != null) {
+            if (st != null) {
 
                 st.close();
             }
 
-            if(rs != null) {
+            if (rs != null) {
 
                 rs.close();
             }
 
-            if(ps != null) {
+            if (ps != null) {
                 ps.close();
             }
 
-        } catch(SQLException se) {
+        } catch (SQLException se) {
             throw new IllegalStateException(se);
         }
     }

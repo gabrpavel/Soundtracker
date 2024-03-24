@@ -68,7 +68,7 @@ public class MoviesDAO {
                      " en_title, release_year, description, length, poster" +
                      " FROM movies" +
                      " WHERE id = ?"
-                    )) {
+             )) {
 
             ps.setLong(1, id);
             try (ResultSet rs = ps.executeQuery()) {
@@ -83,7 +83,7 @@ public class MoviesDAO {
                     movie.setGenres(getGenres(id));
                 }
             }
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             throw new IllegalStateException("Error while adding movie data with movie ID: " + id, e);
         }
         return movie;

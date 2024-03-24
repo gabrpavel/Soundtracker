@@ -1,4 +1,5 @@
 package com.soundtracker.backend.model.movie;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

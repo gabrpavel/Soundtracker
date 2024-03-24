@@ -79,7 +79,7 @@ public class KinopoiskAPI {
         String url = API_URL + "image?page=1&limit=40&selectFields=movieId" +
                 "&selectFields=url&selectFields=height&selectFields=width" +
                 "&notNullFields=movieId&notNullFields=url" +
-                "&notNullFields=height&notNullFields=width&movieId="+ id +"&type=screenshot";
+                "&notNullFields=height&notNullFields=width&movieId=" + id + "&type=screenshot";
         return makeRequest(url);
     }
 }

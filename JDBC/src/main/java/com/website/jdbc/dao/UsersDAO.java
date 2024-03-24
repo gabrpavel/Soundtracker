@@ -12,11 +12,11 @@ public class UsersDAO {
     private static final ToolsDB toolsDB = new ToolsDB();
 
 
-    public List<User> getAllUsers()  {
+    public List<User> getAllUsers() {
 
         List<User> users = new ArrayList<>();
 
-        try  {
+        try {
             toolsDB.setConn(DBConnection.getConnection());
             toolsDB.setSt(toolsDB.getConn().createStatement());
             toolsDB.setRs(toolsDB.getSt().executeQuery("SELECT * FROM users"));
@@ -46,7 +46,7 @@ public class UsersDAO {
             toolsDB.getPs().setLong(1, id);
             toolsDB.setRs(toolsDB.getPs().executeQuery());
 
-            while(toolsDB.getRs().next()) {
+            while (toolsDB.getRs().next()) {
                 user = new User(toolsDB.getRs().getLong("id"),
                         toolsDB.getRs().getString("email"),
                         toolsDB.getRs().getString("password"),
