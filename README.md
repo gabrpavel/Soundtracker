@@ -1,10 +1,8 @@
 # Soundtracker (fullstack application)
 
-The purpose of the project is to create a web application. Subject area -  music and films.<br>
+The purpose of the project is to create a fullstack web application. Subject area -  music and films.<br>
 **[Spotify API](https://developer.spotify.com/)**<br>
 **[Kinopoisk API](https://kinopoisk.dev/)**<br>
-
-> search for and add a movie soundtrack to a playlist<br>
 
 | Stage                                | Description                                                                                                        | Expected (hours) | Actual (hours) |
 |--------------------------------------|--------------------------------------------------------------------------------------------------------------------|------------------|----------------|
@@ -14,8 +12,6 @@ The purpose of the project is to create a web application. Subject area -  music
 | Backend using SpringBoot + Hibernate | Creating an application backend using SpringBoot and Hibernate.                                                    | 35               | 35             |
 | Angular - Frontend                   | Frontend development using Angular.                                                                                | 20               | Y              |
 | React - Frontend                     | Frontend development using React.                                                                                  | 15               | Y              |
-
----
 
 ## Task 1. Database architecture design
 
