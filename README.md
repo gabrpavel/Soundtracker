@@ -11,7 +11,7 @@ The purpose of the project is to create a fullstack web application. Subject are
 | JSP                                  | Developing the client side using JSP.                                                                              | 20               | 17             |
 | Backend using SpringBoot + Hibernate | Creating an application backend using SpringBoot and Hibernate.                                                    | 35               | 35             |
 | Angular - Frontend                   | Frontend development using Angular.                                                                                | 20               | 15             |
-| React - Frontend                     | Frontend development using React.                                                                                  | 15               | Y              |
+| React - Frontend                     | Frontend development using React.                                                                                  | 15               | 7              |
 
 ## Task 1. Database architecture design
 
