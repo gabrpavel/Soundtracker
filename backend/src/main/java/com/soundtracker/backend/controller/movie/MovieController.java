@@ -60,9 +60,9 @@ public class MovieController {
      * @return ответ с установленным альбомом для кино в формате JSON
      */
     @GetMapping("/set-album")
-    public ResponseEntity<String> setAlbum(@RequestParam("id") Long id) {
+    public ResponseEntity<String> setAlbum(@RequestParam("id") Long id, @RequestParam("album_name") String albumName) {
         try {
-            ResponseEntity<String> response = movieService.setAlbum(id);
+            ResponseEntity<String> response = movieService.setAlbum(id, albumName);
             return ResponseEntity
                     .status(response.getStatusCode())
                     .body(response.getBody());

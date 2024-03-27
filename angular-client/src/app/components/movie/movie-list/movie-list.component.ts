@@ -9,10 +9,21 @@ import {MovieDto} from "../../../models/movie/movie-dto.model";
   styleUrls: ['./movie-list.component.css']
 })
 export class MovieListComponent implements OnInit {
-  movies?: MovieDto[];
+  movies: MovieDto[] = [];
   currentMovie: {} = <MovieDto>{};
   currentIndex = -1;
   title = '';
+  filteredMovies: MovieDto[] = [];
+  private _searchTerm = '';
+
+  get searchTerm(): string {
+    return this._searchTerm;
+  }
+
+  set searchTerm(value: string) {
+    this._searchTerm = value;
+    this.filteredMovies = this.filterMovies(this._searchTerm);
+  }
 
   constructor(private movieService: MovieService) {
   }
@@ -25,6 +36,7 @@ export class MovieListComponent implements OnInit {
     this.movieService.getAllMoviesDto().subscribe({
       next: (data) => {
         this.movies = data;
+        this.filteredMovies = [...this.movies]; // Изначально отображаем все фильмы
         console.log('Movies:', this.movies);
       },
       error: (e) => console.error(e)
@@ -40,5 +52,13 @@ export class MovieListComponent implements OnInit {
   setActiveMovie(movie: MovieDto, index: number): void {
     this.currentMovie = movie;
     this.currentIndex = index;
+  }
+
+  filterMovies(searchTerm: string) {
+    if(!searchTerm) {
+      return this.movies;
+    }
+
+    return this.movies.filter(movie => movie.ruTitle.toLowerCase().includes(searchTerm.toLowerCase()));
   }
 }

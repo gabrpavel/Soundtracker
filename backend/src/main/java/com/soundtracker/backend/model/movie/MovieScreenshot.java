@@ -16,10 +16,10 @@ import lombok.Setter;
 public class MovieScreenshot {
 
     @Id
-    String id;
-    String url;
-    int height;
-    int width;
+    private String id;
+    private String url;
+    private int height;
+    private int width;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)

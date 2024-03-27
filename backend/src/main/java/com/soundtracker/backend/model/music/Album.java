@@ -20,22 +20,22 @@ public class Album {
 
     @Id
     @Schema(description = "ID альбома", example = "1rwMhGTCp0D6CN2XKQjyQt")
-    String id;
+    private String id;
 
     @Schema(description = "Имя исполнителя", example = "Justin Hurwitz")
-    String artistName;
+    private String artistName;
 
     @Schema(description = "Ссылка на Spotify", example = "https://open.spotify.com/album/1rwMhGTCp0D6CN2XKQjyQt")
-    String spotifyUrl;
+    private String spotifyUrl;
 
     @Schema(description = "Обложка", example = "https://i.scdn.co/image/ab67616d0000b2736fce4a71d3973d3bbb12e8d7")
-    String cover;
+    private String cover;
 
     @Schema(description = "Название альбома", example = "Whiplash (Original Motion Picture Soundtrack)")
-    String name;
+    private String name;
 
     @Schema(description = "Количество треков", example = "24")
-    int totalTracks;
+    private int totalTracks;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "album_tracks",

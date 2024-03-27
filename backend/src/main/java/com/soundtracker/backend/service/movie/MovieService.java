@@ -145,11 +145,11 @@ public class MovieService {
      * @param id идентификатор кино
      * @return ответ от сервера о результате установки альбома
      */
-    public ResponseEntity<String> setAlbum(Long id) throws JsonProcessingException {
+    public ResponseEntity<String> setAlbum(Long id, String albumName) throws JsonProcessingException {
         Optional<Movie> optionalMovie = movieRepository.findById(id);
         if (optionalMovie.isPresent()) {
             Movie movie = optionalMovie.get();
-            String url = "http://localhost:8080/api-soudtracker/api-music/album?name=" + movie.getEnTitle() + " soundtrack";
+            String url = "http://localhost:8080/api-soudtracker/api-music/album?name=" + albumName;
             ResponseEntity<String> responseEntity = sendGetRequest(url);
             if (responseEntity.getStatusCode().is2xxSuccessful()) {
                 String albumJson = responseEntity.getBody();

@@ -1,56 +1,86 @@
-<div class="movie-details-container">
-  <div class="movie-card" *ngIf="movie">
-    <div class="movie-poster">
-      <img [src]="movie.poster" alt="Movie poster">
+<div class="flex flex-col items-center">
+  <div class="flex flex-row justify-between my-8">
+    <div class="w-1/3">
+      <img [src]="movie?.poster" [alt]="movie?.enTitle" class="w-full h-auto">
     </div>
-    <div class="movie-info">
-      <h2 class="movie-title">{{movie.ruTitle}}</h2>
-      <p class="movie-description">{{movie.description}}</p>
-      <p class="movie-year">{{movie.releaseYear}}</p>
-      <p class="movie-length">{{movie.length}} минут</p>
-    </div>
-  </div>
+    <div class="w-2/3 ml-8">
+      <h2 class="text-3xl font-bold">{{ movie?.ruTitle }}</h2>
+      <p class="mt-2 text-xl">{{ movie?.enTitle }}</p>
+      <p class="mt-4 text-lg">{{ movie?.description }}</p>
+      <br>
+      <div *ngFor="let genre of movie?.genres"
+           class="inline-block bg-custom-green rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{ genre.name }}
+      </div>
 
-  <div class="movie-genres">
-    <h3>Жанры:</h3>
-    <div *ngFor="let genre of movie?.genres">
-      <span class="genre">{{genre.name}}</span>
-    </div>
-  </div>
+      <br>
+      <p class="mt-2"><strong>Год производства:</strong> {{ movie?.releaseYear }}</p>
+      <p class="mt-2"><strong>Продолжительность:</strong> {{ movie?.length }} минут</p>
+      <br>
 
-  <div class="movie-directors">
-    <h3>Режиссеры:</h3>
-    <div *ngFor="let director of movie?.directors; let i = index" class="director" (mouseover)="hoverDirectors[i] = true" (mouseout)="hoverDirectors[i] = false">
-      {{director.ruName}}
-      <div class="director-card" *ngIf="hoverDirectors[i]">
-        <h4>{{ director.enName }}</h4>
-        <img [src]="director.photo" alt="Director photo">
+      <p class="mt-2"><strong>Режиссер:</strong>
+        <ng-container *ngFor="let director of movie?.directors; let i = index; let isLast = last">
+          <span class="relative director" (mouseover)="hoverDirectors[i] = true" (mouseout)="hoverDirectors[i] = false">
+            {{ director.ruName }}
+            <div class="absolute bg-white p-2 border border-gray-300 rounded-lg shadow-lg director-card z-50"
+                 [style.left.px]="0" [style.top.px]="20" *ngIf="hoverDirectors[i]">
+              <h4>{{ director.enName }}</h4>
+              <img [src]="director.photo" alt="Director photo" class="w-48 h-auto object-scale-down rounded-lg">
+            </div>
+          </span>
+          <ng-container *ngIf="!isLast">,</ng-container>
+        </ng-container>
+      </p>
+
+      <p class="mt-2"><strong>Актерский состав:</strong>
+        <ng-container *ngFor="let actor of movie?.actors; let i = index; let isLast = last">
+          <span class="relative actor" (mouseover)="hover[i] = true" (mouseout)="hover[i] = false">
+            {{ actor.ruName }}
+            <div class="absolute bg-white p-2 border border-gray-300 rounded-lg shadow-lg actor-card z-50"
+                 [style.left.px]="0" [style.top.px]="20" *ngIf="hover[i]">
+              <h4>{{ actor.enName }}</h4>
+              <img [src]="actor.photo" alt="Actor photo" class="w-48 h-auto object-scale-down rounded-lg">
+            </div>
+          </span>
+          <ng-container *ngIf="!isLast">,</ng-container>
+        </ng-container>
+      </p>
+
+      <div *ngIf="displayedScreenshots.length > 0">
+        <br>
+        <p class="mt-2"><strong>Кадры из фильма</strong></p>
+        <div class="flex items-center mt-8">
+          <button
+            class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+            (click)="scrollLeft()">←
+          </button>
+
+          <div class="overflow-x-auto ml-4">
+            <div *ngFor="let screenshot of displayedScreenshots" class="mr-4 screenshot-container">
+              <img [src]="screenshot.url" class="w-48 h-auto" alt="Movie screenshot" (click)="openDialog(screenshot)">
+            </div>
+          </div>
+
+          <button
+            class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ml-4"
+            (click)="scrollRight()">→
+          </button>
+        </div>
       </div>
     </div>
   </div>
-
-  <div class="movie-actors">
-    <h3>Актеры:</h3>
-    <div *ngFor="let actor of movie?.actors; let i = index" class="actor" (mouseover)="hover[i] = true" (mouseout)="hover[i] = false">
-      {{actor.ruName}}
-      <div class="actor-card" *ngIf="hover[i]">
-        <h4>{{ actor.enName }}</h4>
-        <img [src]="actor.photo" alt="Actor photo">
-      </div>
+  <div *ngIf="movie?.album" class="album-container flex items-center">
+    <img [src]="movie?.album?.cover" [alt]="movie?.album?.name" class="w-48 h-auto">
+    <div class="ml-8">
+      <h2 class="text-2xl font-bold bg-">{{ movie?.album?.name }}</h2>
+      <a [href]="movie?.album?.spotifyUrl" target="_blank" class="spotify-button">Open in Spotify</a>
     </div>
   </div>
-
-  <div class="screenshot-container">
-    <button class="scroll-button" (click)="scrollLeft()">←</button>
-    <div class="screenshot-wrapper">
-      <div *ngFor="let screenshot of movie?.movieScreenshots" class="screenshot">
-        <img [src]="screenshot.url" class="screenshot-img" alt="Movie screenshot">
-      </div>
-    </div>
-    <button class="scroll-button" (click)="scrollRight()">→</button>
-  </div>
-
-  <div class="movie-album">
-
+  <div *ngFor="let track of movie?.album?.tracks" class="track-container">
+    <p>{{ track.name }}</p>
+    <audio controls style="width: 500px;">
+      <source [src]="track.previewUrl" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
   </div>
 </div>
+

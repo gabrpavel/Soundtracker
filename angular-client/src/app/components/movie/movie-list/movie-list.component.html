@@ -1,6 +1,7 @@
 <div class="container mt-3">
+  <input [(ngModel)]="searchTerm" placeholder="Поиск по названию фильма" class="form-control mb-3">
   <div class="grid">
-    <div class="card" *ngFor="let movie of movies">
+    <div class="card" *ngFor="let movie of filteredMovies">
       <a [routerLink]="['/movies', movie.id]">
         <img class="card-img" [src]="movie.poster" alt="Movie poster">
         <div class="card-body">

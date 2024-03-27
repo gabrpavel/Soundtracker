@@ -48,23 +48,4 @@ public class APIMovieController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
-    /**
-     * Получение информации о кино по его названию
-     *
-     * @param title название кино
-     * @return объект кино в случае успеха
-     */
-    @Operation(summary = "Поиск по названию", description = "Возвращает информацию о кино")
-    @GetMapping("/info-by-title")
-    public ResponseEntity<Movie> getMovie(@RequestParam("title") String title) {
-        try {
-            Movie movie = apiMovieService.searchMovieByTitle(title);
-            if (movie == null)
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-            return ResponseEntity.status(HttpStatus.OK).body(movie);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
 }
