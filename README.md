@@ -10,7 +10,7 @@ The purpose of the project is to create a fullstack web application. Subject are
 | JDBC                                 | Create a console application to perform CRUD operations using JDBC.                                                | 7                | 7              |
 | JSP                                  | Developing the client side using JSP.                                                                              | 20               | 17             |
 | Backend using SpringBoot + Hibernate | Creating an application backend using SpringBoot and Hibernate.                                                    | 35               | 35             |
-| Angular - Frontend                   | Frontend development using Angular.                                                                                | 20               | Y              |
+| Angular - Frontend                   | Frontend development using Angular.                                                                                | 20               | 15             |
 | React - Frontend                     | Frontend development using React.                                                                                  | 15               | Y              |
 
 ## Task 1. Database architecture design
@@ -84,6 +84,14 @@ The purpose of the project is to create a fullstack web application. Subject are
 ## Task 5. Frontend using Angular
 
 ### Results: [CODE](angular-client)
+
+![](images/angular-client/1.png)
+![](images/angular-client/2.png)
+![](images/angular-client/3.png)
+![](images/angular-client/4.png)
+![](images/angular-client/5.png)
+![](images/angular-client/6.png)
+![](images/angular-client/7.png)
 
 ---
 
