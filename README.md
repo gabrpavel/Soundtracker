@@ -16,7 +16,7 @@ The purpose of the project is to create a fullstack web application. Subject are
 ## Task 1. Database architecture design
 
 ### Results: [DDL](Database/version_03_03_2024.txt)
-![](https://github.com/gabrpavel/website/blob/68e65c1e08238287bb5e656a4fe51bf2ee960687/Database/website_db.png)
+![](https://github.com/gabrpavel/Soundtracker/blob/9c7cbecbcf5c547f7a6cac1132ed8d4b32544784/Database/ERD.png)
 
 ---
 
