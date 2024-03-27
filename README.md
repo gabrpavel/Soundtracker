@@ -98,3 +98,10 @@ The purpose of the project is to create a fullstack web application. Subject are
 ## Task 6. Frontend using React
 
 ### Results: [CODE](react-client)
+
+![](images/react-client/1.png)
+![](images/react-client/2.png)
+![](images/react-client/3.png)
+![](images/react-client/4.png)
+![](images/react-client/5.png)
+![](images/react-client/6.png)
