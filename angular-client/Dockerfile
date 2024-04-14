@@ -1,6 +1,12 @@
-FROM node:alpine AS build
-WORKDIR /angular-client
-COPY package.json package-lock.json ./
+FROM node:latest AS builder
+
+RUN npm install -g @angular/cli
+
+WORKDIR /app
+
+COPY package*.json ./
 RUN npm install
+
 COPY . .
-RUN npm run build
+
+CMD ["ng", "serve", "--host", "0.0.0.0"]

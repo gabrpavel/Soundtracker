@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @Tag(name = "Database Movie Controller",
         description = "Контроллер для работы с информацией о кино из базы данных")
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"})
+@CrossOrigin(origins = {"http://frontend:4200", "http://localhost:3000"})
 @RequestMapping("/api-soudtracker/db-movie")
 public class DBMovieController {
 

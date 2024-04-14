@@ -10,7 +10,7 @@ import {Movie} from "../../models/movie/movie.model";
   providedIn: 'root'
 })
 export class MovieService {
-  private baseUrl = 'http://localhost:8080';
+  private baseUrl = 'http://backend:8080';
 
   constructor(private http: HttpClient) {
   }

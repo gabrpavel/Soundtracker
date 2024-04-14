@@ -41,7 +41,7 @@ public class MovieService {
      * @return объект Movie, содержащий данные о кино
      */
     public Optional<Movie> getMovieInfoFromDatabase(String requestPath) {
-        String databaseUrl = "http://localhost:8080/api-soudtracker/db-movie" + requestPath;
+        String databaseUrl = "http://backend:8080/api-soudtracker/db-movie" + requestPath;
         return getMovie(databaseUrl);
     }
 
@@ -52,7 +52,7 @@ public class MovieService {
      * @return объект Movie, содержащий данные о кино
      */
     public Optional<Movie> getMovieInfoFromApi(Long id) {
-        String apiUrl = "http://localhost:8080/api-soudtracker/api-movie/info?id=" + id;
+        String apiUrl = "http://backend:8080/api-soudtracker/api-movie/info?id=" + id;
         return getMovie(apiUrl);
     }
 
@@ -109,7 +109,7 @@ public class MovieService {
      * @return ответ от сервера о результате обновления
      */
     public ResponseEntity<String> updateMovie(String movieJson) {
-        String databaseUrl = "http://localhost:8080/api-soudtracker/db-movie/update";
+        String databaseUrl = "http://backend:8080/api-soudtracker/db-movie/update";
         return sendPutRequest(databaseUrl, movieJson);
     }
 
@@ -149,7 +149,7 @@ public class MovieService {
         Optional<Movie> optionalMovie = movieRepository.findById(id);
         if (optionalMovie.isPresent()) {
             Movie movie = optionalMovie.get();
-            String url = "http://localhost:8080/api-soudtracker/api-music/album?name=" + albumName;
+            String url = "http://backend:8080/api-soudtracker/api-music/album?name=" + albumName;
             ResponseEntity<String> responseEntity = sendGetRequest(url);
             if (responseEntity.getStatusCode().is2xxSuccessful()) {
                 String albumJson = responseEntity.getBody();

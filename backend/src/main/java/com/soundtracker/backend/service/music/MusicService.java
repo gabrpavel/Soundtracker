@@ -34,7 +34,7 @@ public class MusicService {
      * @return информация об альбоме
      */
     public Optional<Album> getAlbumFromDatabase(String name) {
-        String databaseUrl = "http://localhost:8080/api-soudtracker/db-music/album-by-name?name=" + name;
+        String databaseUrl = "http://backend:8080/api-soudtracker/db-music/album-by-name?name=" + name;
         return getAlbum(databaseUrl);
     }
 
@@ -45,7 +45,7 @@ public class MusicService {
      * @return информация об альбоме
      */
     public Optional<Album> getAlbumFromApi(String name) {
-        String apiUrl = "http://localhost:8080/api-soudtracker/api-music/album?name=" + name;
+        String apiUrl = "http://backend:8080/api-soudtracker/api-music/album?name=" + name;
         return getAlbum(apiUrl);
     }
 
@@ -91,7 +91,7 @@ public class MusicService {
      * @return ответ с информацией об альбоме в формате JSON
      */
     public ResponseEntity<String> saveAlbum(String album) {
-        String databaseUrl = "http://localhost:8080/api-soudtracker/db-music/save";
+        String databaseUrl = "http://backend:8080/api-soudtracker/db-music/save";
         return sendPostRequest(databaseUrl, album);
     }
 
@@ -102,7 +102,7 @@ public class MusicService {
      * @return ответ от сервера о результате обновления
      */
     public ResponseEntity<String> updateAlbum(String albumJson) {
-        String databaseUrl = "http://localhost:8080/api-soudtracker/db-music/update";
+        String databaseUrl = "http://backend:8080/api-soudtracker/db-music/update";
         return sendPutRequest(databaseUrl, albumJson);
     }
 

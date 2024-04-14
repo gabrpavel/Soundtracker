@@ -1,57 +1,39 @@
 version: '3.8'
 
 services:
-
   db-container:
     image: postgres:latest
-    container_name: db-container
+    container_name: database
     restart: always
     networks:
       - movies-network
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: website_db
+        POSTGRES_USER: dbmsuser
+        POSTGRES_PASSWORD: 191688
+        POSTGRES_DB: movieservicebd
     volumes:
-      - /home/wupdp/data:/var/lib/postgresql/data
+      - /home/:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
-  dbms-service:
-    build: ./dbms-service
-    image: dbms-service:latest
-    container_name: dbms-service
+  backend:
+    build: ./backend
+    image: backend:latest
+    container_name: backend
     restart: always
     networks:
       - movies-network
     depends_on:
       - db-container
-      - redis
-    environment:
-      DATABASE_URL: db-container:5432
-    volumes:
-      - /home/wupdp/logs/dbms:/app/logs
-
-  api-service:
-    build: ./api-service
-    image: api-service:latest
-    container_name: api-service
-    restart: always
-    networks:
-      - movies-network
-    volumes:
-      - /home/wupdp/logs/api:/app/logs
-  db-controller:
-    build: ./db-controller
-    image: db-controller
-    container_name: db-controller
+    ports:
+      - "8080:8080"
+  frontend:
+    build: ./angular-client
     restart: always
     networks:
       - movies-network
     ports:
-      - "8081:8081"
-    volumes:
-      - /home/wupdp/logs/controller:/app/logs
+      - "8888:4200"
 networks:
   movies-network:
     driver: bridge

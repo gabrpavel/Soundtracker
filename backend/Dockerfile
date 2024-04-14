@@ -14,8 +14,8 @@ FROM openjdk:21-jdk-slim AS RUN
 
 WORKDIR /backend
 
-COPY --from=build /backend/target/backend-0.0.1-SNAPSHOT.jar /backend/backend-0.0.1-SNAPSHOT.jar
+COPY --from=build /backend/target/*.jar /backend/backend.jar
 
-EXPOSE 8081
+EXPOSE 8080
 
-CMD ["java", "-jar", "backend-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "backend.jar"]

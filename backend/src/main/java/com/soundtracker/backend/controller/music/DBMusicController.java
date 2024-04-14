@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api-soudtracker/db-music")
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:3000"})
+@CrossOrigin(origins = {"http://frontend:4200", "http://localhost:3000"})
 @Tag(name = "Database Music Controller",
         description = "Контроллер для работы с информацией о музыке из базы данных")
 public class DBMusicController {
