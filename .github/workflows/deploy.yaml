@@ -46,8 +46,7 @@ jobs:
 
       - name: Copy docker-compose.yaml to remote server
         run: |
-          scp -o StrictHostKeyChecking=no docker-compose.yaml ${{ env.HOST }}:~/apps/soundtracker/ &&
-          scp -o StrictHostKeyChecking=no .env ${{ env.HOST }}:~/apps/soundtracker/
+          scp -o StrictHostKeyChecking=no docker-compose.yaml ${{ env.HOST }}:~/apps/soundtracker/
 
       - name: Deploy
         run: |
