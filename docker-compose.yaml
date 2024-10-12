@@ -3,7 +3,7 @@ version: '3.8'
 services:
   db-container:
     image: postgres:latest
-    container_name: database
+    container_name: soundtracker_database
     restart: always
     networks:
       - movies-network
@@ -18,8 +18,8 @@ services:
 
   backend:
     build: ./backend
-    image: backend:latest
-    container_name: backend
+    image: kelbri/soundtracker_backend:0.0.1
+    container_name: soundtracker_backend
     restart: always
     networks:
       - movies-network
@@ -29,6 +29,8 @@ services:
       - "8080:8080"
   frontend:
     build: ./angular-client
+    image: kelbri/soundtracker_frontend:0.0.1
+    container_name: soundtracker_frontend
     restart: always
     networks:
       - movies-network

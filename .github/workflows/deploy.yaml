@@ -1,0 +1,54 @@
+name: Deploy to Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to deploy'
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      HOST: gabr@${{ vars.IP }}
+      IP: ${{ vars.IP }}
+      VERSION: ${{ github.event.inputs.tag }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get install -y docker-compose
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push backend image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/soundtracker_backend:${{ env.VERSION }} ./backend
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/soundtracker_backend:${{ env.VERSION }}
+
+      - name: Build and push frontend image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/soundtracker_frontend:${{ env.VERSION }} ./angular-client
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/soundtracker_frontend:${{ env.VERSION }}
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
+
+      - name: Copy docker-compose.yaml to remote server
+        run: |
+          scp -o StrictHostKeyChecking=no docker-compose.yaml ${{ env.HOST }}:~/apps/soundtracker/ &&
+          scp -o StrictHostKeyChecking=no .env ${{ env.HOST }}:~/apps/soundtracker/
+
+      - name: Deploy
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ env.HOST }} "cd ~/apps/soundtracker && docker-compose down && docker pull ${{ secrets.DOCKERHUB_USERNAME }}/soundtracker_backend:${{ env.VERSION }} && docker pull ${{ secrets.DOCKERHUB_USERNAME }}/soundtracker_frontend:${{ env.VERSION }} && docker-compose up -d"
