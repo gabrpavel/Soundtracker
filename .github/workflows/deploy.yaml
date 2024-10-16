@@ -13,7 +13,7 @@ jobs:
     env:
       HOST: gabr@${{ vars.IP }}
       IP: ${{ vars.IP }}
-      VERSION: ${{ github.event.inputs.tag }}
+      VERSION: 0.0.1
 
     steps:
       - name: Checkout code
